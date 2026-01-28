@@ -3,63 +3,69 @@
 <section id="directions-section" class="py-5" style="background-color: #000000; color: #ffffff; font-family: 'Inter', sans-serif;">
     <div class="container">
         
-        <h2 class="event-section-title">Directions</h2>
+        <h2 class="direction-section-title">Directions</h2>
         
         <div style="height: 4rem;"></div>
 
-        <div class="row align-items-start mb-5 event-row">
-            <div class="col-md-4">
-                <div class="event-image-wrapper">
-                    <img src="images/directions/perception.png" alt="Embodied Perception" class="custom-rounded">
+        <!-- UAV 放第一位 -->
+        <div class="row align-items-start mb-5 direction-row">
+            <div class="col-md-5">
+                <div class="direction-image-wrapper">
+                    <img src="images/directions/UAV.png" alt="Embodied AI x UAVs" class="direction-img">
                 </div>
             </div>
-            <div class="col-md-8 ps-md-5 mt-3 mt-md-0 text-start">
-                <h3 class="event-name">Embodied Perception</h3>
-                <p class="event-description text-start">
-                    Perception is crucial for embodied agents. We aim not only for agents to "see" their surroundings but to develop a deeper "understanding" of the environment across spatial, temporal, and semantic dimensions. A key task is open-vocabulary object detection and segmentation, which focuses on aligning language and vision modalities to enable models to recognize and understand objects they have never encountered before.
+            <div class="col-md-7 ps-md-5 mt-3 mt-md-0 text-start">
+                <h3 class="direction-name">Embodied AI × UAVs</h3>
+                <p class="direction-description">
+                    We build aerial embodied agents that integrate vision-language understanding with autonomous policy planning, enabling UAVs to perceive, think, and act in dynamic environments. Our research spans from simulation to real-world deployment, advancing aerial robots capable of intelligent navigation and multi-agent collaboration.
+                </p>
+                <a href="https://buaa-colalab.github.io/colab_uav.github.io/" target="_blank" class="direction-link-btn">
+                    <i class="fas fa-external-link-alt"></i> Visit UAV Home Page
+                </a>
+            </div>
+        </div>
+
+        <!-- Satellite 放第二位 -->
+        <div class="row align-items-start mb-5 direction-row">
+            <div class="col-md-5 order-md-2">
+                <div class="direction-image-wrapper">
+                    <img src="images/directions/satellite.png" alt="Embodied AI x Satellites" class="direction-img">
+                </div>
+            </div>
+            <div class="col-md-7 order-md-1 pe-md-5 mt-3 mt-md-0">
+                <h3 class="direction-name">Embodied AI × Satellites</h3>
+                <p class="direction-description">
+                    We focus on intelligent scheduling and planning for imaging satellite constellations. By building unified frameworks that integrate benchmarks and learning-based scheduling models, we tackle the NP-hard challenges of large-scale, dynamic Earth observation missions.
                 </p>
             </div>
         </div>
 
-        <div class="row align-items-start mb-5 event-row">
-            <div class="col-md-4">
-                <div class="event-image-wrapper">
-                    <img src="images/directions/plan.jpg" alt="Decision Making and Planning" class="custom-rounded">
+        <!-- Manipulation 替代 Planning -->
+        <div class="row align-items-start mb-5 direction-row">
+            <div class="col-md-5">
+                <div class="direction-image-wrapper">
+                    <img src="images/directions/manipulation.png" alt="Manipulation" class="direction-img">
                 </div>
             </div>
-            <div class="col-md-8 ps-md-5 mt-3 mt-md-0 text-start">
-                <h3 class="event-name">Decision Making and Planning</h3>
-                <p class="event-description text-start">
-                    Perception capabilities enable intelligent agents to observe the world, while decision-making and planning abilities allow agents to connect their observations with concepts and knowledge in their minds, enabling appropriate behaviors for task completion, such as goal-seeking and following human language instructions. Additionally, localization, mapping, and obstacle avoidance are essential tasks in robot navigation, allowing robots to determine their position, build global maps, avoid environmental obstacles, and achieve efficient path planning during exploration in unknown environments.
+            <div class="col-md-7 ps-md-5 mt-3 mt-md-0 text-start">
+                <h3 class="direction-name">Embodied AI × Manipulation</h3>
+                <p class="direction-description">
+                    Our manipulation research explores learning-based methods for robotic grasping, dexterous hand control, and human-object interaction. We develop policies that enable robots to manipulate diverse objects and perform complex tasks in unstructured environments.
                 </p>
             </div>
         </div>
 
-        <div class="row align-items-start mb-5 event-row">
-            <div class="col-md-4">
-                <div class="event-image-wrapper">
-                    <img src="images/directions/UAV.png" alt="Embodied AI x UAVs" class="custom-rounded">
+        <!-- Perception -->
+        <div class="row align-items-start mb-5 direction-row">
+            <div class="col-md-5 order-md-2">
+                <div class="direction-image-wrapper">
+                    <img src="images/directions/perception.png" alt="Embodied Perception" class="direction-img">
                 </div>
             </div>
-            <div class="col-md-8 ps-md-5 mt-3 mt-md-0 text-start">
-                <h3 class="event-name">Embodied AI x UAVs</h3>
-                <a href="https://buaa-colalab.github.io/colab_uav.github.io/" target="_blank" style="color: #00BFFF; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 1rem;">Visit Project Website →</a>
-                <p class="event-description text-start">
-                    Traditional UAV systems often rely on static planning and manual remote control, which limits robust perception and decision-making in complex environments. In contrast, aerial embodied intelligence integrates foundation model vision language understanding with autonomous policy planning, enabling UAVs to perceive tasks, plan, and act in dynamic, unstructured settings. We build aerial embodied agents from simulation to real-world deployment, advancing aerial robots that can see, think, fly, and collaborate. One example is vision language navigation, where UAVs use visual understanding to perform text guided target search.
-                </p>
-            </div>
-        </div>
-
-        <div class="row align-items-start mb-5 event-row">
-            <div class="col-md-4">
-                <div class="event-image-wrapper">
-                    <img src="images/directions/satellite.png" alt="Embodied AI x Satellites" class="custom-rounded">
-                </div>
-            </div>
-            <div class="col-md-8 ps-md-5 mt-3 mt-md-0 text-start">
-                <h3 class="event-name">Embodied AI x Satellites</h3>
-                <p class="event-description text-start">
-                    Imaging satellite constellations are significant for Earth surface observation, transcending traditional observational limitations and offering unprecedented flexibility. However, scheduling and planning under large-scale scenarios, dynamic environments, and stringent constraints is fundamentally an NP-hard problem. Existing solutions often oversimplify complex real-world conditions, limiting practical performance. We are committed to building a unified framework that integrates benchmark test suites and scheduling models to drive innovation in imaging satellite constellation scheduling.
+            <div class="col-md-7 order-md-1 pe-md-5 mt-3 mt-md-0">
+                <h3 class="direction-name">Embodied AI × Perception</h3>
+                <p class="direction-description">
+                    Beyond simple "seeing", we develop agents that deeply understand environments across spatial, temporal, and semantic dimensions. Key tasks include open-vocabulary detection and segmentation, enabling models to recognize and reason about novel objects.
                 </p>
             </div>
         </div>
@@ -68,88 +74,103 @@
 </section>
 
 <style>
-/* 全局字体设置为 Inter */
+/* Direction Section Styles */
 #directions-section {
     font-family: 'Inter', sans-serif;
 }
 
-/* =========================================
-   1. 主标题样式 (Events)
-   ========================================= */
-.event-section-title {
-    font-size: 60px; /* 修改主标题为 60px */
+/* 主标题样式 - 左对齐 */
+.direction-section-title {
+    font-size: 60px;
     font-weight: 900;
-    /* 渐变色继承自原文件 */
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin: 0;
     letter-spacing: 0.05em;
+    text-align: left;
 }
 
-/* =========================================
-   2. 活动名字样式 (ICLR, ICRA 等)
-   ========================================= */
-.event-name {
-    font-size: 48px; /* 修改小标题为 48px */
+/* 小标题样式 */
+.direction-name {
+    font-size: 42px;
     font-weight: 700;
-    /* 渐变色继承自原文件 */
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-top: 0; 
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
     line-height: 1.2;
+    text-align: left;
 }
 
-/* =========================================
-   3. 小字信息样式 (Dates, Location)
-   ========================================= */
-.event-meta {
-    font-size: 16px; /* 修改为 16px */
-    font-weight: 700; /* 加粗 */
-    color: #969393;  /* 浅灰色 */
-    margin-bottom: 1.5rem;
+/* 优化后的按钮样式 */
+.direction-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    margin-bottom: 1.2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
-.event-meta p { margin-bottom: 2px; }
 
-/* =========================================
-   4. 详细介绍样式 (Description)
-   ========================================= */
-.event-description {
-    font-size: 19px !important; /* 修改为 18px */
+.direction-link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    color: #ffffff !important;
+}
+
+.direction-link-btn i {
+    font-size: 12px;
+}
+
+/* 描述文字样式 - 两端对齐 */
+.direction-description {
+    font-size: 17px !important;
     font-weight: 400 !important;
-    color: #d0cccc !important;  /* 纯白色 */
+    color: #d0cccc !important;
     line-height: 1.8 !important;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
-/* =========================================
-   5. 图片显示控制
-   ========================================= */
-.event-image-wrapper {
+/* 图片显示控制 */
+.direction-image-wrapper {
     width: 100%;
-    aspect-ratio: 4 / 3; 
+    height: 100%;
     overflow: hidden;
 }
 
-.event-image-wrapper img {
+.direction-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 12px !important; 
+    border-radius: 12px !important;
+    transition: transform 0.3s ease;
 }
 
-.event-row {
+.direction-image-wrapper:hover img {
+    transform: scale(1.03);
+}
+
+.direction-row {
     margin-bottom: 5rem !important;
+
 }
 
 /* 移动端适配 */
 @media (max-width: 767px) {
-    .event-section-title { font-size: 40px; }
-    .event-name { font-size: 32px; }
-    /* 手机端所有文字统一左对齐 */
-    .text-md-end { text-align: left !important; }
+    .direction-section-title { font-size: 40px; }
+    .direction-name { font-size: 28px; }
+    .direction-description { text-align: left; }
 }
 </style>

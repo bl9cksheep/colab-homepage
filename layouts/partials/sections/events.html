@@ -19,7 +19,7 @@
                     <p>Dates: October 27 – October 31, 2025</p>
                     <p>Location: Dublin, Ireland</p>
                 </div>
-                <p class="event-description text-start">
+                <p class="event-description">
                     At this year's conference, Colab had three regular papers and one demo paper accepted for publication. Furthermore, to advance the field of embodied AI centered on soft-body platforms, Colab, in collaboration with Professor Li Wen's team from Beihang University, successfully hosted the 1st Workshop & Challenge on Vision-Language for Soft Robotics (RoboSoft'2025) at ACM MM 2025.
                 </p>
             </div>
@@ -37,7 +37,7 @@
                     <p>Dates: April 24 – April 28, 2025</p>
                     <p>Location: Singapore</p>
                 </div>
-                <p class="event-description text-start">
+                <p class="event-description">
                     ICLR is one of the most influential international academic gatherings in the fields of deep learning and artificial intelligence. We are proud to announce that Colab had four high-quality papers accepted for this year's conference. With the generous support of Professor Liu, our team traveled to Singapore to participate in person and engage in this premier academic feast.
                 </p>
             </div>
@@ -55,7 +55,7 @@
                     <p>Dates: May 13 – May 17, 2024</p>
                     <p>Location: Yokohama, Japan</p>
                 </div>
-                <p class="event-description text-start">
+                <p class="event-description">
                     The International Conference on Robotics and Automation (ICRA), one of the most influential international academic conferences in the field of robotics, was held in Yokohama. Colab is pleased to announce that our research paper was accepted for presentation at this prestigious event. With the support of Professor Liu, our team traveled to Yokohama to attend the conference and engage with the global robotics community.
                 </p>
             </div>
@@ -73,7 +73,7 @@
                     <p>Dates: October 2 – October 6, 2023</p>
                     <p>Location: Paris, France</p>
                 </div>
-                <p class="event-description text-start">
+                <p class="event-description">
                     The International Conference on Computer Vision (ICCV) 2023 received 8,260 valid submissions, ultimately accepting 2,161 papers (an acceptance rate of 26%), of which only 152 were selected for Oral presentations (1.8%). We are proud to share that CoLab had four papers accepted at this prestigious event. With the generous support of Professor Liu, our team traveled to Paris to attend the conference and present our work on this global stage.
                 </p>
             </div>
@@ -101,6 +101,7 @@
     background-clip: text;
     margin: 0;
     letter-spacing: 0.05em;
+    text-align: left;
 }
 
 /* =========================================
@@ -134,11 +135,14 @@
    4. 详细介绍样式 (Description)
    ========================================= */
 .event-description {
-    font-size: 16px; /* 修改为 16px */
-    font-weight: 400;
-    color: #d0cccc;  /* 纯白色 */
-    line-height: 1.8;
+    font-size: 17px !important;
+    font-weight: 400 !important;
+    color: #d0cccc !important;
+    line-height: 1.8 !important;
+    text-align: justify;
+    text-justify: inter-word;
 }
+
 
 /* =========================================
    5. 图片显示控制

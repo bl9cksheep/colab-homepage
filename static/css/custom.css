@@ -1,10 +1,121 @@
 /* Custom CSS for Colab */
 
-/* 调整 Representative Works 标题与内容的间距 */
+/* =========================================
+   导航栏始终固定在顶部
+   ========================================= */
+header#profileHeader {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* 给body添加padding-top，防止内容被固定导航栏遮挡 */
+body {
+    padding-top: 70px;
+}
+
+/* =========================================
+   所有小标题左对齐
+   ========================================= */
+#projects h3,
+#projects > h2,
+.section-title,
+h2.text-center,
+h3.text-center {
+    text-align: left !important;
+}
+
+/* =========================================
+   调整 Representative Works 标题与内容的间距
+   ========================================= */
 #projects {
     margin-top: -2rem;
 }
 
 #projects > h2 {
     margin-bottom: 1.5rem;
+}
+
+/* =========================================
+   优化按钮UI样式
+   ========================================= */
+/* 通用渐变按钮样式 */
+.btn-gradient {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 25px;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    color: #ffffff !important;
+}
+
+/* Projects卡片底部按钮优化 */
+#projects .card-footer .btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff !important;
+    border: none !important;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+}
+
+#projects .card-footer .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.5);
+}
+
+/* Projects卡片链接图标优化 */
+#projects .card-footer a {
+    color: #667eea !important;
+    transition: all 0.2s ease;
+}
+
+#projects .card-footer a:hover {
+    color: #764ba2 !important;
+    transform: scale(1.1);
+}
+
+/* Hero按钮优化 */
+#hero .btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff !important;
+    border: none !important;
+    padding: 12px 28px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+#hero .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+/* =========================================
+   Events section 标题左对齐
+   ========================================= */
+.event-section-title {
+    text-align: left !important;
 }

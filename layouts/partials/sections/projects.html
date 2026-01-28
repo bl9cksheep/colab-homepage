@@ -81,7 +81,7 @@
 
 <section id="projects" class="py-5">
     <div class="container">
-        <h3 class="text-center section-title-fancy" style="margin-bottom: -1rem;">{{ .Site.Params.projects.title | default "Projects" }}</h3>
+        <h3 class="section-title-fancy" style="margin-bottom: -1rem;">{{ .Site.Params.projects.title | default "Projects" }}</h3>
         
         <!-- Carousel for projects -->
         <div id="projectsCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -142,6 +142,19 @@
                                 <div class="d-flex gap-2 flex-wrap">
                                     {{ range .links }}
                                     <a class="btn btn-sm btn-outline-primary" href="{{ .url }}" target="_blank" onclick="event.stopPropagation();">
+                                        {{ if eq .name "Code" }}
+                                            <i class="fab fa-github"></i>
+                                        {{ else if or (eq .name "Paper") (eq .name "arXiv") }}
+                                            <i class="fas fa-file-alt"></i>
+                                        {{ else if eq .name "Website" }}
+                                            <i class="fas fa-globe"></i>
+                                        {{ else if eq .name "Video" }}
+                                            <i class="fas fa-video"></i>
+                                        {{ else if eq .name "Project" }}
+                                            <i class="fas fa-external-link-alt"></i>
+                                        {{ else }}
+                                            <i class="fas fa-link"></i>
+                                        {{ end }}
                                         {{ .name }}
                                     </a>
                                     {{ end }}
@@ -255,11 +268,11 @@
 }
 
 #projectsCarousel .carousel-indicators button {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 #projectsCarousel .carousel-indicators button.active {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 /* Image container clickable cursor */
@@ -289,6 +302,51 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Badges */
+#projects .badge,
+#projects .badge.bg-secondary,
+#projects .badge-secondary {
+    background: rgba(0, 0, 0, 0.9);
+    color: #d1d5db !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.4em 1em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.08);
+    border: 1px solid #d1d5db;
+    letter-spacing: 0.02em;
+    display: inline-block;
+    vertical-align: middle;
+    transition: background 0.2s;
+}
+#projects .btn-outline-primary,
+#projects .btn.btn-outline-primary {
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    color: #fff !important;
+    border: none;
+    border-radius: 22px;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5em 1.5em;
+    box-shadow: 0 2px 12px rgba(102, 126, 234, 0.10);
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+}
+#projects .btn-outline-primary:hover,
+#projects .btn.btn-outline-primary:hover {
+    background: linear-gradient(90deg, #5a67d8 0%, #6b21a8 100%);
+    color: #ffffff !important;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.18);
+    text-decoration: none;
 }
 </style>
 </style>
