@@ -1,0 +1,370 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Title }} of {{ .Site.Title }}">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/list.css" media="all">
+{{ end }}
+
+{{ define "title" }}
+{{.Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+<!-- Import Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Merriweather:wght@400;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+{{ if or (eq .Section "papers") (eq .Section "publications") (eq .Title "Publications") }}
+{{ $thumbs := .Site.Data.paper_thumbs | default dict }}
+{{ $defaultPaperImage := "/images/news/placeholder.jpg" }}
+{{ $lines := split .RawContent "\n" }}
+{{ $papers := slice }}
+{{ $currentYear := "" }}
+{{ $yearsScratch := newScratch }}
+{{ range $lines }}
+  {{ $l := trim . " " }}
+  {{ if hasPrefix $l "## " }}
+    {{ $currentYear = trim (strings.TrimPrefix "## " $l) " " }}
+    {{ if $currentYear }}{{ $yearsScratch.Add "years" (slice $currentYear) }}{{ end }}
+  {{ else if hasPrefix $l "- " }}
+    {{ $rest := strings.TrimPrefix "- " $l }}
+    {{ $parts := split $rest " — " }}
+    {{ $venue := index $parts 0 | default "" }}
+    {{ $title := index $parts 1 | default $rest }}
+    {{ $authors := "" }}
+    {{ if ge (len $parts) 3 }}{{ $authors = index $parts 2 }}{{ end }}
+    {{ $papers = $papers | append (dict "year" $currentYear "venue" $venue "title" $title "authors" $authors "image" "/images/news/placeholder.jpg") }}
+  {{ end }}
+{{ end }}
+{{ $yearsRaw := $yearsScratch.Get "years" | default (slice) }}
+{{ $years := sort (uniq $yearsRaw) "value" "desc" }}
+<div class="container pt-5" id="papers-page">
+  <style>
+    /* Publications 页面字体设置为 Inter */
+    #papers-page {
+      font-family: 'Inter', sans-serif;
+    }
+
+    #papers-page h2,
+    #papers-page h3,
+    #papers-page h4,
+    #papers-page h5,
+    #papers-page h6 {
+      font-family: 'Inter', sans-serif;
+    }
+
+    #papers-page .card {
+      background: #000;
+      color: #fff !important;
+      border: none;
+    }
+    #papers-page .card * {
+      color: #fff !important;
+    }
+    #papers-page .card img {
+      background: #000;
+    }
+    .toggle-year {
+      background: #1f1f1f;
+      border: none;
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      transition: background-color 0.2s ease;
+    }
+    .toggle-year:hover {
+      background: #2a2a2a;
+    }
+    .toggle-year:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+    }
+  </style>
+  <h2 class="pb-2" style="text-align: left;">{{ .Title }}</h2>
+  
+  {{ if .Params.platforms }}
+    <div class="platforms-section mb-5">
+      <h4 class="section-title mb-4" style="text-align: left; font-weight: 600; padding-bottom: 0.5rem;">Platforms & Datasets</h4>
+      {{ range .Params.platforms }}
+        <div class="platform-item mb-4 p-4" style="background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
+          <div class="row g-4 align-items-start">
+            <div class="col-md-4">
+              {{ if eq .type "video" }}
+                <video controls style="width: 100%; height: auto; object-fit: cover; border-radius: 8px; background: #000;">
+                  <source src="{{ .video }}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              {{ else }}
+                <img src="{{ .image }}" alt="{{ .title }}" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
+              {{ end }}
+            </div>
+            <div class="col-md-8">
+              <h5 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.3; color: #fff;">{{ .title }}</h5>
+              
+              {{ if .subtitle }}
+                <p style="font-size: 1rem; color: #ddd; margin-bottom: 1rem; line-height: 1.6; font-style: italic;">{{ .subtitle }}</p>
+              {{ end }}
+              
+              <p style="font-size: 1rem; color: #ccc; margin-bottom: 1.2rem; line-height: 1.7;">
+                {{ .content | default "" }}
+              </p>
+              
+              {{ if .highlights }}
+              <ul style="list-style: none; padding-left: 0; margin-bottom: 1.5rem;">
+                {{ range .highlights }}
+                <li style="margin-bottom: 0.6rem; color: #bbb; font-size: 0.95rem; line-height: 1.6;">
+                  <strong style="color: #fff;">•</strong> <strong style="color: #fff;">{{ .key }}:</strong> {{ .value }}
+                </li>
+                {{ end }}
+              </ul>
+              {{ end }}
+              
+              <div class="d-flex justify-content-between align-items-end mt-auto">
+                <div>
+                  {{ if .link }}
+                    <a href="{{ .link }}" target="_blank" class="btn btn-sm btn-outline-light platform-paper-btn" style="border-radius: 4px; font-size: 0.9rem; padding: 0.5rem 1.2rem; font-weight: 600;">Paper</a>
+                  {{ end }}
+                </div>
+                <div class="text-end">
+                  <p style="font-size: 0.85rem; color: #888; margin: 0; line-height: 1.4;">{{ .authors }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  {{ end }}
+
+  {{ range $years }}
+    {{ $yearSlug := urlize . }}
+    {{ $yearPapers := where $papers "year" . }}
+    {{ $showCount := 3 }}
+    <h4 class="mt-4 mb-3" style="text-align: left;">{{ . }}</h4>
+    <div class="row gy-3" data-year="{{ $yearSlug }}">
+      {{ range $index, $p := $yearPapers }}
+        <div class="col-12 paper-item-{{ $yearSlug }} {{ if ge $index $showCount }}d-none{{ end }}">
+          <div class="card h-100 shadow-sm">
+            <div class="d-flex align-items-start p-3 gap-3">
+              <div class="flex-shrink-0">
+                {{ $key := lower $p.title }}
+                {{ $img := default $defaultPaperImage (index $thumbs $key) }}
+                <img src="{{ $img }}" class="rounded d-block" alt="{{ $p.title }}" style="width: 280px; height: 210px; object-fit: cover; border-radius: 12px;">
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="card-title mb-1" style="font-size: 1.35rem;">{{ $p.title }}</h5>
+                <p class="card-text text-muted mb-1" style="font-size: 1.05rem;">{{ $p.authors }}</p>
+                <p class="card-text mb-0" style="font-size: 1.05rem;"><strong>{{ $p.venue }}</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+    {{ if gt (len $yearPapers) $showCount }}
+      <div class="d-flex justify-content-start mb-3">
+        <button class="toggle-year" data-year="{{ $yearSlug }}" aria-label="Toggle year">
+          &#9660;
+        </button>
+      </div>
+    {{ end }}
+  {{ end }}
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const buttons = document.querySelectorAll(".toggle-year");
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const year = btn.getAttribute("data-year");
+          const hiddenCards = document.querySelectorAll(`.paper-item-${year}.d-none`);
+          const isHidden = hiddenCards.length > 0;
+          const cards = document.querySelectorAll(`.paper-item-${year}`);
+          cards.forEach(card => card.classList.remove("d-none"));
+          if (!isHidden) {
+            // collapse back to前三条
+            let count = 0;
+            cards.forEach(card => {
+              count++;
+              if (count > 3) card.classList.add("d-none");
+            });
+          }
+          btn.innerHTML = isHidden ? "&#9650;" : "&#9660;";
+        });
+      });
+    });
+  </script>
+</div>
+{{ else if eq .Section "team" }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<style>
+  /* Team 页面字体设置为 Inter */
+  #team-page {
+    font-family: 'Inter', sans-serif;
+  }
+
+  #team-page h2,
+  #team-page h3,
+  #team-page h4,
+  #team-page h5,
+  #team-page h6 {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .team-section { margin-bottom: 3rem; }
+  .team-section h3 { border-bottom: 2px solid var(--primary-color, #007bff); padding-bottom: 0.5rem; margin-bottom: 2rem; font-weight: 600; }
+  .team-row { display: flex; flex-wrap: wrap; margin: 0 -8px; }
+  .team-col { width: 20%; padding: 8px; box-sizing: border-box; }
+  @media (max-width: 992px) { .team-col { width: 25%; } }
+  @media (max-width: 768px) { .team-col { width: 33.33%; } }
+  @media (max-width: 576px) { .team-col { width: 50%; } }
+  .member-card { display: flex; flex-direction: column; justify-content: flex-start !important; background: #000; border-radius: 8px; border: 1px solid #1a1a1a; overflow: hidden; height: 100%; position: relative; }
+  .member-photo-wrapper { padding: 0 !important; margin: 0 !important; width: 100%; line-height: 0; }
+  .member-photo { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+  .member-body { padding: 8px 4px 2px 4px !important; text-align: center; color: #fff; flex: 0 0 auto; }
+  .member-name { font-weight: 700; font-size: 0.9rem; line-height: 1.2; color: #fff; margin-bottom: 2px !important; }
+  .member-research { font-size: 0.7rem; color: #aaa; margin-top: 2px; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 5px !important; }
+  .member-footer { margin-top: 0 !important; padding: 0 0 10px 0 !important; background: transparent; text-align: center; border: none !important; display: block; }
+  .member-footer a { color: #888; margin: 0 5px; font-size: 0.9rem; transition: color 0.2s; display: inline-block; }
+  .member-footer a:hover { color: #fff; }
+</style>
+<div class="container pt-5" id="team-page">
+  <h2 class="text-center pb-4">{{ .Title }}</h2>
+  {{ if .Params.phd }}
+  <div class="team-section">
+    <h3><i class="fa-solid fa-user-graduate me-2"></i>PhD Students</h3>
+    <div class="team-row">
+      {{ range .Params.phd }}
+      <div class="team-col">
+        <div class="member-card">
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
+          <div class="member-footer">
+            {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
+            {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
+            {{ if .scholar }}<a href="{{ .scholar }}" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>{{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+  {{ if .Params.master }}
+  <div class="team-section">
+    <h3><i class="fa-solid fa-user me-2"></i>Master's Students</h3>
+    <div class="team-row">
+      {{ range .Params.master }}
+      <div class="team-col">
+        <div class="member-card">
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
+          <div class="member-footer">
+            {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
+            {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
+            {{ if .scholar }}<a href="{{ .scholar }}" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>{{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+</div>
+
+{{/* =================== News Logic (修复核心：内联样式强制白色) =================== */}}
+{{ else if or (eq .Section "news") (eq .Type "news") (eq .Title "News") }}
+<div class="container pt-5" id="news-page">
+  <!-- 强制背景黑 -->
+  <style> 
+    body, #news-page { 
+      background-color: #000 !important;
+      font-family: 'Inter', sans-serif;
+    }
+    #news-page h2,
+    #news-page h3,
+    #news-page h4,
+    #news-page h5,
+    #news-page h6 {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+  
+  <h2 class="text-center pb-3" style="color: #fff !important;">{{ .Title }}</h2>
+  
+  <div class="px-0 px-md-3 px-lg-5">
+    {{ range .Site.Params.achievements.items }}
+      <div class="card mb-3 shadow-none" style="background-color: #000 !important; border: 1px solid #333 !important;">
+        <div class="row g-0 align-items-center">
+          <div class="col p-3">
+             <!-- 这里的 style="color: #fff !important" 是关键修复点 -->
+            <h6 class="card-title mb-1" style="color: #fff !important; font-weight: bold;">{{ .title }}</h6>
+            <p class="card-text mb-0 small" style="color: #ccc !important;">{{ .content }}</p>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</div>
+
+{{/* =================== Fallback List =================== */}}
+{{ else }}
+<div class="container pt-5" id="list-page">
+    <h2 class="text-center pb-2">{{.Title}}</h2>
+    <div class="row">
+        {{ range .Paginator.Pages }}
+        <div class="col-lg-4 col-md-6 my-3">
+            <div class="card-columns">
+                <div class="card h-100">
+                    {{ if and (not (.Site.Params.listPages.disableFeaturedImage | default false)) (.Params.image) }}
+                    <div class="card-header"><a href="{{ .RelPermalink }}"><img src="{{ .Params.image }}" class="card-img-top" alt="{{ .Title }}"></a></div>
+                    {{ end }}
+                    <div class="card-body bg-transparent p-4 shadow-sm">
+                        <a href="{{ .RelPermalink }}" class="primary-font card-title"><h5 class="card-title bg-transparent" title="{{ .Title }}">{{ .Title | truncate 25 }}</h5></a>
+                        <div class="card-text secondary-font"><p>{{ .Summary | truncate 300}}</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
+
+{{/* =================== Footer Script =================== */}}
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    var navBrand = document.querySelector('.navbar-brand');
+    if(navBrand) {
+        navBrand.innerHTML = "";
+        var newLogo = document.createElement('img');
+        newLogo.src = "/images/colab_logo.png";
+        newLogo.style.height = "40px"; 
+        navBrand.appendChild(newLogo);
+    }
+    var hugoLinks = document.querySelectorAll('footer a[href*="gohugo.io"]');
+    hugoLinks.forEach(function(link) {
+        link.innerHTML = "";
+        link.removeAttribute("href");
+        var fImg = document.createElement('img');
+        fImg.src = "/images/colab_logo.png";
+        fImg.style.height = "50px";
+        fImg.style.marginBottom = "10px";
+        link.appendChild(fImg);
+    });
+    var footerElements = document.querySelectorAll('footer div, footer p, footer span');
+    footerElements.forEach(function(el) {
+        if (el.innerText && (el.innerText.includes("Made with") || el.innerText.includes("Hugo Profile"))) {
+            el.style.display = "none";
+        }
+    });
+    var copyright = document.querySelector('.copyright');
+    if(copyright) {
+        copyright.innerHTML = "© 2026 CoLab. All rights reserved.";
+        copyright.style.display = "block";
+        copyright.style.color = "#888";
+    }
+});
+</script>
+
+{{ end }}

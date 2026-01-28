@@ -1,0 +1,119 @@
+{{ define "head" }}
+<meta name="description" content="{{ .Title }} of {{ .Site.Title }}">
+<link rel="stylesheet" href="{{ .Site.Params.staticPath }}/css/list.css" media="all">
+{{ end }}
+
+{{ define "title" }}
+{{.Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+{{ if or (eq .Section "papers") (eq .Type "papers") }}
+{{ $lines := split .RawContent "\n" }}
+{{ $papers := slice }}
+{{ $currentYear := "" }}
+{{ $yearsScratch := newScratch }}
+{{ range $lines }}
+  {{ $l := trim . " " }}
+  {{ if hasPrefix $l "## " }}
+    {{ $currentYear = trim (strings.TrimPrefix "## " $l) " " }}
+    {{ if $currentYear }}{{ $yearsScratch.Add "years" (slice $currentYear) }}{{ end }}
+  {{ else if hasPrefix $l "- " }}
+    {{ $rest := strings.TrimPrefix "- " $l }}
+    {{ $parts := split $rest " — " }}
+    {{ $venue := index $parts 0 | default "" }}
+    {{ $title := index $parts 1 | default $rest }}
+    {{ $authors := "" }}
+    {{ if ge (len $parts) 3 }}{{ $authors = index $parts 2 }}{{ end }}
+    {{ $papers = $papers | append (dict "year" $currentYear "venue" $venue "title" $title "authors" $authors "image" "/images/news/placeholder.jpg") }}
+  {{ end }}
+{{ end }}
+{{ $yearsRaw := $yearsScratch.Get "years" | default (slice) }}
+{{ $years := sort (uniq $yearsRaw) "value" "desc" }}
+<div class="container pt-5" id="papers-page">
+  <h2 class="text-center pb-2">{{ .Title }}</h2>
+  {{ range $years }}
+    <h4 class="mt-4 mb-3">{{ . }}</h4>
+    <div class="row gy-3">
+      {{ range where $papers "year" . }}
+        <div class="col-12">
+          <div class="card h-100 shadow-sm">
+            <div class="d-flex align-items-start p-3 gap-3">
+              <div class="flex-shrink-0">
+                <img src="{{ .image }}" class="rounded d-block" alt="{{ .title }}" style="width: 160px; height: 120px; object-fit: cover;">
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="card-title mb-1">{{ .title }}</h5>
+                <p class="card-text text-muted mb-1">{{ .authors }}</p>
+                <p class="card-text mb-0"><strong>{{ .venue }}</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  {{ end }}
+</div>
+{{ else if or (eq .Section "news") (eq .Type "news") (eq .Title "News") }}
+<div class="container pt-5" id="news-page">
+  <h2 class="text-center pb-3">{{ .Title }}</h2>
+  <div class="px-0 px-md-3 px-lg-5">
+    {{ range .Site.Params.achievements.items }}
+      <div class="card mb-3 shadow-sm">
+        <div class="row g-0 align-items-center">
+          {{ if .image }}
+          <div class="col-md-2 col-3">
+            <img src="{{ .image }}" class="img-fluid rounded-start p-2" alt="{{ .title }}" style="max-height: 80px; object-fit: cover;">
+          </div>
+          {{ end }}
+          <div class="col">
+            <div class="card-body py-2">
+              <h6 class="card-title mb-1">{{ .title }}</h6>
+              <p class="card-text mb-0 small text-muted">{{ .content }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</div>
+{{ else }}
+<div class="container pt-5" id="list-page">
+    <h2 class="text-center pb-2">{{.Title}}</h2>
+    <div class="row">
+        {{ range .Paginator.Pages }}
+        <div class="col-lg-4 col-md-6 my-3">
+            <div class="card-columns">
+                <div class="card h-100">
+                    {{ if and (not (.Site.Params.listPages.disableFeaturedImage | default false)) (.Params.image) }}
+                    <div class="card-header">
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .Params.image }}" class="card-img-top" alt="{{ .Title }}">
+                        </a>
+                    </div>
+                    {{ end }}
+                    <div class="card-body bg-transparent p-4 shadow-sm">
+                        <a href="{{ .RelPermalink }}" class="primary-font card-title">
+                            <h5 class="card-title bg-transparent" title="{{ .Title }}">{{ .Title | truncate 25 }}</h5>
+                        </a>
+                        <div class="card-text secondary-font">
+                            <p>{{ .Summary | truncate 300}}</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto post-footer bg-transparent py-3">
+                        <span class="float-start bg-transparent">{{ .Date.Format (.Site.Params.datesFormat.articleList | default "January 2, 2006") }}</span>
+                        <a href="{{ .RelPermalink }}" class="float-end btn btn-outline-info btn-sm">{{ .Site.Params.terms.read | default "Read" }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ end }}
+        <div class="row justify-content-center">
+            <div class="col-auto m-3">
+                {{template "_internal/pagination.html" . }}
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
+{{ end }}

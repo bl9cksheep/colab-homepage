@@ -1,0 +1,10 @@
+/* Custom CSS for Colab */
+
+/* 调整 Representative Works 标题与内容的间距 */
+#projects {
+    margin-top: -2rem;
+}
+
+#projects > h2 {
+    margin-bottom: 1.5rem;
+}

@@ -1,0 +1,162 @@
+#list-page .card {
+    background-color: var(--secondary-color) !important;
+    box-shadow: 0px 8px 56px rgba(15, 80, 100, 0.16);
+    border-radius: .75rem;
+    overflow: hidden;
+    border: none;
+}
+
+#list-page .card a {
+    text-decoration: none;
+}
+
+#list-page .card a h5 {
+    color: var(--text-color) !important;
+}
+
+#list-page .card-body,
+#list-page .card-title,
+#list-page .card-text,
+#list-page .card-footer {
+    color: #000 !important;
+}
+
+#list-page .card:hover {
+    transition: all 0.3s ease-out;
+    transform: translateY(-7px);
+}
+
+#list-page .card-text * {
+    background-color: var(--secondary-color) !important;
+}
+
+#list-page .post-footer {
+    padding: .5rem 1rem;
+    background-color: var(--secondary-color) !important;
+    color: var(--text-color) !important;
+    border-top: 1px solid rgba(15, 80, 100, 0.16);
+    opacity: 0.9;
+}
+
+#list-page .post-footer a {
+    background-color: var(--secondary-color) !important;
+    color: var(--text-secondary-color) !important;
+    border-color: var(--primary-color) !important;
+    transition: none;
+}
+
+#list-page .post-footer a:focus {
+    box-shadow: none !important;
+}
+
+#list-page .post-footer a:hover {
+    color: var(--primary-color) !important;
+}
+
+#list-page .card > .card-header {
+    padding: 0 !important;
+    border: none !important;
+    background-color: var(--secondary-color) !important;
+}
+
+#list-page .card > .card-header .card-img-top {
+    width: 100%;
+    height: 250px !important;
+    background-color: transparent !important;
+}
+
+/* pagination */
+#list-page ul li a {
+    transition: none;
+    border-color: var(--secondary-color);
+    background-color: var(--secondary-color) !important;
+    color: var(--text-color) !important;
+}
+
+#list-page ul li a:focus {
+    box-shadow: none;
+}
+
+#list-page .page-item.active .page-link {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
+    color: var(--secondary-color) !important;
+}
+
+#news-page .card-title,
+#news-page .card-text,
+#news-page .card h6,
+#news-page .card p,
+#news-page .card * {
+    color: #000 !important;
+}
+
+#papers-page .card {
+    background: #000;
+    color: #fff !important;
+    border: none;
+}
+#papers-page .card * {
+    color: #fff !important;
+}
+#papers-page .card .text-muted,
+#papers-page .card .card-subtitle,
+#papers-page .card .card-text,
+#papers-page .card .card-title,
+#papers-page .card .btn,
+#papers-page .card .btn * {
+    color: #fff !important;
+}
+
+/* Platforms & Datasets section styling - mmlab style */
+#papers-page .platform-item {
+    transition: all 0.3s ease;
+}
+
+#papers-page .platform-item:hover {
+    background: #111 !important;
+    border-color: #333 !important;
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.08);
+}
+
+#papers-page .platform-item img,
+#papers-page .platform-item video {
+    transition: transform 0.3s ease;
+}
+
+#papers-page .platform-item:hover img,
+#papers-page .platform-item:hover video {
+    transform: scale(1.02);
+}
+
+#papers-page .section-title {
+    color: #fff;
+}
+
+#papers-page .platform-item .platform-paper-btn {
+    border-color: #888;
+    color: #fff;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+#papers-page .platform-item .platform-paper-btn:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Platform highlights list styling */
+#papers-page .platform-item ul li strong {
+    font-weight: 700;
+}
+
+#papers-page .platform-item ul li {
+    transition: color 0.2s ease;
+}
+
+#papers-page .platform-item:hover ul li {
+    color: #ddd;
+}

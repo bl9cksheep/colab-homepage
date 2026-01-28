@@ -1,0 +1,166 @@
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<section id="events-section" class="py-5" style="background-color: #000000; color: #ffffff; font-family: 'Inter', sans-serif;">
+    <div class="container">
+        
+        <h2 class="event-section-title">Events</h2>
+        
+        <div style="height: 4rem;"></div>
+
+        <div class="row align-items-start mb-5 event-row">
+            <div class="col-md-5">
+                <div class="event-image-wrapper">
+                    <img src="images/events/ACM-MM-2025.png" alt="ACM MM 2025" class="custom-rounded">
+                </div>
+            </div>
+            <div class="col-md-7 ps-md-5 mt-3 mt-md-0 text-start">
+                <h3 class="event-name">ACM Multimedia (MM) 2025</h3>
+                <div class="event-meta">
+                    <p>Dates: October 27 – October 31, 2025</p>
+                    <p>Location: Dublin, Ireland</p>
+                </div>
+                <p class="event-description text-start">
+                    At this year's conference, Colab had three regular papers and one demo paper accepted for publication. Furthermore, to advance the field of embodied AI centered on soft-body platforms, Colab, in collaboration with Professor Li Wen's team from Beihang University, successfully hosted the 1st Workshop & Challenge on Vision-Language for Soft Robotics (RoboSoft'2025) at ACM MM 2025.
+                </p>
+            </div>
+        </div>
+
+        <div class="row align-items-start mb-5 event-row">
+            <div class="col-md-5 order-md-2">
+                <div class="event-image-wrapper">
+                    <img src="images/events/ICLR2025.jpg" alt="ICLR 2025" class="custom-rounded">
+                </div>
+            </div>
+            <div class="col-md-7 order-md-1 pe-md-5 mt-3 mt-md-0 text-md-end">
+                <h3 class="event-name">ICLR 2025</h3>
+                <div class="event-meta">
+                    <p>Dates: April 24 – April 28, 2025</p>
+                    <p>Location: Singapore</p>
+                </div>
+                <p class="event-description text-start">
+                    ICLR is one of the most influential international academic gatherings in the fields of deep learning and artificial intelligence. We are proud to announce that Colab had four high-quality papers accepted for this year's conference. With the generous support of Professor Liu, our team traveled to Singapore to participate in person and engage in this premier academic feast.
+                </p>
+            </div>
+        </div>
+
+        <div class="row align-items-start mb-5 event-row">
+            <div class="col-md-5">
+                <div class="event-image-wrapper">
+                    <img src="images/events/ICRA2024.jpg" alt="ICRA 2024" class="custom-rounded">
+                </div>
+            </div>
+            <div class="col-md-7 ps-md-5 mt-3 mt-md-0 text-start">
+                <h3 class="event-name">ICRA 2024</h3>
+                <div class="event-meta">
+                    <p>Dates: May 13 – May 17, 2024</p>
+                    <p>Location: Yokohama, Japan</p>
+                </div>
+                <p class="event-description text-start">
+                    The International Conference on Robotics and Automation (ICRA), one of the most influential international academic conferences in the field of robotics, was held in Yokohama. Colab is pleased to announce that our research paper was accepted for presentation at this prestigious event. With the support of Professor Liu, our team traveled to Yokohama to attend the conference and engage with the global robotics community.
+                </p>
+            </div>
+        </div>
+
+        <div class="row align-items-start mb-5 event-row">
+            <div class="col-md-5 order-md-2">
+                <div class="event-image-wrapper">
+                    <img src="images/events/ICCV23.png" alt="ICCV 2023" class="custom-rounded">
+                </div>
+            </div>
+            <div class="col-md-7 order-md-1 pe-md-5 mt-3 mt-md-0 text-md-end">
+                <h3 class="event-name">ICCV 2023</h3>
+                <div class="event-meta">
+                    <p>Dates: October 2 – October 6, 2023</p>
+                    <p>Location: Paris, France</p>
+                </div>
+                <p class="event-description text-start">
+                    The International Conference on Computer Vision (ICCV) 2023 received 8,260 valid submissions, ultimately accepting 2,161 papers (an acceptance rate of 26%), of which only 152 were selected for Oral presentations (1.8%). We are proud to share that CoLab had four papers accepted at this prestigious event. With the generous support of Professor Liu, our team traveled to Paris to attend the conference and present our work on this global stage.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+/* 全局字体设置为 Inter */
+#events-section {
+    font-family: 'Inter', sans-serif;
+}
+
+/* =========================================
+   1. 主标题样式 (Events)
+   ========================================= */
+.event-section-title {
+    font-size: 60px; /* 修改主标题为 60px */
+    font-weight: 900;
+    /* 渐变色继承自原文件 */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+
+/* =========================================
+   2. 活动名字样式 (ICLR, ICRA 等)
+   ========================================= */
+.event-name {
+    font-size: 48px; /* 修改小标题为 48px */
+    font-weight: 700;
+    /* 渐变色继承自原文件 */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: 0; 
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+/* =========================================
+   3. 小字信息样式 (Dates, Location)
+   ========================================= */
+.event-meta {
+    font-size: 16px; /* 修改为 16px */
+    font-weight: 700; /* 加粗 */
+    color: #969393;  /* 浅灰色 */
+    margin-bottom: 1.5rem;
+}
+.event-meta p { margin-bottom: 2px; }
+
+/* =========================================
+   4. 详细介绍样式 (Description)
+   ========================================= */
+.event-description {
+    font-size: 16px; /* 修改为 16px */
+    font-weight: 400;
+    color: #d0cccc;  /* 纯白色 */
+    line-height: 1.8;
+}
+
+/* =========================================
+   5. 图片显示控制
+   ========================================= */
+.event-image-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 3; 
+    overflow: hidden;
+}
+
+.event-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px !important; 
+}
+
+/* 移动端适配 */
+@media (max-width: 767px) {
+    .event-section-title { font-size: 40px; }
+    .event-name { font-size: 32px; }
+    /* 手机端所有文字统一左对齐 */
+    .text-md-end { text-align: left !important; }
+}
+</style>

@@ -1,0 +1,155 @@
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<section id="directions-section" class="py-5" style="background-color: #000000; color: #ffffff; font-family: 'Inter', sans-serif;">
+    <div class="container">
+        
+        <h2 class="event-section-title">Directions</h2>
+        
+        <div style="height: 4rem;"></div>
+
+        <div class="row align-items-start mb-5 event-row">
+            <div class="col-md-4">
+                <div class="event-image-wrapper">
+                    <img src="images/directions/perception.png" alt="Embodied Perception" class="custom-rounded">
+                </div>
+            </div>
+            <div class="col-md-8 ps-md-5 mt-3 mt-md-0 text-start">
+                <h3 class="event-name">Embodied Perception</h3>
+                <p class="event-description text-start">
+                    Perception is crucial for embodied agents. We aim not only for agents to "see" their surroundings but to develop a deeper "understanding" of the environment across spatial, temporal, and semantic dimensions. A key task is open-vocabulary object detection and segmentation, which focuses on aligning language and vision modalities to enable models to recognize and understand objects they have never encountered before.
+                </p>
+            </div>
+        </div>
+
+        <div class="row align-items-start mb-5 event-row">
+            <div class="col-md-4">
+                <div class="event-image-wrapper">
+                    <img src="images/directions/plan.jpg" alt="Decision Making and Planning" class="custom-rounded">
+                </div>
+            </div>
+            <div class="col-md-8 ps-md-5 mt-3 mt-md-0 text-start">
+                <h3 class="event-name">Decision Making and Planning</h3>
+                <p class="event-description text-start">
+                    Perception capabilities enable intelligent agents to observe the world, while decision-making and planning abilities allow agents to connect their observations with concepts and knowledge in their minds, enabling appropriate behaviors for task completion, such as goal-seeking and following human language instructions. Additionally, localization, mapping, and obstacle avoidance are essential tasks in robot navigation, allowing robots to determine their position, build global maps, avoid environmental obstacles, and achieve efficient path planning during exploration in unknown environments.
+                </p>
+            </div>
+        </div>
+
+        <div class="row align-items-start mb-5 event-row">
+            <div class="col-md-4">
+                <div class="event-image-wrapper">
+                    <img src="images/directions/UAV.png" alt="Embodied AI x UAVs" class="custom-rounded">
+                </div>
+            </div>
+            <div class="col-md-8 ps-md-5 mt-3 mt-md-0 text-start">
+                <h3 class="event-name">Embodied AI x UAVs</h3>
+                <a href="https://buaa-colalab.github.io/colab_uav.github.io/" target="_blank" style="color: #00BFFF; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 1rem;">Visit Project Website →</a>
+                <p class="event-description text-start">
+                    Traditional UAV systems often rely on static planning and manual remote control, which limits robust perception and decision-making in complex environments. In contrast, aerial embodied intelligence integrates foundation model vision language understanding with autonomous policy planning, enabling UAVs to perceive tasks, plan, and act in dynamic, unstructured settings. We build aerial embodied agents from simulation to real-world deployment, advancing aerial robots that can see, think, fly, and collaborate. One example is vision language navigation, where UAVs use visual understanding to perform text guided target search.
+                </p>
+            </div>
+        </div>
+
+        <div class="row align-items-start mb-5 event-row">
+            <div class="col-md-4">
+                <div class="event-image-wrapper">
+                    <img src="images/directions/satellite.png" alt="Embodied AI x Satellites" class="custom-rounded">
+                </div>
+            </div>
+            <div class="col-md-8 ps-md-5 mt-3 mt-md-0 text-start">
+                <h3 class="event-name">Embodied AI x Satellites</h3>
+                <p class="event-description text-start">
+                    Imaging satellite constellations are significant for Earth surface observation, transcending traditional observational limitations and offering unprecedented flexibility. However, scheduling and planning under large-scale scenarios, dynamic environments, and stringent constraints is fundamentally an NP-hard problem. Existing solutions often oversimplify complex real-world conditions, limiting practical performance. We are committed to building a unified framework that integrates benchmark test suites and scheduling models to drive innovation in imaging satellite constellation scheduling.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+/* 全局字体设置为 Inter */
+#directions-section {
+    font-family: 'Inter', sans-serif;
+}
+
+/* =========================================
+   1. 主标题样式 (Events)
+   ========================================= */
+.event-section-title {
+    font-size: 60px; /* 修改主标题为 60px */
+    font-weight: 900;
+    /* 渐变色继承自原文件 */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+
+/* =========================================
+   2. 活动名字样式 (ICLR, ICRA 等)
+   ========================================= */
+.event-name {
+    font-size: 48px; /* 修改小标题为 48px */
+    font-weight: 700;
+    /* 渐变色继承自原文件 */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: 0; 
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+/* =========================================
+   3. 小字信息样式 (Dates, Location)
+   ========================================= */
+.event-meta {
+    font-size: 16px; /* 修改为 16px */
+    font-weight: 700; /* 加粗 */
+    color: #969393;  /* 浅灰色 */
+    margin-bottom: 1.5rem;
+}
+.event-meta p { margin-bottom: 2px; }
+
+/* =========================================
+   4. 详细介绍样式 (Description)
+   ========================================= */
+.event-description {
+    font-size: 19px !important; /* 修改为 18px */
+    font-weight: 400 !important;
+    color: #d0cccc !important;  /* 纯白色 */
+    line-height: 1.8 !important;
+}
+
+/* =========================================
+   5. 图片显示控制
+   ========================================= */
+.event-image-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 3; 
+    overflow: hidden;
+}
+
+.event-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px !important; 
+}
+
+.event-row {
+    margin-bottom: 5rem !important;
+}
+
+/* 移动端适配 */
+@media (max-width: 767px) {
+    .event-section-title { font-size: 40px; }
+    .event-name { font-size: 32px; }
+    /* 手机端所有文字统一左对齐 */
+    .text-md-end { text-align: left !important; }
+}
+</style>

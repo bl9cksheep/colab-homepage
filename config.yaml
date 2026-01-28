@@ -1,0 +1,424 @@
+baseURL: "http://localhost:1313/"
+languageCode: "en-us"
+title: "Colab"
+theme: hugo-profile
+metaDataFormat: "yaml"
+
+outputs:
+  home: ["HTML", "RSS", "JSON"]
+  page: ["HTML", "RSS"]
+
+enableRobotsTXT: true
+
+pagination:
+  pagerSize: 6
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+Menus:
+  main:
+    # - identifier: intro
+    #   name: Intro
+    #   title: Introduction
+    #   url: /intro/
+    #   weight: 1
+    - identifier: publications
+      name: Publications
+      title: Publications
+      url: /publications/
+      weight: 2
+    - identifier: team
+      name: Team
+      title: Team Photo
+      url: /team/
+      weight: 3
+    # - identifier: events
+    #   name: Events
+    #   title: Activities & Events
+    #   url: /events/
+    #   weight: 4
+    - identifier: news
+      name: News
+      title: News
+      url: /news/
+      weight: 5
+    # - identifier: people
+    #   name: People
+    #   title: Members & Alumni
+    #   url: /people/
+    #   weight: 6
+    # 如果你还想保留 Blog/Gallery，就把下面两条取消注释
+    # - identifier: blog
+    #   name: Blog
+    #   url: /blogs/
+    #   weight: 90
+    # - identifier: gallery
+    #   name: Gallery
+    #   url: /gallery/
+    #   weight: 91
+
+params:
+  title: "Colab"
+  description: "Colab Lab — UAV • Manipulation • Spacecraft"
+  favicon: "/fav.png"
+
+  useBootstrapCDN: false
+  mathjax: false
+  animate: true
+
+  theme:
+    defaultTheme: "dark"
+    disableThemeToggle: true
+
+  navbar:
+    align: ms-auto
+    brandName: "Colab"
+    disableSearch: true
+    stickyNavBar:
+      enable: true
+      showOnScrollUp: true
+    enableSeparator: false
+    # 这些是“一页式首页锚点菜单”的开关；你现在用多分页，所以都关掉更干净
+    menus:
+      disableAbout: true
+      disableExperience: true
+      disableEducation: true
+      disableProjects: false
+      disableAchievements: true
+      disableContact: true
+  customCSS: 
+    - "css/custom.css"
+  custom_css: 
+    - "css/custom.css"
+  custom_js: 
+    - "js/custom.js"
+
+  # 首页 Hero（你可以把 button 指向 /intro/ 或 /people/）
+  hero:
+    enable: true
+    intro: "Welcome to"
+    title: "Colab"
+    subtitle: "Robotics & Space Systems Laboratory"
+    content: "CoLab(Cola Laboratory,可乐实验室) was founded on June 12, 2016. With strong expertise in human-centric image and video understanding—including human segmentation, pose estimation, attribute prediction, and re-identification—we now focus on integrating AI with advanced platforms such as drones, embodied agents, and satellite remote sensing."
+    #image: /images/background/back1.png
+    bottomImage:
+      enable: false
+    button:
+      enable: true
+      name: "Explore"
+      url: "#about"
+      download: false
+      newPage: false
+    socialLinks:
+      fontAwesomeIcons:
+        - icon: fab fa-github
+          url: https://github.com/
+        - icon: fas fa-envelope
+          url: "mailto:liusi@buaa.edu.cn"
+
+  # 首页简介（对应你要的“简介”页面：/intro/ 里会放更完整版本）
+  about:
+    enable: false
+    title: "Intro"
+    image: ""
+    content: "CoLab(Cola Laboratory,可乐实验室) was founded on June 12, 2016. With strong expertise in human-centric image and video understanding—including human segmentation, pose estimation, attribute prediction, and re-identification—we now focus on integrating AI with advanced platforms such as drones, embodied agents, and satellite remote sensing."
+
+  
+  # 首页展示"代表作"卡片
+  projects:
+    enable: true
+    title: "Representative Works"
+    items:
+      - title: "Towards Realistic Earth-Observation Constellation Scheduling: Benchmark and Methodology"
+        content: "Towards Realistic Earth-Observation Constellation Scheduling: Benchmark and Methodology"
+        image: /images/works/satellite.png
+        demo: /demos/AEOSBench.mp4
+        links:
+          - name: "Paper"
+            url: "https://arxiv.org/pdf/2510.26297"
+          - name: "Project"
+            url: "https://buaa-colalab.github.io/AEOSBench/"
+          - name: "Code"
+            url: "https://github.com/buaa-colalab/AEOSBench"
+        badges: ["Satellite", "Scheduling", "Benchmark"]
+      - title: "CooHOI: Learning Cooperative Human-Object Interaction with Manipulated Object Dynamics"
+        content: "CooHOI: Learning Cooperative Human-Object Interaction with Manipulated Object Dynamics"
+        image: /images/works/coohoi.png
+        demo: /demos/coohoi.mp4
+        links:
+          - name: "Paper"
+            url: "https://arxiv.org/pdf/2406.14558"
+          - name: "Project"
+            url: "https://gao-jiawei.com/Research/CooHOI/"
+          - name: "Code"
+            url: "https://github.com/Winston-Gu/CooHOI"
+        badges: ["Embodied AI", "HOI", "Manipulation", "NeurIPS 2024"]
+      - title: "UAV-Flow Colosseo: A Real-World Benchmark for Flying-on-a-World UAV Imitation Learning"
+        content: "UAV-Flow Colosseo: A Real-World Benchmark for Flying-on-a-Word UAV Imitation Learning"
+        image: /images/works/uav-flow.png
+        demo: /demos/uav-flow.mp4
+        links:
+          - name: "Paper"
+            url: "https://arxiv.org/pdf/2505.15725"
+          - name: "Project"
+            url: "https://prince687028.github.io/UAV-Flow/"
+          - name: "Code"
+            url: "https://github.com/buaa-colalab/UAV-Flow"
+        badges: ["UAV", "Imitation Learning", "Benchmark"]
+      - title: "ReSimAD: Zero-Shot 3D Domain Transfer for Autonomous Driving with Source Reconstruction and Target Simulation"
+        content: "ReSimAD: Zero-Shot 3D Domain Transfer for Autonomous Driving with Source Reconstruction and Target Simulation"
+        image: /images/works/resimad.png
+        demo: /demos/3DTrans.gif
+        links:
+          - name: "Paper"
+            url: "https://arxiv.org/pdf/2309.05527"
+          - name: "Project"
+            url: "https://bobrown.github.io/Team_3DTrans.github.io/"
+          - name: "Code"
+            url: "https://github.com/PJLab-ADG/3DTrans"
+        badges: ["Autonomous Driving", "Domain Transfer", "3D", "ICCV 2023"]
+      - title: "AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation"
+        content: "AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation"
+        image: /images/works/aeroduo.png
+        demo: /demos/aeroduo.mp4
+        links:
+          - name: "Paper"
+            url: "https://arxiv.org/pdf/2508.15232"
+          - name: "Project"
+            url: "https://rey-nard.github.io/AeroDuo_project/"
+          - name: "Code"
+            url: "https://github.com/Rey-nard/AeroDuo"
+        badges: ["UAV", "Vision-Language Navigation", "ACM MM 2025"]
+
+  # 首页用“Experience”模块改成 Events 预览（你也可以直接关掉，然后只用 /events/ 页面）
+  # experience:
+  #   enable: true
+  #   title: "Events"
+  #   items:
+  #     - company: "Colab Seminar"
+  #       companyUrl: "/events/"
+  #       jobs:
+  #         - name: "Weekly Meeting"
+  #           date: "Every Week"
+  #           content: "Paper reading, project updates, and guest talks."
+
+  #首页用“Achievements”模块改成 News 预览
+  achievements:
+    enable: true
+    title: "News"
+    items:
+      - title: "AAAI 2026 Acceptances"
+        content: "2 papers are accepted by AAAI 2026."
+        image: /images/news/placeholder.jpg
+      - title: "NeurIPS 2025 Acceptances"
+        content: "4 papers are accepted by NeurIPS 2025."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: MV2DFusion"
+        content: "TPAMI paper \"MV2DFusion: Leveraging Modality-Specific Object Semantics for Multi-Modal 3D Detection\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "ACM MM 2025 Acceptances"
+        content: "3 papers are accepted by ACM MM 2025."
+        image: /images/news/placeholder.jpg
+      - title: "ICCV 2025 Acceptances"
+        content: "4 papers are accepted by ICCV 2025."
+        image: /images/news/placeholder.jpg
+      - title: "CVPR 2025 Acceptances"
+        content: "5 papers (including 1 oral paper) are accepted by CVPR 2025."
+        image: /images/news/placeholder.jpg
+      - title: "ICLR 2025 Acceptances"
+        content: "4 papers are accepted by ICLR 2025."
+        image: /images/news/placeholder.jpg
+      - title: "AAAI 2025 Acceptances"
+        content: "4 papers are accepted by AAAI 2025."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: Anchor3DLane++"
+        content: "TPAMI paper \"Anchor3DLane++: 3D Lane Detection via Sample-Adaptive Sparse 3D Anchor Regression\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: RGB-T Tracking"
+        content: "TPAMI paper \"RGB-T Tracking with Template-Bridged Search Interaction and Target-Preserved Template Updating\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "NeurIPS 2024 Acceptances"
+        content: "3 papers (including 1 spotlight paper) are accepted by NeurIPS 2024."
+        image: /images/news/placeholder.jpg
+      - title: "ACM MM 2024 Acceptances"
+        content: "3 papers are accepted by ACM MM 2024."
+        image: /images/news/placeholder.jpg
+      - title: "ECCV 2024 Acceptances"
+        content: "5 papers are accepted by ECCV 2024."
+        image: /images/news/placeholder.jpg
+      - title: "IROS 2024 Acceptance"
+        content: "1 paper is accepted by IROS 2024."
+        image: /images/news/placeholder.jpg
+      - title: "Area Chair: NeurIPS 2024"
+        content: "Prof. Liu serves as Area Chair for NeurIPS 2024."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: PPDM++"
+        content: "TPAMI paper \"PPDM++: Parallel Point Detection and Matching for Fast and Accurate HOI Detection\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: FeatAug-DETR"
+        content: "TPAMI paper \"FeatAug-DETR: Enriching One-to-Many Matching for DETRs with Feature Augmentation\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: Multi-Person Pose Regression"
+        content: "TPAMI paper \"Multi-Person Pose Regression with Distribution-Aware Single-Stage Models\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "ICRA 2024 Acceptance"
+        content: "1 paper is accepted by ICRA 2024."
+        image: /images/news/placeholder.jpg
+      - title: "ICLR 2024 Acceptances"
+        content: "2 papers are accepted by ICLR 2024."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: Teach-DETR"
+        content: "TPAMI paper \"Teach-DETR: Better Training DETR with Teachers\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "Reviewer: ICML 2024"
+        content: "Prof. Liu will serve as Reviewer for ICML 2024."
+        image: /images/news/placeholder.jpg
+      - title: "Area Chair: ECCV 2024"
+        content: "Prof. Liu serves as Area Chair for ECCV 2024."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: BEV Perception Review"
+        content: "TPAMI paper \"Delving into the Devils of Bird's-eye-view Perception: A Review, Evaluation and Recipe\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: Room-Object Prompting"
+        content: "TPAMI paper \"Room-Object Entity Prompting and Reasoning for Embodied Referring Expression\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "NeurIPS 2023 Acceptance"
+        content: "1 paper is accepted by NeurIPS 2023."
+        image: /images/news/placeholder.jpg
+      - title: "ACM MM 2023 Acceptances"
+        content: "3 papers are accepted by ACM MM 2023."
+        image: /images/news/placeholder.jpg
+      - title: "ICCV 2023 Acceptances"
+        content: "4 papers are accepted by ICCV 2023."
+        image: /images/news/placeholder.jpg
+      - title: "Area Chair: NeurIPS 2023"
+        content: "Prof. Liu serves as Area Chair for NeurIPS 2023."
+        image: /images/news/placeholder.jpg
+      - title: "Dataset Release: PIC"
+        content: "We release the Person In Contex (PIC) dataset with 17,122 high-res images and dense annotations. [Link][pwd:pic]"
+        image: /images/news/placeholder.jpg
+      - title: "CVPR 2023 Anti-UAV Challenge"
+        content: "CoLab team and Baidu Inc won the CVPR 2023 \"Anti-uav\" UAV Tracking Challenge. [certificate]"
+        image: /images/news/placeholder.jpg
+      - title: "CVPR 2023 Acceptances"
+        content: "6 papers are accepted by CVPR 2023."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: Referring Video Segmentation"
+        content: "TPAMI paper \"Language-Aware Spatial-Temporal Collaboration for Referring Video Segmentation\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "TMM Outstanding Associate Editor 2022"
+        content: "Prof. Liu was named 2022 Outstanding Associate Editor of TMM. [certificate]"
+        image: /images/news/placeholder.jpg
+      - title: "Area Chair: CVPR 2023"
+        content: "Prof. Liu serves as Area Chair for CVPR 2023."
+        image: /images/news/placeholder.jpg
+      - title: "ECCV 2022 Acceptances"
+        content: "2 papers are accepted by ECCV 2022."
+        image: /images/news/placeholder.jpg
+      - title: "Area Chair: ACCV 2022"
+        content: "Prof. Liu serves as Area Chair for ACCV 2022."
+        image: /images/news/placeholder.jpg
+      - title: "ACM MM 2022 Acceptances"
+        content: "3 papers (including 1 oral paper) are accepted by ACM MM 2022."
+        image: /images/news/placeholder.jpg
+      - title: "CVPR 2022 SoundSpaces Challenge"
+        content: "CoLab team and Xiaomi Tech won the CVPR 2022 \"SoundSpaces\" Audio-visual Navigation Challenge. [certificate]"
+        image: /images/news/placeholder.jpg
+      - title: "TIP: Visual Grounding"
+        content: "TIP paper \"Progressive Language-customized Visual Feature Learning for One-stage Visual Grounding\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "CVPR 2022 Acceptances"
+        content: "5 papers (including 1 oral paper) are accepted by CVPR 2022."
+        image: /images/news/placeholder.jpg
+      - title: "Area Chair: ECCV 2022"
+        content: "Prof. Liu serves as Area Chair for ECCV 2022."
+        image: /images/news/placeholder.jpg
+      - title: "Area Chair: ACM MM 2022"
+        content: "Prof. Liu serves as Area Chair for ACM MM 2022."
+        image: /images/news/placeholder.jpg
+      - title: "Associate Editor: TCSVT"
+        content: "Prof. Liu serves as Associate Editor for IEEE Transactions on Circuits and Systems for Video Technology."
+        image: /images/news/placeholder.jpg
+      - title: "教育部提问与猜想一等奖"
+        content: "我组本科实习生何泽欣、朱乐岩的\"关联信息可控的视频背景音乐生成问题\"项目荣获教育部首届\"提问与猜想\"活动一等奖。"
+        image: /images/news/placeholder.jpg
+      - title: "冯如杯优秀指导教师"
+        content: "Prof. Liu won the Excellent Instructor Award for Feng Ru Cup--北航冯如杯优秀指导教师. [certificate]"
+        image: /images/news/placeholder.jpg
+      - title: "ACM MM 2021 Best Paper"
+        content: "The paper \"Video Background Music Generation with Controllable Music Transformer\" wins ACM MM 2021 Best Paper Award. [Image] [Link] [certificate]"
+        image: /images/news/placeholder.jpg
+      - title: "NeurIPS 2021 HOI Detection"
+        content: "One NeurIPS paper \"Mining the Benefits of Two-stage and One-stage HOI Detection\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "Associate Editor: IEEE TMM"
+        content: "Prof. Liu serves as Associate Editor for IEEE Transactions on Multimedia."
+        image: /images/news/placeholder.jpg
+      - title: "ICCV 2021 Acceptance"
+        content: "One ICCV paper \"Language-Guided Global Image Editing via Cross-Modal Cyclic Mechanism\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "CVPR 2021 VizWiz Challenge"
+        content: "Prof. Liu and Alibaba group won the CVPR 2021 VizWiz Captioning Challenge. [certificate]"
+        image: /images/news/placeholder.jpg
+      - title: "ACM MM 2021 Acceptances"
+        content: "2 papers are accepted by ACM MM 2021."
+        image: /images/news/placeholder.jpg
+      - title: "IJCAI 2021 Best Video Award"
+        content: "Shangzhe Di, Zeren Jiang, Zhaokai Wang, Leyan Zhu, Zexin He won the Best Video Award of IJCAI 2021 Video Competition. [certificate]"
+        image: /images/news/placeholder.jpg
+      - title: "CVPR 2021 Home Action Genome"
+        content: "Prof. Liu and Alibaba group won the CVPR 2021 Home Action Genome Scene-graph Generation competition. [certificate]"
+        image: /images/news/placeholder.jpg
+      - title: "冯如杯一等奖"
+        content: "Our intern Zhaokai Wang and Sihan Qian win the first price of the 31st Fengru Cup competition--北航冯如杯一等奖 (全校共19个). [certificate]"
+        image: /images/news/placeholder.jpg
+      - title: "Area Chair: PRCV 2021 & ICIG 2021"
+        content: "Prof. Liu serves as Area Chair for PRCV 2021 and ICIG 2021."
+        image: /images/news/placeholder.jpg
+      - title: "TCSVT: Video Grounding"
+        content: "TCSVT paper \"Human-centric Spatio-Temporal Video Grounding With Visual Transformers\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: PSGAN++"
+        content: "TPAMI paper \"PSGAN++: Robust Detail-Preserving Makeup Transfer and Removal\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: Cross-Modal Progressive Comprehension"
+        content: "TPAMI paper \"Cross-Modal Progressive Comprehension for Referring Segmentation\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: Human-centric Relation Segmentation"
+        content: "TPAMI paper \"Human-centric Relation Segmentation: Dataset and Solution\" accepted."
+        image: /images/news/placeholder.jpg
+      - title: "Service: NeurIPS/ACM MM/UAI 2021"
+        content: "Prof. Liu will serve as Reviewer for NeurIPS 2021, Area Chair for ACM MM 2021, and TPC member for UAI 2021."
+        image: /images/news/placeholder.jpg
+      - title: "CVPR 2021 Acceptances"
+        content: "5 papers (including 2 oral papers) are accepted by CVPR 2021."
+        image: /images/news/placeholder.jpg
+      - title: "TPAMI: Referring Expression Grounding"
+        content: "TPAMI paper \"Discriminative Triad Matching and Reconstruction for Weakly Referring Expression Grounding\" accepted."
+        image: /images/news/placeholder.jpg
+
+  #contact:
+  #  enable: true
+  # content: "Contact Email: liusi@buaa.edu.cn"
+  #  btnName: "Email"
+  #  btnLink: "mailto:liusi@buaa.edu.cn"
+
+  color:
+    darkmode:
+      backgroundColor: "#000000"
+      secondaryBackgroundColor: "#000000"
+      textColor: "#ffffff"
+      secondaryTextColor: "#f2f2f2"
+      textLinkColor: "#ffffff"
+
+  footer:
+    recentPosts:
+      path: "news"
+      count: 3
+      title: Recent News
+      enable: true
+      disableFeaturedImage: false
+    socialNetworks:
