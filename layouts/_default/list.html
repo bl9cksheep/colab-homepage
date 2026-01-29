@@ -338,9 +338,16 @@ window.addEventListener('DOMContentLoaded', function() {
     if(navBrand) {
         navBrand.innerHTML = "";
         var newLogo = document.createElement('img');
-        newLogo.src = "/images/colab_logo.png";
+        newLogo.src = "/images/cologo.png";
         newLogo.style.height = "40px"; 
         navBrand.appendChild(newLogo);
+        
+        var logoText = document.createElement('span');
+        logoText.textContent = "Colab";
+        logoText.style.marginLeft = "10px";
+        logoText.style.fontSize = "24px";
+        logoText.style.fontWeight = "bold";
+        navBrand.appendChild(logoText);
     }
     var hugoLinks = document.querySelectorAll('footer a[href*="gohugo.io"]');
     hugoLinks.forEach(function(link) {

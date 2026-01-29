@@ -63,7 +63,7 @@ Menus:
 params:
   title: "Colab"
   description: "Colab Lab — UAV • Manipulation • Spacecraft"
-  favicon: "/fav.png"
+  favicon: "/images/cologo.png"
 
   useBootstrapCDN: false
   mathjax: false
@@ -86,7 +86,7 @@ params:
       disableAbout: true
       disableExperience: true
       disableEducation: true
-      disableProjects: false
+      disableProjects: true
       disableAchievements: true
       disableContact: true
   customCSS: 
