@@ -93,30 +93,30 @@ platforms:
 ---
 
 ## 2025
-- AAAI 2025 — GaussianPainter: Painting Point Cloud into 3D Gaussians with Normal Guidance — Jingqiu Zhou#, Lue Fan#, Xuesong Chen, Linjiang Huang*, Si Liu, Hongsheng Li
-- AAAI 2025 — Unleashing the Temporal-Spatial Reasoning Capacity of GPT for Training-Free Audio and Language Referenced Video Object Segmentation — Shaofei Huang#, Rui Ling#, Hongyu Li#, Tianrui Hui, Zongheng Tang, Xiaoming Wei, Jizhong Han, Si Liu*
-- ICLR 2025 — Towards Realistic UAV Vision-Language Navigation: Platform, Benchmark, and Methodology — Xiangyu Wang#, Donglin Yang#, Zigin Wang#, Hohin Kwan, Jinyu Chen, Wenjun Wu, Hongsheng Li, Yue Liao*, Si Liu*
-- ICLR 2025 — LLaVA-MoD: Making LLaVA Tiny via MoE Knowledge Distillation — Fangxun Shu#, Yue Liao#, Le Zhuo, Chenning Xu, Guanghao Zhang, Haonan Shi, LongChen, Tao Zhong, Wanggui He, Siming Fu, Haoyuan Li, Bolin Li, Zhelun Yu, Si Liu*, Hongsheng Li*, Hao Jiang*
-- ICLR 2025 — Point Cluster: A Compact Message Unit for Communication-Efficient Collaborative Perception — Zihan Ding, Jiahui Fu, Si Liu*, Hongyu Li, Siheng Chen, Hongsheng Li, Shifeng Zhang, Xu Zhou
-- ICLR 2025 — MC-MoE: Mixture Compressor for Mixture-of-Experts LLMs Gains More — Wei Huang#, Yue Liao#, Jianhui Liu, Ruifei He, Haoru Tan, Shiming Zhang*, Hongsheng Li, Si Liu*, Xiaojuan Qi*
-- CVPR 2025 — Generative Map Priors for Collaborative BEV Semantic Segmentation — Jiahui Fu, Yue Gong, Luting Wang, Shifeng Zhang, Xu Zhou, Si Liu*
-- CVPR 2025 — FlexDrive: Toward Trajectory Flexibility in Driving Scene Reconstruction and Rendering — Jingqiu Zhou, Lue Fan, Linjiang Huang*, Zhaoxiang Zhang, Xiaoyu Shi, Si Liu, Hongsheng Li*
-- CVPR 2025 — VideoEspresso: A Large-Scale Chain-of-Thought Dataset for Fine-Grained Video Reasoning via Core Frame Selection — Songhao Han, Wei Huang, Hairong Shi, Le Zhuo, Xiu Su, Shifeng Zhang, Xu Zhou, Xiaojuan Qi, Yue Liao*, Si Liu*
-- CVPR 2025 — LLaVA-ST: A Multimodal Large Language Model for Fine-Grained Spatial-Temporal Understanding — Hongyu Li#, Jinyu Chen#, Ziyu Wei#, Shaofei Huang, Tianrui Hui, Jialin Gao*, Xiaoming Wei, Si Liu*
-- CVPR 2025 — Revisiting Audio-Visual Segmentation with Vision-Centric Transformer — Shaofei Huang#, Rui Ling, Tianrui Hui*, Hongyu Li, Xu Zhou, Shifeng Zhang, Si Liu*, Richang Hong, Meng Wang
-- ICCV 2025 — Instruction-Oriented Preference Alignment for Enhancing Multi-Modal Comprehension Capability of MLLMS — Zitian Wang, Yue Liao*, Kang Rong, Fengyun Rao, Yibo Yang*, Si Liu
-- ICCV 2025 — Video2BEV: Transforming Drone Videos to BEVs for Video-based Geo-localization — Hao Ju#, Shaofei Huang#, Si Liu, Zhedong Zheng*
-- ICCV 2025 — CoST: Efficient Collaborative Perception From Unified Spatiotemporal Perspective — Zongheng Tang, Yi Liu, Yifan Sun, Yulu Gao, Jinyu Chen, Runsheng Xu, Si Liu*
-- ICCV 2025 — CycleVAR: Repurposing Autoregressive Model for Unsupervised One-Step Image Translation — Yi Liu, Shengqian Li, Zuzeng Lin, Feng Wang, Si Liu*
-- ACM MM 2025 — RATopo: Improving Lane Topology Reasoning via Redundancy Assignment — Han Li, Shaofei Huang, Longfei Xu, Yulu Gao, Beipeng Mu, Si Liu*
-- ACM MM 2025 — DOMR: Establishing Cross-View Segmentation via Dense Object Matching — Jitong Liao#, Yulu Gao#, Shaofei Huang, Jialin Gao, Jie Lei, Ronghua Liang, Si Liu*
-- ACM MM 2025 — AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation — Ruipu Wu#, Yige Zhang#, Jinyu Chen, Linjiang Huang*, Shifeng Zhang, Xu Zhou, Liang Wang, Si Liu*
-- ACM MM demo 2025 — "Hi AirStar, Guide Me to the Badminton Court." — Zigin Wang#, Jinyu Chen#, Xiangyi Zheng, Qinan Liao, Linjiang Huang*, Si Liu*
-- NeurIPS 2025 — UAV-Flow Colosseo: A Real-World Benchmark for Flying-on-a-Word UAV Imitation Learning — Xiangyu Wang#, Donglin Yang#, Yue Liao#, Wenhao Zheng, Wenjun Wu, Bin Dai, Hongsheng Li, Si Liu*
-- NeurIPS 2025 — RoboCerebra: A Large-scale Benchmark for Long-horizon Robotic Manipulation Evaluation — Songhao Han#, Boxiang Qiu#, Yue Liao#, Siyuan Huang, Chen Gao, Shuicheng Yan*, Si Liu*
-- NeurIPS 2025 — Towards Realistic Earth-Observation Constellation Scheduling: Benchmark and Methodology — Luting Wang#, Yinghao Xiang#, Hongliang Huang, Dongjun Li, Chen Gao*, Si Liu*
-- NeurIPS 2025 — FACT: Mitigating Inconsistent Hallucinations in LLMs via Fact-Driven Alternating Code-Text Training — Xinxin You, Qixin Sun, Xien Liu, Chenwei Yan, Xiao Zhang, Chen Ning, Xiangling Fu, Si Liu, Shijin Wang, Guoping Hu, Ji Wu*
-- TPAMI 2025 — M2DFusion: Leveraging Modality-Specific Object Semantics for Multi-Modal 3D Detection — Zitian Wang, Zehao Huang, Yulu Gao, Naiyan Wang, Si Liu*
+- AAAI 2025 — GaussianPainter: Painting Point Cloud into 3D Gaussians with Normal Guidance — Jingqiu Zhou#, Lue Fan#, Xuesong Chen, Linjiang Huang*, Si Liu, Hongsheng Li [3D Vision, Neural Rendering]
+- AAAI 2025 — Unleashing the Temporal-Spatial Reasoning Capacity of GPT for Training-Free Audio and Language Referenced Video Object Segmentation — Shaofei Huang#, Rui Ling#, Hongyu Li#, Tianrui Hui, Zongheng Tang, Xiaoming Wei, Jizhong Han, Si Liu* [Video Understanding, Multimodal Learning]
+- ICLR 2025 — Towards Realistic UAV Vision-Language Navigation: Platform, Benchmark, and Methodology — Xiangyu Wang#, Donglin Yang#, Zigin Wang#, Hohin Kwan, Jinyu Chen, Wenjun Wu, Hongsheng Li, Yue Liao*, Si Liu* [UAV, Embodied AI, Vision-Language]
+- ICLR 2025 — LLaVA-MoD: Making LLaVA Tiny via MoE Knowledge Distillation — Fangxun Shu#, Yue Liao#, Le Zhuo, Chenning Xu, Guanghao Zhang, Haonan Shi, LongChen, Tao Zhong, Wanggui He, Siming Fu, Haoyuan Li, Bolin Li, Zhelun Yu, Si Liu*, Hongsheng Li*, Hao Jiang* [Multimodal Learning, Model Compression]
+- ICLR 2025 — Point Cluster: A Compact Message Unit for Communication-Efficient Collaborative Perception — Zihan Ding, Jiahui Fu, Si Liu*, Hongyu Li, Siheng Chen, Hongsheng Li, Shifeng Zhang, Xu Zhou [Autonomous Driving, Collaborative Perception]
+- ICLR 2025 — MC-MoE: Mixture Compressor for Mixture-of-Experts LLMs Gains More — Wei Huang#, Yue Liao#, Jianhui Liu, Ruifei He, Haoru Tan, Shiming Zhang*, Hongsheng Li, Si Liu*, Xiaojuan Qi* [Large Language Model, Model Compression]
+- CVPR 2025 — Generative Map Priors for Collaborative BEV Semantic Segmentation — Jiahui Fu, Yue Gong, Luting Wang, Shifeng Zhang, Xu Zhou, Si Liu* [Autonomous Driving, 3D Vision]
+- CVPR 2025 — FlexDrive: Toward Trajectory Flexibility in Driving Scene Reconstruction and Rendering — Jingqiu Zhou, Lue Fan, Linjiang Huang*, Zhaoxiang Zhang, Xiaoyu Shi, Si Liu, Hongsheng Li* [Autonomous Driving, Neural Rendering]
+- CVPR 2025 — VideoEspresso: A Large-Scale Chain-of-Thought Dataset for Fine-Grained Video Reasoning via Core Frame Selection — Songhao Han, Wei Huang, Hairong Shi, Le Zhuo, Xiu Su, Shifeng Zhang, Xu Zhou, Xiaojuan Qi, Yue Liao*, Si Liu* [Video Understanding, Dataset]
+- CVPR 2025 — LLaVA-ST: A Multimodal Large Language Model for Fine-Grained Spatial-Temporal Understanding — Hongyu Li#, Jinyu Chen#, Ziyu Wei#, Shaofei Huang, Tianrui Hui, Jialin Gao*, Xiaoming Wei, Si Liu* [Multimodal Learning, Video Understanding]
+- CVPR 2025 — Revisiting Audio-Visual Segmentation with Vision-Centric Transformer — Shaofei Huang#, Rui Ling, Tianrui Hui*, Hongyu Li, Xu Zhou, Shifeng Zhang, Si Liu*, Richang Hong, Meng Wang [Multimodal Learning, Segmentation]
+- ICCV 2025 — Instruction-Oriented Preference Alignment for Enhancing Multi-Modal Comprehension Capability of MLLMS — Zitian Wang, Yue Liao*, Kang Rong, Fengyun Rao, Yibo Yang*, Si Liu [Multimodal Learning, Alignment]
+- ICCV 2025 — Video2BEV: Transforming Drone Videos to BEVs for Video-based Geo-localization — Hao Ju#, Shaofei Huang#, Si Liu, Zhedong Zheng* [UAV, 3D Vision]
+- ICCV 2025 — CoST: Efficient Collaborative Perception From Unified Spatiotemporal Perspective — Zongheng Tang, Yi Liu, Yifan Sun, Yulu Gao, Jinyu Chen, Runsheng Xu, Si Liu* [Autonomous Driving, Collaborative Perception]
+- ICCV 2025 — CycleVAR: Repurposing Autoregressive Model for Unsupervised One-Step Image Translation — Yi Liu, Shengqian Li, Zuzeng Lin, Feng Wang, Si Liu* [Image Generation, Generative Model]
+- ACM MM 2025 — RATopo: Improving Lane Topology Reasoning via Redundancy Assignment — Han Li, Shaofei Huang, Longfei Xu, Yulu Gao, Beipeng Mu, Si Liu* [Autonomous Driving, Scene Understanding]
+- ACM MM 2025 — DOMR: Establishing Cross-View Segmentation via Dense Object Matching — Jitong Liao#, Yulu Gao#, Shaofei Huang, Jialin Gao, Jie Lei, Ronghua Liang, Si Liu* [3D Vision, Segmentation]
+- ACM MM 2025 — AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation — Ruipu Wu#, Yige Zhang#, Jinyu Chen, Linjiang Huang*, Shifeng Zhang, Xu Zhou, Liang Wang, Si Liu* [UAV, Embodied AI, Vision-Language]
+- ACM MM demo 2025 — "Hi AirStar, Guide Me to the Badminton Court." — Zigin Wang#, Jinyu Chen#, Xiangyi Zheng, Qinan Liao, Linjiang Huang*, Si Liu* [UAV, Embodied AI, Vision-Language]
+- NeurIPS 2025 — UAV-Flow Colosseo: A Real-World Benchmark for Flying-on-a-Word UAV Imitation Learning — Xiangyu Wang#, Donglin Yang#, Yue Liao#, Wenhao Zheng, Wenjun Wu, Bin Dai, Hongsheng Li, Si Liu* [UAV, Embodied AI, Dataset]
+- NeurIPS 2025 — RoboCerebra: A Large-scale Benchmark for Long-horizon Robotic Manipulation Evaluation — Songhao Han#, Boxiang Qiu#, Yue Liao#, Siyuan Huang, Chen Gao, Shuicheng Yan*, Si Liu* [Embodied AI, Robotics, Dataset]
+- NeurIPS 2025 — Towards Realistic Earth-Observation Constellation Scheduling: Benchmark and Methodology — Luting Wang#, Yinghao Xiang#, Hongliang Huang, Dongjun Li, Chen Gao*, Si Liu* [Satellite Systems, Dataset]
+- NeurIPS 2025 — FACT: Mitigating Inconsistent Hallucinations in LLMs via Fact-Driven Alternating Code-Text Training — Xinxin You, Qixin Sun, Xien Liu, Chenwei Yan, Xiao Zhang, Chen Ning, Xiangling Fu, Si Liu, Shijin Wang, Guoping Hu, Ji Wu* [Large Language Model]
+- TPAMI 2025 — M2DFusion: Leveraging Modality-Specific Object Semantics for Multi-Modal 3D Detection — Zitian Wang, Zehao Huang, Yulu Gao, Naiyan Wang, Si Liu* [Autonomous Driving, 3D Vision]
 
 ## 2024
 - TPAMI 2024 — Multi-Person Pose Regression with Distribution-Aware Single-Stage Models — Leyan Zhu#, Zitian Wang#, Si Liu*, Xuecheng Nie, Luoqi Liu, Bo Li

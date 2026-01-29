@@ -64,6 +64,7 @@ params:
   title: "Colab"
   description: "Colab Lab — UAV • Manipulation • Spacecraft"
   favicon: "/images/cologo.png"
+  staticPath: ""
 
   useBootstrapCDN: false
   mathjax: false
