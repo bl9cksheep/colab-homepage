@@ -155,7 +155,7 @@
               </div>
               <div class="flex-grow-1">
                 <h5 class="card-title mb-1" style="font-size: 1.35rem;">{{ $p.title }}</h5>
-                <p class="card-text text-muted mb-1" style="font-size: 1.05rem;">{{ $p.authors }}</p>
+                <p class="card-text text-muted mb-1 author-text" style="font-size: 1.05rem;">{{ $p.authors }}</p>
                 <p class="card-text mb-0" style="font-size: 1.05rem;"><strong>{{ $p.venue }}</strong></p>
               </div>
             </div>
@@ -173,6 +173,17 @@
   {{ end }}
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      // 处理人名着色逻辑
+      const authorTexts = document.querySelectorAll(".author-text");
+      authorTexts.forEach(el => {
+        let html = el.innerHTML;
+        // 替换带#的人名为绿色（移除#符号）- 匹配整个名字包括空格
+        html = html.replace(/([^,#*]+?)\s*#/g, '<span style="color: #00aa00 !important; font-weight: 500;">$1</span>');
+        // 替换带*的人名为蓝色（移除*符号）- 匹配整个名字包括空格
+        html = html.replace(/([^,#*]+?)\s*\*/g, '<span style="color: #0066cc !important; font-weight: 500;">$1</span>');
+        el.innerHTML = html;
+      });
+
       const buttons = document.querySelectorAll(".toggle-year");
       buttons.forEach(btn => {
         btn.addEventListener("click", () => {
