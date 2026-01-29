@@ -46,10 +46,27 @@
                             <i class="{{ .icon }}"></i>
                         </a>
                         {{ end }}
+                        
+                        {{ range $hero.socialLinks.customIcons }}
+                        <a href="javascript:void(0);" onclick="openWechatModal()" style="text-decoration: none; display: inline-block; cursor: pointer;">
+                            <img src="{{ .icon }}" style="height: 1.8rem; width: auto; vertical-align: middle;">
+                        </a>
+                        {{ end }}
                     </div>
+                    
                 </div>
                 
             </div>
+        </div>
+    </div>
+    
+    <!-- 微信二维码弹窗 -->
+    <div id="wechatModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); justify-content: center; align-items: center;">
+        <div style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); padding: 40px; border-radius: 20px; text-align: center; max-width: 400px; position: relative; box-shadow: 0 10px 50px rgba(0,0,0,0.5);">
+            <button onclick="closeWechatModal()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; line-height: 1; opacity: 0.7; transition: opacity 0.2s;">&times;</button>
+            <h3 style="color: #fff; margin-bottom: 25px; font-size: 1.5rem; font-weight: 600;">Subscribe to WeChat Public Account</h3>
+            <img src="/images/wechat-qr.jpg" style="width: 100%; max-width: 280px; border-radius: 10px; box-shadow: 0 4px 15px rgba(255,255,255,0.1);" alt="WeChat QR Code">
+            <p style="color: rgba(255,255,255,0.7); margin-top: 20px; font-size: 0.9rem;">Scan the QR code to follow us</p>
         </div>
     </div>
 </section>
@@ -57,6 +74,33 @@
 
 {{/* 2. 核心脚本：通用功能（保持不变） */}}
 <script>
+// 微信弹窗控制函数
+function openWechatModal() {
+    var modal = document.getElementById('wechatModal');
+    if(modal) {
+        modal.style.display = 'flex';
+    }
+}
+
+function closeWechatModal() {
+    var modal = document.getElementById('wechatModal');
+    if(modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// 点击弹窗外部区域关闭
+document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById('wechatModal');
+    if(modal) {
+        modal.addEventListener('click', function(e) {
+            if(e.target === modal) {
+                closeWechatModal();
+            }
+        });
+    }
+});
+
 window.addEventListener('DOMContentLoaded', function() {
     // A. 替换 Navigation Logo
     var navBrand = document.querySelector('.navbar-brand');

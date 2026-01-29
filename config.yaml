@@ -118,6 +118,9 @@ params:
           url: https://github.com/
         - icon: fas fa-envelope
           url: "mailto:liusi@buaa.edu.cn"
+      customIcons:
+        - icon: /images/wechat-icon.png
+          url: "#"
 
   # 首页简介（对应你要的“简介”页面：/intro/ 里会放更完整版本）
   about:
