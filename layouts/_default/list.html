@@ -8,9 +8,9 @@
 {{ end }}
 
 {{ define "main" }}
-<!-- Import Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Merriweather:wght@400;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
+{{/* =================== Papers / Publications Logic =================== */}}
 {{ if or (eq .Section "papers") (eq .Section "publications") (eq .Title "Publications") }}
 {{ $thumbs := .Site.Data.paper_thumbs | default dict }}
 {{ $defaultPaperImage := "/images/news/placeholder.jpg" }}
@@ -18,116 +18,57 @@
 {{ $papers := slice }}
 {{ $currentYear := "" }}
 {{ $yearsScratch := newScratch }}
+
 {{ range $lines }}
-  {{ $l := trim . " " }}
+  {{ $l := trim . " \r" }}
   {{ if hasPrefix $l "## " }}
-    {{ $currentYear = trim (strings.TrimPrefix "## " $l) " \n\r" }}
+    {{ $currentYear = trim (strings.TrimPrefix "## " $l) " " }}
     {{ if $currentYear }}{{ $yearsScratch.Add "years" (slice $currentYear) }}{{ end }}
   {{ else if hasPrefix $l "- " }}
     {{ $rest := strings.TrimPrefix "- " $l }}
     {{ $parts := split $rest " — " }}
+    {{ if lt (len $parts) 2 }}
+        {{ $parts = split $rest " - " }}
+    {{ end }}
     {{ $venue := index $parts 0 | default "" }}
     {{ $title := index $parts 1 | default $rest }}
     {{ $authors := "" }}
     {{ if ge (len $parts) 3 }}{{ $authors = index $parts 2 }}{{ end }}
-    {{ $papers = $papers | append (dict "year" $currentYear "venue" $venue "title" $title "authors" $authors "image" "/images/news/placeholder.jpg") }}
+    {{ $papers = $papers | append (dict "year" $currentYear "venue" $venue "title" $title "authors" $authors) }}
   {{ end }}
 {{ end }}
+
 {{ $yearsRaw := $yearsScratch.Get "years" | default (slice) }}
 {{ $years := sort (uniq $yearsRaw) "value" "desc" }}
+
 <div class="container pt-5" id="papers-page">
   <style>
-    /* Publications 页面字体设置为 Inter */
-    #papers-page {
-      font-family: 'Inter', sans-serif;
-    }
-
-    #papers-page h2,
-    #papers-page h3,
-    #papers-page h4,
-    #papers-page h5,
-    #papers-page h6 {
-      font-family: 'Inter', sans-serif;
-    }
-
-    #papers-page .card {
-      background: #000;
-      color: #fff !important;
-      border: none;
-    }
-    #papers-page .card * {
-      color: #fff !important;
-    }
-    #papers-page .card img {
-      background: #000;
-    }
+    #papers-page { font-family: 'Inter', sans-serif; }
+    #papers-page h2, #papers-page h3, #papers-page h4 { font-family: 'Inter', sans-serif; }
+    #papers-page .card { background: #000; color: #fff !important; border: none; }
+    #papers-page .card *:not(span) { color: #fff !important; }
+    #papers-page .card img { background: #000; }
+    
     .toggle-year {
-      background: #1f1f1f;
-      border: none;
-      color: #fff;
-      border-radius: 999px;
-      padding: 6px 10px;
-      line-height: 1;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 36px;
-      transition: background-color 0.2s ease;
+      background: #1f1f1f; border: none; color: #fff; border-radius: 999px;
+      padding: 6px 10px; line-height: 1; display: inline-flex; align-items: center; justify-content: center;
+      min-width: 36px; transition: background-color 0.2s ease; cursor: pointer;
     }
-    .toggle-year:hover {
-      background: #2a2a2a;
-    }
-    .toggle-year:focus {
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
-    }
+    .toggle-year:hover { background: #2a2a2a; }
     
-    /* Classification button styles */
-    .classification-toggle {
-      transition: all 0.3s ease;
-      font-weight: 500;
-    }
-    .classification-toggle:hover {
-      background: #2a2a2a !important;
-      color: #fff !important;
-      transform: translateY(-1px);
-    }
-    .classification-toggle.active {
-      box-shadow: 0 2px 8px rgba(255,255,255,0.1);
-    }
+    .classification-toggle { transition: all 0.3s ease; font-weight: 500; }
+    .classification-toggle:hover { background: #2a2a2a !important; color: #fff !important; transform: translateY(-1px); }
+    .classification-toggle.active { box-shadow: 0 2px 8px rgba(255,255,255,0.1); }
     
-    /* Filter button styles */
-    .filter-btn {
-      transition: all 0.3s ease;
-      cursor: pointer;
-      font-weight: 500;
-    }
-    .filter-btn:hover {
-      background: #2a2a2a !important;
-      color: #fff !important;
-      transform: translateY(-1px);
-      box-shadow: 0 2px 6px rgba(255,255,255,0.1);
-    }
-    .filter-btn.active {
-      box-shadow: 0 2px 8px rgba(255,255,255,0.15);
-    }
+    .filter-btn { transition: all 0.3s ease; cursor: pointer; font-weight: 500; }
+    .filter-btn:hover { background: #2a2a2a !important; color: #fff !important; transform: translateY(-1px); }
     
-    /* Smooth transitions for paper items */
-    .paper-item {
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .paper-item[style*="display: none"] {
-      opacity: 0;
-      transform: scale(0.98);
-    }
+    .paper-item { transition: opacity 0.3s ease, transform 0.3s ease; }
+    .paper-item[style*="display: none"] { opacity: 0; transform: scale(0.98); }
     
-    /* Category headers - hidden by default */
-    .category-header {
-      display: none;
-      font-weight: 600;
-      color: #fff;
-    }
+    .category-header { display: none; font-weight: 600; color: #fff; }
   </style>
+
   <h2 class="pb-2" style="text-align: left;">{{ .Title }}</h2>
   
   {{ if .Params.platforms }}
@@ -140,58 +81,42 @@
             {{ if eq .type "video" }}
               <video controls style="width: 100%; height: auto; object-fit: cover; border-radius: 8px; background: #000;">
                 <source src="{{ .video }}" type="video/mp4">
-                Your browser does not support the video tag.
               </video>
             {{ else }}
               <img src="{{ .image }}" alt="{{ .title }}" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
             {{ end }}
-
             {{ if .venue }}
-              <div class="mt-3 p-2 text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border-radius: 6px; font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);">
+              <div class="mt-3 p-2 text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border-radius: 6px; font-weight: 800; font-size: 1rem; text-transform: uppercase;">
                 {{ .venue }}
               </div>
             {{ end }}
           </div>
-
           <div class="col-md-8 d-flex flex-column h-100">
-            <h5 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.3; color: #fff;">{{ .title }}</h5>
-            
-            {{ if .subtitle }}
-              <p style="font-size: 1rem; color: #ddd; margin-bottom: 1rem; line-height: 1.6; font-style: italic;">{{ .subtitle }}</p>
-            {{ end }}
-            
-            <p style="font-size: 1rem; color: #ccc; margin-bottom: 1.2rem; line-height: 1.7;">
-              {{ .content | default "" }}
-            </p>
-            
+            <h5 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.8rem; color: #fff;">{{ .title }}</h5>
+            {{ if .subtitle }}<p style="font-size: 1rem; color: #ddd; margin-bottom: 1rem; font-style: italic;">{{ .subtitle }}</p>{{ end }}
+            <p style="font-size: 1rem; color: #ccc; margin-bottom: 1.2rem;">{{ .content | default "" }}</p>
             {{ if .highlights }}
             <ul style="list-style: none; padding-left: 0; margin-bottom: 1.5rem;">
               {{ range .highlights }}
-              <li style="margin-bottom: 0.6rem; color: #bbb; font-size: 0.95rem; line-height: 1.6;">
+              <li style="margin-bottom: 0.6rem; color: #bbb;">
                 <strong style="color: #fff;">•</strong> <strong style="color: #fff;">{{ .key }}:</strong> {{ .value }}
               </li>
               {{ end }}
             </ul>
             {{ end }}
-            
             <div class="d-flex justify-content-between align-items-end mt-auto">
               <div>
-                {{ if .link }}
-                  <a href="{{ .link }}" target="_blank" class="btn btn-sm btn-outline-light platform-paper-btn" style="border-radius: 4px; font-size: 0.9rem; padding: 0.5rem 1.2rem; font-weight: 600;">Paper</a>
-                {{ end }}
+                {{ if .link }}<a href="{{ .link }}" target="_blank" class="btn btn-sm btn-outline-light platform-paper-btn">Paper</a>{{ end }}
               </div>
-              <div class="text-end">
-                <p style="font-size: 0.85rem; color: #888; margin: 0; line-height: 1.4;">{{ .authors }}</p>
-              </div>
+              <div class="text-end"><p style="font-size: 0.85rem; color: #888; margin: 0;">{{ .authors }}</p></div>
             </div>
           </div>
         </div>
       </div>
     {{ end }}
   </div>
-{{ end }}
+  {{ end }}
 
-  <!-- All Publications Section with Classification -->
   <div class="all-publications-section mb-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
       <h4 class="mb-0" style="font-weight: 600;">All Publications</h4>
@@ -201,7 +126,6 @@
       </div>
     </div>
     
-    <!-- Year filters (shown by default) -->
     <div id="year-filters" class="filter-group mb-4" style="display: flex; flex-wrap: wrap; gap: 8px;">
       <button class="filter-btn active" data-filter="all-years" style="background: #2a2a2a; color: #fff; border: 1px solid #444; border-radius: 16px; padding: 4px 12px; font-size: 0.9rem;">All</button>
       {{ range $years }}
@@ -209,7 +133,6 @@
       {{ end }}
     </div>
     
-    <!-- Category filters (hidden by default) -->
     <div id="category-filters" class="filter-group mb-4" style="display: none; flex-wrap: wrap; gap: 8px;">
       <button class="filter-btn active" data-filter="all-categories" style="background: #2a2a2a; color: #fff; border: 1px solid #444; border-radius: 16px; padding: 4px 12px; font-size: 0.9rem;">All</button>
       <button class="filter-btn" data-filter="cat-uav" style="background: #1a1a1a; color: #888; border: 1px solid #333; border-radius: 16px; padding: 4px 12px; font-size: 0.9rem;">UAV</button>
@@ -249,7 +172,8 @@
             <div class="d-flex align-items-start p-3 gap-3">
               <div class="flex-shrink-0">
                 {{ $key := lower $p.title }}
-                {{ $img := default $defaultPaperImage (index $thumbs $key) }}
+                {{ $img := $defaultPaperImage }}
+                {{ if $thumbs }}{{ $img = index $thumbs $key | default $defaultPaperImage }}{{ end }}
                 <img src="{{ $img }}" class="rounded d-block" alt="{{ $p.title }}" style="width: 280px; height: 210px; object-fit: cover; border-radius: 12px;">
               </div>
               <div class="flex-grow-1">
@@ -264,422 +188,297 @@
     </div>
     {{ if gt (len $yearPapers) $showCount }}
       <div class="d-flex justify-content-start mb-3 year-toggle-wrapper" data-year="{{ $yearSlug }}">
-        <button class="toggle-year" data-year="{{ $yearSlug }}" aria-label="Toggle year">
-          &#9660;
-        </button>
+        <button class="toggle-year" data-year="{{ $yearSlug }}" aria-label="Toggle year">&#9660;</button>
       </div>
     {{ end }}
   {{ end }}
+  
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // 处理人名着色逻辑
-      const authorTexts = document.querySelectorAll(".author-text");
-      authorTexts.forEach(el => {
-        let html = el.innerHTML;
-        // 替换带#的人名为绿色（移除#符号）- 匹配整个名字包括空格
-        html = html.replace(/([^,#*]+?)\s*#/g, '<span style="color: #00aa00 !important; font-weight: 500;">$1</span>');
-        // 替换带*的人名为蓝色（移除*符号）- 匹配整个名字包括空格
-        html = html.replace(/([^,#*]+?)\s*\*/g, '<span style="color: #0066cc !important; font-weight: 500;">$1</span>');
-        el.innerHTML = html;
+      // 1. Author Coloring
+      document.querySelectorAll(".author-text").forEach(el => {
+        el.innerHTML = el.innerHTML
+          .replace(/([^,#*]+?)\s*#/g, '<span style="color: #00aa00 !important; font-weight: 500;">$1</span>')
+          .replace(/([^,#*]+?)\s*\*/g, '<span style="color: #0066cc !important; font-weight: 500;">$1</span>');
       });
 
-      // 年份展开/折叠功能
-      const buttons = document.querySelectorAll(".toggle-year");
-      buttons.forEach(btn => {
+      // 2. Year Toggle Logic (Only for All-Years view)
+      document.querySelectorAll(".toggle-year").forEach(btn => {
         btn.addEventListener("click", () => {
           const year = btn.getAttribute("data-year");
-          const hiddenCards = document.querySelectorAll(`.paper-item-${year}.d-none`);
-          const isHidden = hiddenCards.length > 0;
           const cards = document.querySelectorAll(`.paper-item-${year}`);
-          cards.forEach(card => card.classList.remove("d-none"));
-          if (!isHidden) {
-            // collapse back to前三条
-            let count = 0;
-            cards.forEach(card => {
-              count++;
-              if (count > 3) card.classList.add("d-none");
-            });
+          const hiddenCards = document.querySelectorAll(`.paper-item-${year}.d-none`);
+          
+          if (hiddenCards.length > 0) {
+             cards.forEach(card => card.classList.remove("d-none")); // Expand
+             btn.innerHTML = "&#9650;";
+          } else {
+             cards.forEach((card, index) => { if (index >= 3) card.classList.add("d-none"); }); // Collapse
+             btn.innerHTML = "&#9660;";
           }
-          btn.innerHTML = isHidden ? "&#9650;" : "&#9660;";
         });
       });
 
-      // 分类切换功能
+      // 3. Filter Logic
       const classificationToggles = document.querySelectorAll(".classification-toggle");
       const yearFilters = document.getElementById("year-filters");
       const categoryFilters = document.getElementById("category-filters");
       
+      // Mode Switcher (Year vs Category)
       classificationToggles.forEach(toggle => {
         toggle.addEventListener("click", function() {
           const type = this.getAttribute("data-type");
           
-          // 更新按钮状态
           classificationToggles.forEach(t => {
             t.classList.remove("active");
-            t.style.background = "#1a1a1a";
-            t.style.color = "#888";
-            t.style.borderColor = "#333";
+            t.style.background = "#1a1a1a"; t.style.color = "#888"; t.style.borderColor = "#333";
           });
           this.classList.add("active");
-          this.style.background = "#2a2a2a";
-          this.style.color = "#fff";
-          this.style.borderColor = "#444";
+          this.style.background = "#2a2a2a"; this.style.color = "#fff"; this.style.borderColor = "#444";
           
-          // 显示/隐藏对应的过滤器
           if (type === "year") {
             yearFilters.style.display = "flex";
             categoryFilters.style.display = "none";
-            // 隐藏所有类别标题
-            document.querySelectorAll(".category-header").forEach(h => h.style.display = "none");
-            // 移除类别展开按钮
-            document.querySelectorAll(".category-toggle-btn").forEach(btn => btn.remove());
-            // 重置为显示所有论文
-            showAllPapers();
+            // Reset to "All Years" default view
+            document.querySelector('[data-filter="all-years"]').click();
           } else {
             yearFilters.style.display = "none";
             categoryFilters.style.display = "flex";
-            // 重置为显示所有论文（按类别）
-            showAllPapers();
+            // Reset to "All Categories" default view
+            document.querySelector('[data-filter="all-categories"]').click();
           }
         });
       });
 
-      // 过滤器按钮功能
-      const filterButtons = document.querySelectorAll(".filter-btn");
-      filterButtons.forEach(btn => {
+      // Sub-Filter Buttons
+      document.querySelectorAll(".filter-btn").forEach(btn => {
         btn.addEventListener("click", function() {
           const filter = this.getAttribute("data-filter");
           const parentGroup = this.closest(".filter-group");
           
-          // 更新按钮状态
           parentGroup.querySelectorAll(".filter-btn").forEach(b => {
             b.classList.remove("active");
-            b.style.background = "#1a1a1a";
-            b.style.color = "#888";
-            b.style.borderColor = "#333";
+            b.style.background = "#1a1a1a"; b.style.color = "#888"; b.style.borderColor = "#333";
           });
           this.classList.add("active");
-          this.style.background = "#2a2a2a";
-          this.style.color = "#fff";
-          this.style.borderColor = "#444";
+          this.style.background = "#2a2a2a"; this.style.color = "#fff"; this.style.borderColor = "#444";
           
-          // 应用过滤
-          if (filter === "all-years") {
-            showAllPapers();
-          } else if (filter === "all-categories") {
-            showAllByCategories();
-          } else if (filter.startsWith("year-")) {
-            const year = filter.replace("year-", "");
-            filterByYear(year);
-          } else if (filter.startsWith("cat-")) {
-            filterByCategory(filter);
-          }
+          if (filter === "all-years") showAllPapers();
+          else if (filter === "all-categories") showAllByCategories();
+          else if (filter.startsWith("year-")) filterBySpecificYear(filter.replace("year-", ""));
+          else if (filter.startsWith("cat-")) filterBySpecificCategory(filter);
         });
       });
 
-      function showAllPapers() {
-        const allPapers = document.querySelectorAll(".paper-item");
-        const yearHeaders = document.querySelectorAll(".year-header");
-        const yearToggleWrappers = document.querySelectorAll(".year-toggle-wrapper");
-        
-        // 移除所有旧的类别展开按钮、标题和分组容器
-        document.querySelectorAll(".category-toggle-btn").forEach(btn => btn.remove());
-        document.querySelectorAll(".category-header").forEach(h => h.remove());
-        document.querySelectorAll("[data-category-group]").forEach(row => row.remove());
-        
-        // 检查当前是否在类别视图
-        const categoryFilters = document.getElementById("category-filters");
-        const isCategroyView = categoryFilters && categoryFilters.style.display !== "none";
-        
-        if (isCategroyView) {
-          // 按类别展示所有论文
-          showAllByCategories();
-        } else {
-          // 按年份展示所有论文
-          allPapers.forEach(paper => {
-            paper.style.display = "block";
-          });
-          yearHeaders.forEach(header => {
-            header.style.display = "block";
-          });
-          yearToggleWrappers.forEach(wrapper => {
-            wrapper.style.display = "flex";
-          });
-          
-          // 重新应用展开/折叠状态
-          resetExpandCollapse();
-        }
+      // === LOGIC FUNCTIONS ===
+
+      // Helper: completely clean up any JS-generated category views
+      function cleanDynamicElements() {
+          document.querySelectorAll(".category-toggle-btn").forEach(e => e.remove());
+          document.querySelectorAll(".category-header").forEach(e => e.remove());
+          document.querySelectorAll("[data-category-group]").forEach(e => e.remove());
       }
-      
-      function showAllByCategories() {
+
+      // Helper: Hide ALL toggle buttons (used for specific filters)
+      function hideAllButtons() {
+          document.querySelectorAll(".year-toggle-wrapper").forEach(el => el.style.display = "none");
+          document.querySelectorAll(".toggle-year").forEach(el => el.style.display = "none");
+          // Also hide JS generated buttons just in case
+          document.querySelectorAll(".category-toggle-btn").forEach(e => e.style.display = "none");
+      }
+
+      // VIEW 1: All Years (Default) - Shows 3 per year + Buttons
+      function showAllPapers() {
+        cleanDynamicElements(); // Reset
+        
         const allPapers = document.querySelectorAll(".paper-item");
-        const yearHeaders = document.querySelectorAll(".year-header");
-        const yearToggleWrappers = document.querySelectorAll(".year-toggle-wrapper");
+        allPapers.forEach(paper => paper.style.display = "block"); // Show all paper divs
+
+        document.querySelectorAll(".year-header").forEach(h => h.style.display = "block");
         
-        // 隐藏年份标题和按钮
-        yearHeaders.forEach(header => {
-          header.style.display = "none";
+        // Restore "Top 3 + Button" logic
+        const yearSlugs = new Set();
+        document.querySelectorAll(".paper-item").forEach(p => {
+             const y = p.getAttribute("data-year");
+             if(y) yearSlugs.add(urlize(y));
         });
-        yearToggleWrappers.forEach(wrapper => {
-          wrapper.style.display = "none";
+        
+        yearSlugs.forEach(slug => {
+            const papers = document.querySelectorAll(`.paper-item-${slug}`);
+            const btnWrapper = document.querySelector(`.year-toggle-wrapper[data-year="${slug}"]`);
+            const btn = document.querySelector(`.toggle-year[data-year="${slug}"]`);
+            
+            // Show only first 3
+            papers.forEach((p, i) => {
+                if (i >= 3) p.classList.add("d-none");
+                else p.classList.remove("d-none");
+            });
+
+            // Show button if needed
+            if (btnWrapper && papers.length > 3) {
+                btnWrapper.style.display = "flex";
+                btn.style.display = "inline-flex";
+                btn.innerHTML = "&#9660;";
+            } else if (btnWrapper) {
+                btnWrapper.style.display = "none";
+            }
         });
+      }
+
+      // VIEW 2: Specific Year - Show ALL papers, NO buttons
+      function filterBySpecificYear(year) {
+        cleanDynamicElements();
+        hideAllButtons(); // STRICT: No buttons allowed
+
+        const cleanYear = year.trim().replace(/\s+/g, '');
         
-        // 移除所有旧的类别展开按钮和标题
-        document.querySelectorAll(".category-toggle-btn").forEach(btn => btn.remove());
-        document.querySelectorAll(".category-header").forEach(h => h.remove());
+        // Show only matching Year Header
+        document.querySelectorAll(".year-header").forEach(h => {
+             const hy = h.getAttribute("data-year") ? h.getAttribute("data-year").trim() : "";
+             h.style.display = (hy === cleanYear) ? "block" : "none";
+        });
+
+        // Show ALL papers for that year (remove d-none)
+        document.querySelectorAll(".paper-item").forEach(paper => {
+             const py = paper.getAttribute("data-year") ? paper.getAttribute("data-year").trim() : "";
+             if (py === cleanYear) {
+                 paper.style.display = "block";
+                 paper.classList.remove("d-none"); // Show full list
+             } else {
+                 paper.style.display = "none";
+             }
+        });
+      }
+
+      // VIEW 3: All Categories - Grouped, Show 3 per cat + Buttons
+      function showAllByCategories() {
+        cleanDynamicElements(); // Start fresh to avoid button duplication
         
-        // 定义所有类别
+        // Hide Year UI
+        document.querySelectorAll(".year-header").forEach(h => h.style.display = "none");
+        document.querySelectorAll(".year-toggle-wrapper").forEach(w => w.style.display = "none");
+        
+        // Hide original paper nodes
+        const allPapers = document.querySelectorAll(".paper-item");
+        allPapers.forEach(p => { p.style.display = "none"; p.classList.remove("d-none"); });
+
         const categories = [
-          { id: 'cat-uav', name: 'UAV' },
-          { id: 'cat-embodied', name: 'Embodied AI' },
-          { id: 'cat-autonomous', name: 'Autonomous Driving' },
-          { id: 'cat-3dvision', name: '3D Vision' },
-          { id: 'cat-multimodal', name: 'Multimodal Learning' },
-          { id: 'cat-video', name: 'Video Understanding' },
-          { id: 'cat-llm', name: 'Large Language Model' },
-          { id: 'cat-segmentation', name: 'Segmentation' },
-          { id: 'cat-generation', name: 'Image Generation' },
-          { id: 'cat-other', name: 'Other' }
+          { id: 'cat-uav', name: 'UAV' }, { id: 'cat-embodied', name: 'Embodied AI' },
+          { id: 'cat-autonomous', name: 'Autonomous Driving' }, { id: 'cat-3dvision', name: '3D Vision' },
+          { id: 'cat-multimodal', name: 'Multimodal Learning' }, { id: 'cat-video', name: 'Video Understanding' },
+          { id: 'cat-llm', name: 'Large Language Model' }, { id: 'cat-segmentation', name: 'Segmentation' },
+          { id: 'cat-generation', name: 'Image Generation' }, { id: 'cat-other', name: 'Other' }
         ];
         
-        // 为每个类别创建分组
+        // Group logic
         const categoryGroups = {};
-        categories.forEach(cat => {
-          categoryGroups[cat.id] = [];
-        });
+        categories.forEach(cat => categoryGroups[cat.id] = []);
         
-        // 将论文分配到各个类别
         allPapers.forEach(paper => {
           const paperCategories = paper.getAttribute("data-categories") || "";
           categories.forEach(cat => {
-            if (paperCategories.includes(cat.id)) {
-              categoryGroups[cat.id].push(paper);
-            }
+            if (paperCategories.includes(cat.id)) categoryGroups[cat.id].push(paper);
           });
         });
-        
-        // 先隐藏所有论文
-        allPapers.forEach(paper => {
-          paper.style.display = "none";
-          paper.classList.remove("d-none");
-        });
-        
-        // 找到第一个年份标题作为插入点
+
         const firstYearHeader = document.querySelector('.year-header');
         if (!firstYearHeader) return;
-        
         const mainContainer = firstYearHeader.parentElement;
-        let lastInsertedElement = null;
-        
-        // 为每个有论文的类别创建标题和展开按钮
-        categories.forEach((cat, catIndex) => {
-          const papers = categoryGroups[cat.id];
-          if (papers.length === 0) return;
-          
-          // 创建类别标题
-          const categoryHeader = document.createElement('h4');
-          categoryHeader.className = 'category-header mt-4 mb-3';
-          categoryHeader.setAttribute('data-category', cat.id);
-          categoryHeader.style.display = 'block';
-          categoryHeader.style.textAlign = 'left';
-          categoryHeader.style.fontWeight = '600';
-          categoryHeader.style.color = '#fff';
-          categoryHeader.textContent = cat.name;
-          
-          // 插入标题
-          if (lastInsertedElement === null) {
-            mainContainer.insertBefore(categoryHeader, firstYearHeader);
-          } else {
-            mainContainer.insertBefore(categoryHeader, lastInsertedElement.nextSibling);
-          }
-          lastInsertedElement = categoryHeader;
-          
-          // 创建一个容器来放置该类别的所有论文
-          const categoryRow = document.createElement('div');
-          categoryRow.className = 'row gy-3';
-          categoryRow.setAttribute('data-category-group', cat.id);
-          mainContainer.insertBefore(categoryRow, lastInsertedElement.nextSibling);
-          lastInsertedElement = categoryRow;
-          
-          // 显示前3篇论文，将它们移动到类别容器中
-          papers.forEach((paper, index) => {
-            const paperClone = paper.cloneNode(true);
-            paperClone.style.display = "block";
-            if (index >= 3) {
-              paperClone.classList.add("d-none");
-            } else {
-              paperClone.classList.remove("d-none");
-            }
-            categoryRow.appendChild(paperClone);
-          });
-          
-          // 如果论文数量大于3，创建展开按钮
-          if (papers.length > 3) {
-            const btnWrapper = document.createElement('div');
-            btnWrapper.className = 'd-flex justify-content-start mb-3 category-toggle-btn';
-            btnWrapper.setAttribute('data-category', cat.id);
-            
-            const toggleBtn = document.createElement('button');
-            toggleBtn.className = 'toggle-year';
-            toggleBtn.setAttribute('data-category', cat.id);
-            toggleBtn.setAttribute('aria-label', 'Toggle category');
-            toggleBtn.innerHTML = '&#9660;';
-            
-            btnWrapper.appendChild(toggleBtn);
-            
-            // 插入按钮
-            mainContainer.insertBefore(btnWrapper, lastInsertedElement.nextSibling);
-            lastInsertedElement = btnWrapper;
-            
-            // 添加点击事件
-            toggleBtn.addEventListener('click', function() {
-              const categoryId = this.getAttribute('data-category');
-              const categoryRowElement = document.querySelector(`[data-category-group="${categoryId}"]`);
-              if (!categoryRowElement) return;
-              
-              const categoryPapers = categoryRowElement.querySelectorAll('.paper-item');
-              
-              // 检查是否有隐藏的论文
-              const hasHidden = Array.from(categoryPapers).some((p, i) => i >= 3 && p.classList.contains('d-none'));
-              
-              if (hasHidden) {
-                // 展开：显示所有
-                categoryPapers.forEach(paper => {
-                  paper.classList.remove("d-none");
-                });
-                this.innerHTML = '&#9650;';
-              } else {
-                // 折叠：只显示前3篇
-                categoryPapers.forEach((paper, index) => {
-                  if (index >= 3) {
-                    paper.classList.add("d-none");
-                  }
-                });
-                this.innerHTML = '&#9660;';
-              }
+        let lastInsertedElement = null; 
+
+        // Generate DOM
+        categories.forEach(cat => {
+            const papers = categoryGroups[cat.id];
+            if(papers.length === 0) return;
+
+            // Header
+            const header = document.createElement('h4');
+            header.className = 'category-header mt-4 mb-3';
+            header.textContent = cat.name;
+            header.style.display = 'block'; header.style.textAlign = 'left';
+            insertNode(header, mainContainer, firstYearHeader, lastInsertedElement);
+            lastInsertedElement = header;
+
+            // Container
+            const row = document.createElement('div');
+            row.className = 'row gy-3';
+            row.setAttribute('data-category-group', cat.id);
+            insertNode(row, mainContainer, firstYearHeader, lastInsertedElement);
+            lastInsertedElement = row;
+
+            // Papers (Clones)
+            papers.forEach((paper, idx) => {
+                const clone = paper.cloneNode(true);
+                clone.style.display = "block";
+                clone.classList.remove("paper-item"); 
+                // Logic: Show 3, Hide rest
+                if(idx >= 3) clone.classList.add("d-none");
+                else clone.classList.remove("d-none");
+                row.appendChild(clone);
             });
-          }
-        });
-      }
 
-      function filterByYear(year) {
-        const allPapers = document.querySelectorAll(".paper-item");
-        const yearHeaders = document.querySelectorAll(".year-header");
-        const yearToggleWrappers = document.querySelectorAll(".year-toggle-wrapper");
-        
-        // 清理year值，移除空格和换行符
-        const cleanYear = year.trim().replace(/\s+/g, '');
-        
-        // 隐藏所有
-        allPapers.forEach(paper => {
-          paper.style.display = "none";
-          paper.classList.add("d-none");
-        });
-        yearHeaders.forEach(header => {
-          header.style.display = "none";
-        });
-        yearToggleWrappers.forEach(wrapper => {
-          wrapper.style.display = "none";
-        });
-        
-        // 显示选中年份 - 直接显示所有论文，不需要展开按钮
-        let count = 0;
-        allPapers.forEach(paper => {
-          const paperYear = paper.getAttribute("data-year") ? paper.getAttribute("data-year").trim() : "";
-          if (paperYear === cleanYear) {
-            paper.style.display = "block";
-            paper.classList.remove("d-none");
-            count++;
-          }
-        });
-        
-        yearHeaders.forEach(header => {
-          const headerYear = header.getAttribute("data-year") ? header.getAttribute("data-year").trim() : "";
-          if (headerYear === cleanYear) {
-            header.style.display = "block";
-          }
-        });
-      }
+            // Button
+            if(papers.length > 3) {
+                const btnDiv = document.createElement('div');
+                btnDiv.className = 'd-flex justify-content-start mb-3 category-toggle-btn';
+                btnDiv.innerHTML = `<button class="toggle-year" aria-label="Toggle category">&#9660;</button>`;
+                
+                const btn = btnDiv.querySelector('button');
+                btn.addEventListener('click', function() {
+                    const group = document.querySelector(`[data-category-group="${cat.id}"]`);
+                    const items = group.children;
+                    const isExpanded = this.innerHTML.includes("9650"); // up arrow checks
+                    
+                    Array.from(items).forEach((item, i) => {
+                        if(i >= 3) {
+                            if(isExpanded) item.classList.add("d-none");
+                            else item.classList.remove("d-none");
+                        }
+                    });
+                    this.innerHTML = isExpanded ? "&#9660;" : "&#9650;";
+                });
 
-      function filterByCategory(category) {
-        const allPapers = document.querySelectorAll(".paper-item");
-        const yearHeaders = document.querySelectorAll(".year-header");
-        const yearToggleWrappers = document.querySelectorAll(".year-toggle-wrapper");
-        
-        // 隐藏所有年份标题和折叠按钮
-        yearHeaders.forEach(header => {
-          header.style.display = "none";
-        });
-        yearToggleWrappers.forEach(wrapper => {
-          wrapper.style.display = "none";
-        });
-        
-        // 移除所有旧的类别展开按钮和标题
-        document.querySelectorAll(".category-toggle-btn").forEach(btn => btn.remove());
-        document.querySelectorAll(".category-header").forEach(h => h.remove());
-        document.querySelectorAll("[data-category-group]").forEach(row => row.remove());
-        
-        // 显示匹配的论文（选中具体某个分类时，直接显示所有该类论文）
-        allPapers.forEach(paper => {
-          const categories = paper.getAttribute("data-categories") || "";
-          if (categories.includes(category)) {
-            paper.style.display = "block";
-            paper.classList.remove("d-none");
-          } else {
-            paper.style.display = "none";
-          }
-        });
-      }
-
-      function resetExpandCollapse() {
-        const allPapers = document.querySelectorAll(".paper-item");
-        const yearSlugs = new Set();
-        
-        allPapers.forEach(paper => {
-          const yearSlug = paper.classList[2]; // paper-item-{year}
-          if (yearSlug && yearSlug.startsWith("paper-item-")) {
-            yearSlugs.add(yearSlug.replace("paper-item-", ""));
-          }
-        });
-        
-        yearSlugs.forEach(yearSlug => {
-          const papers = document.querySelectorAll(`.paper-item-${yearSlug}`);
-          let count = 0;
-          papers.forEach(paper => {
-            if (paper.style.display !== "none") {
-              count++;
-              if (count > 3) {
-                paper.classList.add("d-none");
-              } else {
-                paper.classList.remove("d-none");
-              }
+                insertNode(btnDiv, mainContainer, firstYearHeader, lastInsertedElement);
+                lastInsertedElement = btnDiv;
             }
-          });
         });
       }
 
-      function urlize(str) {
-        return str.toString().toLowerCase().replace(/\s+/g, '-');
+      // VIEW 4: Specific Category - Show ALL papers, NO buttons
+      function filterBySpecificCategory(category) {
+        cleanDynamicElements();
+        hideAllButtons(); // STRICT: No buttons allowed
+        
+        document.querySelectorAll(".year-header").forEach(h => h.style.display = "none");
+        
+        // Loop original papers, matching category
+        document.querySelectorAll(".paper-item").forEach(paper => {
+           const cats = paper.getAttribute("data-categories") || "";
+           if (cats.includes(category)) {
+               paper.style.display = "block";
+               paper.classList.remove("d-none"); // Show full list
+           } else {
+               paper.style.display = "none";
+           }
+        });
       }
+
+      function insertNode(newNode, container, refNode, lastNode) {
+         if (lastNode) container.insertBefore(newNode, lastNode.nextSibling);
+         else container.insertBefore(newNode, refNode);
+      }
+      
+      function urlize(str) { return str.toString().toLowerCase().replace(/\s+/g, '-'); }
     });
   </script>
 </div>
+
+{{/* =================== Team Logic =================== */}}
 {{ else if eq .Section "team" }}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <style>
-  /* Team 页面字体设置为 Inter */
-  #team-page {
-    font-family: 'Inter', sans-serif;
-  }
-
-  #team-page h2,
-  #team-page h3,
-  #team-page h4,
-  #team-page h5,
-  #team-page h6 {
-    font-family: 'Inter', sans-serif;
-  }
-
+  #team-page { font-family: 'Inter', sans-serif; }
+  #team-page h2, #team-page h3 { font-family: 'Inter', sans-serif; }
   .team-section { margin-bottom: 3rem; }
   .team-section h3 { border-bottom: 2px solid var(--primary-color, #007bff); padding-bottom: 0.5rem; margin-bottom: 2rem; font-weight: 600; }
   .team-row { display: flex; flex-wrap: wrap; margin: 0 -8px; }
@@ -687,13 +486,13 @@
   @media (max-width: 992px) { .team-col { width: 25%; } }
   @media (max-width: 768px) { .team-col { width: 33.33%; } }
   @media (max-width: 576px) { .team-col { width: 50%; } }
-  .member-card { display: flex; flex-direction: column; justify-content: flex-start !important; background: #000; border-radius: 8px; border: 1px solid #1a1a1a; overflow: hidden; height: 100%; position: relative; }
-  .member-photo-wrapper { padding: 0 !important; margin: 0 !important; width: 100%; line-height: 0; }
+  .member-card { display: flex; flex-direction: column; background: #000; border-radius: 8px; border: 1px solid #1a1a1a; overflow: hidden; height: 100%; position: relative; }
+  .member-photo-wrapper { width: 100%; line-height: 0; }
   .member-photo { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
-  .member-body { padding: 8px 4px 2px 4px !important; text-align: center; color: #fff; flex: 0 0 auto; }
+  .member-body { padding: 8px 4px 2px 4px !important; text-align: center; color: #fff; flex: 1; display: flex; flex-direction: column; }
   .member-name { font-weight: 700; font-size: 0.9rem; line-height: 1.2; color: #fff; margin-bottom: 2px !important; }
   .member-research { font-size: 0.7rem; color: #aaa; margin-top: 2px; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 5px !important; }
-  .member-footer { margin-top: 0 !important; padding: 0 0 10px 0 !important; background: transparent; text-align: center; border: none !important; display: block; }
+  .member-footer { margin-top: auto; padding: 0 0 10px 0 !important; background: transparent; text-align: center; }
   .member-footer a { color: #888; margin: 0 5px; font-size: 0.9rem; transition: color 0.2s; display: inline-block; }
   .member-footer a:hover { color: #fff; }
 </style>
@@ -741,37 +540,26 @@
   {{ end }}
 </div>
 
-{{/* =================== News Logic (修复核心：内联样式强制白色) =================== */}}
+{{/* =================== News Logic =================== */}}
 {{ else if or (eq .Section "news") (eq .Type "news") (eq .Title "News") }}
 <div class="container pt-5" id="news-page">
-  <!-- 强制背景黑 -->
   <style> 
-    body, #news-page { 
-      background-color: #000 !important;
-      font-family: 'Inter', sans-serif;
-    }
-    #news-page h2,
-    #news-page h3,
-    #news-page h4,
-    #news-page h5,
-    #news-page h6 {
-      font-family: 'Inter', sans-serif;
-    }
+    body, #news-page { background-color: #000 !important; font-family: 'Inter', sans-serif; }
+    #news-page h2, #news-page h6 { font-family: 'Inter', sans-serif; }
   </style>
-  
   <h2 class="text-center pb-3" style="color: #fff !important;">{{ .Title }}</h2>
-  
   <div class="px-0 px-md-3 px-lg-5">
-    {{ range .Site.Params.achievements.items }}
-      <div class="card mb-3 shadow-none" style="background-color: #000 !important; border: 1px solid #333 !important;">
-        <div class="row g-0 align-items-center">
-          <div class="col p-3">
-             <!-- 这里的 style="color: #fff !important" 是关键修复点 -->
-            <h6 class="card-title mb-1" style="color: #fff !important; font-weight: bold;">{{ .title }}</h6>
-            <p class="card-text mb-0 small" style="color: #ccc !important;">{{ .content }}</p>
+    {{ if and .Site.Params.achievements .Site.Params.achievements.items }}
+      {{ range .Site.Params.achievements.items }}
+        <div class="card mb-3 shadow-none" style="background-color: #000 !important; border: 1px solid #333 !important;">
+          <div class="row g-0 align-items-center">
+            <div class="col p-3">
+              <h6 class="card-title mb-1" style="color: #fff !important; font-weight: bold;">{{ .title }}</h6>
+              <p class="card-text mb-0 small" style="color: #ccc !important;">{{ .content }}</p>
+            </div>
           </div>
         </div>
-      </div>
+      {{ end }}
     {{ end }}
   </div>
 </div>
@@ -810,7 +598,6 @@ window.addEventListener('DOMContentLoaded', function() {
         newLogo.src = "/images/cologo.png";
         newLogo.style.height = "40px"; 
         navBrand.appendChild(newLogo);
-        
         var logoText = document.createElement('span');
         logoText.textContent = "Colab";
         logoText.style.marginLeft = "10px";
