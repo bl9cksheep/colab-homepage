@@ -16,8 +16,7 @@ platforms:
         value: "Realistic scenarios with standardized evaluation metrics"
       - key: "Methodology"
         value: "Novel approach bridging sim-to-real gap in vision-language navigation"
-    authors: "Xiangyu Wang, Donglin Yang, Ziqin Wang, Hohin Kwan, 
-    Jinyu Chen, Wenjun Wu, Hongsheng Li, Yue Liao, Si Liu"
+    authors: "Xiangyu Wang, Donglin Yang, Ziqin Wang, Hohin Kwan, Jinyu Chen, Wenjun Wu, Hongsheng Li, Yue Liao, Si Liu"
     image: "/plat_data/openuav.png"
     link: "https://arxiv.org/abs/2410.07087"
     type: "image"
@@ -77,6 +76,20 @@ platforms:
     image: "/plat_data/AeroDuo.png"
     link: "https://arxiv.org/abs/2508.15232"
     type: "image"
+  - title: "RoboCerebra: A Large-scale Benchmark for Long-horizon Robotic Manipulation Evaluation"
+    venue: "NeurIPS 2025"
+    content: "A comprehensive benchmark for evaluating long-horizon robotic manipulation tasks. RoboCerebra provides standardized evaluation protocols and diverse scenarios to advance research in embodied AI and robotics."
+    highlights:
+      - key: "Large-scale Benchmark"
+        value: "Comprehensive evaluation framework for long-horizon robotic manipulation"
+      - key: "Standardized Protocols"
+        value: "Consistent evaluation metrics and methodologies across diverse scenarios"
+      - key: "Research Advancement"
+        value: "Advances embodied AI and robotics research through systematic evaluation"
+    authors: "Songhao Han, Boxiang Qiu, Yue Liao, Siyuan Huang, Chen Gao, Shuicheng Yan, Si Liu"
+    image: "/plat_data/robocerebra.png"
+    link: "https://arxiv.org/html/2506.06677v1"
+    type: "image"
   - title: "Hi AirStar: Guide Me to the Badminton Court"
     venue: "ACM MM demo 2025"
     content: "An interactive demonstration system that guides users to specific locations using natural language commands. This demo showcases practical applications of vision-language navigation in real-world scenarios."
@@ -87,11 +100,12 @@ platforms:
         value: "Demonstrates vision-language navigation in real-world settings"
       - key: "User Experience"
         value: "Intuitive location guidance with conversational interface"
-    authors: "Songhao Han，Boxiang Qiu, Yue Liao, Siyuan Huang, Chen Gao, Shuicheng Yan, Si Liu"
+    authors: "Ziqin Wang, Jinyu Chen, Xiangyi Zheng, Qinan Liao, Linjiang Huang, Si Liu"
     video: "/plat_data/mmdemo.mp4"
-    link: "https://arxiv.org/html/2506.06677v1"
+    link: "https://arxiv.org/abs/2507.04430"
     type: "video"
 ---
+- NeurIPS 2025 — RoboCerebra: A Large-scale Benchmark for Long-horizon Robotic Manipulation Evaluation — Songhao Han#, Boxiang Qiu#, Yue Liao#, Siyuan Huang, Chen Gao, Shuicheng Yan*, Si Liu* [Embodied AI, Robotics, Dataset]
 
 ## 2025
 - AAAI 2025 — GaussianPainter: Painting Point Cloud into 3D Gaussians with Normal Guidance — Jingqiu Zhou#, Lue Fan#, Xuesong Chen, Linjiang Huang*, Si Liu, Hongsheng Li [3D Vision, Neural Rendering]
