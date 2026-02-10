@@ -110,7 +110,7 @@ params:
     button:
       enable: true
       name: "Explore"
-      url: "#about"
+      url: "#projects"
       download: false
       newPage: false
     socialLinks:
