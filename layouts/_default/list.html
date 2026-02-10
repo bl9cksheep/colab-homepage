@@ -498,6 +498,74 @@
 </style>
 <div class="container pt-5" id="team-page">
   <h2 class="text-center pb-4">{{ .Title }}</h2>
+  
+  {{/* Faculty Members */}}
+  {{ if .Params.faculty }}
+  <div class="team-section">
+    <h3><i class="fa-solid fa-chalkboard-teacher me-2"></i>Faculty Members</h3>
+    <div class="team-row">
+      {{ range .Params.faculty }}
+      <div class="team-col">
+        <div class="member-card">
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
+          <div class="member-footer">
+            {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
+            {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
+            {{ if .scholar }}<a href="{{ .scholar }}" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>{{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  {{/* Research Associates */}}
+  {{ if .Params.research_associate }}
+  <div class="team-section">
+    <h3><i class="fa-solid fa-user-cog me-2"></i>Research Associates</h3>
+    <div class="team-row">
+      {{ range .Params.research_associate }}
+      <div class="team-col">
+        <div class="member-card">
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
+          <div class="member-footer">
+            {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
+            {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
+            {{ if .scholar }}<a href="{{ .scholar }}" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>{{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  {{/* Research Fellows (博士后) */}}
+  {{ if .Params.Postdoc }}
+  <div class="team-section">
+    <h3><i class="fa-solid fa-user-tie me-2"></i>Postdoc</h3>
+    <div class="team-row">
+      {{ range .Params.Postdoc }}
+      <div class="team-col">
+        <div class="member-card">
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
+          <div class="member-footer">
+            {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
+            {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
+            {{ if .scholar }}<a href="{{ .scholar }}" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>{{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+  
+  {{/* PhD Students */}}
   {{ if .Params.phd }}
   <div class="team-section">
     <h3><i class="fa-solid fa-user-graduate me-2"></i>PhD Students</h3>
@@ -518,6 +586,8 @@
     </div>
   </div>
   {{ end }}
+  
+  {{/* Master's Students */}}
   {{ if .Params.master }}
   <div class="team-section">
     <h3><i class="fa-solid fa-user me-2"></i>Master's Students</h3>
@@ -538,6 +608,29 @@
     </div>
   </div>
   {{ end }}
+  
+  {{/* Alumni */}}
+  {{ if .Params.alumni }}
+  <div class="team-section">
+    <h3><i class="fa-solid fa-users me-2"></i>Alumni</h3>
+    <div class="team-row">
+      {{ range .Params.alumni }}
+      <div class="team-col">
+        <div class="member-card">
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
+          <div class="member-footer">
+            {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
+            {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
+            {{ if .scholar }}<a href="{{ .scholar }}" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>{{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+  
 </div>
 
 {{/* =================== News Logic =================== */}}
