@@ -30,11 +30,16 @@ Menus:
       title: Publications
       url: /publications/
       weight: 2
+    - identifier: platforms-datasets
+      name: Platforms&Datasets
+      title: Platforms & Datasets
+      url: /platforms-datasets/
+      weight: 3
     - identifier: team
       name: Team
       title: Team Photo
       url: /team/
-      weight: 3
+      weight: 4
     # - identifier: events
     #   name: Events
     #   title: Activities & Events
@@ -45,6 +50,11 @@ Menus:
       title: News
       url: /news/
       weight: 5
+    - identifier: join-us
+      name: Join Us
+      title: Join Us
+      url: /join-us/
+      weight: 6
     # - identifier: people
     #   name: People
     #   title: Members & Alumni

@@ -33,8 +33,20 @@
     {{ $venue := index $parts 0 | default "" }}
     {{ $title := index $parts 1 | default $rest }}
     {{ $authors := "" }}
+    {{ $tags := slice }}
     {{ if ge (len $parts) 3 }}{{ $authors = index $parts 2 }}{{ end }}
-    {{ $papers = $papers | append (dict "year" $currentYear "venue" $venue "title" $title "authors" $authors) }}
+    {{ $authorRaw := $authors }}
+    {{ $tagMatch := findRE "\\[[^\\]]+\\]" $authorRaw }}
+    {{ if gt (len $tagMatch) 0 }}
+      {{ $tagRaw := index $tagMatch 0 }}
+      {{ $tagContent := trim $tagRaw "[]"}}
+      {{ range (split $tagContent ",") }}
+        {{ $t := trim . " " }}
+        {{ if $t }}{{ $tags = $tags | append $t }}{{ end }}
+      {{ end }}
+      {{ $authors = trim (replace $authorRaw $tagRaw "") " " }}
+    {{ end }}
+    {{ $papers = $papers | append (dict "year" $currentYear "venue" $venue "title" $title "authors" $authors "tags" $tags) }}
   {{ end }}
 {{ end }}
 
@@ -67,56 +79,17 @@
     .paper-item[style*="display: none"] { opacity: 0; transform: scale(0.98); }
     
     .category-header { display: none; font-weight: 600; color: #fff; }
+    .pub-tag {
+      font-size: 0.9rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .pub-tags-row { margin-top: 0.6rem; margin-bottom: 0.8rem; }
   </style>
 
   <h2 class="pb-2" style="text-align: left;">{{ .Title }}</h2>
   
-  {{ if .Params.platforms }}
-  <div class="platforms-section mb-5">
-    <h4 class="section-title mb-4" style="text-align: left; font-weight: 600; padding-bottom: 0.5rem;">Platforms & Datasets</h4>
-    {{ range .Params.platforms }}
-      <div class="platform-item mb-4 p-4" style="background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
-        <div class="row g-4 align-items-start">
-          <div class="col-md-4">
-            {{ if eq .type "video" }}
-              <video controls style="width: 100%; height: auto; object-fit: cover; border-radius: 8px; background: #000;">
-                <source src="{{ .video }}" type="video/mp4">
-              </video>
-            {{ else }}
-              <img src="{{ .image }}" alt="{{ .title }}" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
-            {{ end }}
-            {{ if .venue }}
-              <div class="mt-3 p-2 text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border-radius: 6px; font-weight: 800; font-size: 1rem; text-transform: uppercase;">
-                {{ .venue }}
-              </div>
-            {{ end }}
-          </div>
-          <div class="col-md-8 d-flex flex-column h-100">
-            <h5 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.8rem; color: #fff;">{{ .title }}</h5>
-            {{ if .subtitle }}<p style="font-size: 1rem; color: #ddd; margin-bottom: 1rem; font-style: italic;">{{ .subtitle }}</p>{{ end }}
-            <p style="font-size: 1rem; color: #ccc; margin-bottom: 1.2rem;">{{ .content | default "" }}</p>
-            {{ if .highlights }}
-            <ul style="list-style: none; padding-left: 0; margin-bottom: 1.5rem;">
-              {{ range .highlights }}
-              <li style="margin-bottom: 0.6rem; color: #bbb;">
-                <strong style="color: #fff;">•</strong> <strong style="color: #fff;">{{ .key }}:</strong> {{ .value }}
-              </li>
-              {{ end }}
-            </ul>
-            {{ end }}
-            <div class="d-flex justify-content-between align-items-end mt-auto">
-              <div>
-                {{ if .link }}<a href="{{ .link }}" target="_blank" class="btn btn-sm btn-outline-light platform-paper-btn">Paper</a>{{ end }}
-              </div>
-              <div class="text-end"><p style="font-size: 0.85rem; color: #888; margin: 0;">{{ .authors }}</p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    {{ end }}
-  </div>
-  {{ end }}
-
   <div class="all-publications-section mb-4">
     <div class="d-flex align-items-center justify-content-between mb-3">
       <h4 class="mb-0" style="font-weight: 600;">All Publications</h4>
@@ -179,6 +152,13 @@
               <div class="flex-grow-1">
                 <h5 class="card-title mb-1" style="font-size: 1.35rem;">{{ $p.title }}</h5>
                 <p class="card-text text-muted mb-1 author-text" style="font-size: 1.05rem;">{{ $p.authors }}</p>
+                {{ if $p.tags }}
+                <div class="pub-tags-row">
+                  {{ range $p.tags }}
+                  <span class="badge bg-secondary pub-tag me-2 mb-1">{{ . }}</span>
+                  {{ end }}
+                </div>
+                {{ end }}
                 <p class="card-text mb-0" style="font-size: 1.05rem;"><strong>{{ $p.venue }}</strong></p>
               </div>
             </div>
@@ -473,6 +453,68 @@
   </script>
 </div>
 
+{{/* =================== Platforms & Datasets Logic =================== */}}
+{{ else if eq .Section "platforms-datasets" }}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Merriweather:wght@400;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+<div class="container pt-5" id="platforms-page">
+  <style>
+    #platforms-page { font-family: 'Inter', sans-serif; }
+    #platforms-page h2, #platforms-page h3, #platforms-page h4 { font-family: 'Inter', sans-serif; }
+    #platforms-page .card { background: #000; color: #fff !important; border: none; }
+    #platforms-page .card *:not(span) { color: #fff !important; }
+    #platforms-page .card img { background: #000; }
+  </style>
+
+  <h2 class="pb-2" style="text-align: left;">{{ .Title }}</h2>
+
+  {{ if .Params.platforms }}
+  <div class="platforms-section mb-5">
+    <h4 class="section-title mb-4" style="text-align: left; font-weight: 600; padding-bottom: 0.5rem;">Platforms & Datasets</h4>
+    {{ range .Params.platforms }}
+      <div class="platform-item mb-4 p-4" style="background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
+        <div class="row g-4 align-items-start">
+          <div class="col-md-4">
+            {{ if eq .type "video" }}
+              <video controls style="width: 100%; height: auto; object-fit: cover; border-radius: 8px; background: #000;">
+                <source src="{{ .video }}" type="video/mp4">
+              </video>
+            {{ else }}
+              <img src="{{ .image }}" alt="{{ .title }}" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
+            {{ end }}
+            {{ if .venue }}
+              <div class="mt-3 p-2 text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border-radius: 6px; font-weight: 800; font-size: 1rem; text-transform: uppercase;">
+                {{ .venue }}
+              </div>
+            {{ end }}
+          </div>
+          <div class="col-md-8 d-flex flex-column h-100">
+            <h5 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 0.8rem; color: #fff;">{{ .title }}</h5>
+            {{ if .subtitle }}<p style="font-size: 1rem; color: #ddd; margin-bottom: 1rem; font-style: italic;">{{ .subtitle }}</p>{{ end }}
+            <p style="font-size: 1rem; color: #ccc; margin-bottom: 1.2rem;">{{ .content | default "" }}</p>
+            {{ if .highlights }}
+            <ul style="list-style: none; padding-left: 0; margin-bottom: 1.5rem;">
+              {{ range .highlights }}
+              <li style="margin-bottom: 0.6rem; color: #bbb;">
+                <strong style="color: #fff;">•</strong> <strong style="color: #fff;">{{ .key }}:</strong> {{ .value }}
+              </li>
+              {{ end }}
+            </ul>
+            {{ end }}
+            <div class="d-flex justify-content-between align-items-end mt-auto">
+              <div>
+                {{ if .link }}<a href="{{ .link }}" target="_blank" class="btn btn-sm btn-outline-light platform-paper-btn">Paper</a>{{ end }}
+              </div>
+              <div class="text-end"><p style="font-size: 0.85rem; color: #888; margin: 0;">{{ .authors }}</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+  {{ end }}
+</div>
+
 {{/* =================== Team Logic =================== */}}
 {{ else if eq .Section "team" }}
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -752,6 +794,86 @@
   </div>
   {{ end }}
   
+</div>
+
+{{/* =================== Join Us Logic =================== */}}
+{{ else if eq .Section "join-us" }}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<div class="container pt-5" id="join-us-page">
+  <style>
+    body, #join-us-page { background-color: #000 !important; }
+    #join-us-page { font-family: 'Inter', sans-serif; color: #fff; }
+    #join-us-page h2, #join-us-page h4 { font-family: 'Inter', sans-serif; color: #fff; }
+    #join-us-page .joinus-hero {
+      background: radial-gradient(80% 80% at 10% 10%, rgba(102,126,234,0.25) 0%, rgba(0,0,0,0.0) 60%),
+                  linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 100%);
+      border: 1px solid #1a1a1a;
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+    }
+    #join-us-page .joinus-hero-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+    #join-us-page .joinus-hero-text { color: #ccc; font-size: 1rem; line-height: 1.7; }
+    #join-us-page .joinus-hero-text p { margin: 0; }
+    #join-us-page .joinus-card {
+      background: radial-gradient(80% 80% at 10% 10%, rgba(102,126,234,0.25) 0%, rgba(0,0,0,0.0) 60%),
+                  linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 100%);
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      padding: 22px;
+      height: 100%;
+    }
+    #join-us-page .joinus-card-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.6rem; }
+    #join-us-page .joinus-card p { color: #cfcfcf; margin-bottom: 0.8rem; }
+    #join-us-page .joinus-list { margin: 0; padding-left: 18px; color: #bdbdbd; }
+    #join-us-page .joinus-list li { margin-bottom: 0.5rem; }
+    #join-us-page .joinus-contact {
+      background: radial-gradient(80% 80% at 10% 10%, rgba(102,126,234,0.25) 0%, rgba(0,0,0,0.0) 60%),
+                  linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 100%);
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    #join-us-page .joinus-contact p { color: #cfcfcf; margin-bottom: 0.8rem; }
+  </style>
+
+  <h2 class="pb-3" style="text-align: left;">{{ .Title }}</h2>
+
+  <div class="joinus-hero">
+    <div class="joinus-hero-title">We Are Hiring</div>
+    <div class="joinus-hero-text">
+      {{ if .Content }}{{ .Content }}{{ else }}Join CoLab to explore the frontiers of robotics and multimodal intelligence together.{{ end }}
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="joinus-card">
+        <div class="joinus-card-title">Master’s / PhD Admissions</div>
+        <p>We are continuously recruiting outstanding Master’s and PhD students interested in AI, robotics, and multimodal understanding.</p>
+        <ul class="joinus-list">
+          <li>Research areas include embodied intelligence, autonomous systems, space remote sensing, and multimodal learning.</li>
+          <li>Strong emphasis on rigorous research training and top-tier conference publications.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="joinus-card">
+        <div class="joinus-card-title">Postdoctoral Positions</div>
+        <p>We welcome postdoctoral researchers with strong research foundations and independent research capability.</p>
+        <ul class="joinus-list">
+          <li>Support for high-impact projects and high-quality publications.</li>
+          <li>Encouragement to apply for national/university postdoctoral fellowships and talent programs.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="joinus-contact mt-4">
+    <h4 class="mb-2">Contact</h4>
+    <p>Please reach out via the three contact methods on our homepage (Email / GitHub / WeChat Public Account).</p>
+    <a href="/" class="btn btn-outline-light btn-sm">Go to Homepage</a>
+  </div>
 </div>
 
 {{/* =================== News Logic =================== */}}
