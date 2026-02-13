@@ -521,28 +521,6 @@
   </div>
   {{ end }}
 
-  {{/* Research Associates */}}
-  {{ if .Params.research_associate }}
-  <div class="team-section">
-    <h3><i class="fa-solid fa-user-cog me-2"></i>Research Associates</h3>
-    <div class="team-row">
-      {{ range .Params.research_associate }}
-      <div class="team-col">
-        <div class="member-card">
-          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
-          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
-          <div class="member-footer">
-            {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
-            {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
-            {{ if .scholar }}<a href="{{ .scholar }}" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>{{ end }}
-          </div>
-        </div>
-      </div>
-      {{ end }}
-    </div>
-  </div>
-  {{ end }}
-
   {{/* Research Fellows (博士后) */}}
   {{ if .Params.Postdoc }}
   <div class="team-section">
@@ -593,6 +571,28 @@
     <h3><i class="fa-solid fa-user me-2"></i>Master's Students</h3>
     <div class="team-row">
       {{ range .Params.master }}
+      <div class="team-col">
+        <div class="member-card">
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
+          <div class="member-footer">
+            {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
+            {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
+            {{ if .scholar }}<a href="{{ .scholar }}" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>{{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  {{/* Research Assistants */}}
+  {{ if .Params.research_associate }}
+  <div class="team-section">
+    <h3><i class="fa-solid fa-user-cog me-2"></i>Research Assistant</h3>
+    <div class="team-row">
+      {{ range .Params.research_associate }}
       <div class="team-col">
         <div class="member-card">
           <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
