@@ -13,7 +13,6 @@ Postdoc:
     scholar: ""
 
 faculty:
-faculty:
   - name: "Si Liu"
     title: "Professor, Doctoral Supervisor"
     image: "/images/team/liu_si.png"

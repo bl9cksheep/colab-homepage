@@ -475,6 +475,7 @@
 
 {{/* =================== Team Logic =================== */}}
 {{ else if eq .Section "team" }}
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <style>
   #team-page { font-family: 'Inter', sans-serif; }
@@ -495,29 +496,149 @@
   .member-footer { margin-top: auto; padding: 0 0 10px 0 !important; background: transparent; text-align: center; }
   .member-footer a { color: #888; margin: 0 5px; font-size: 0.9rem; transition: color 0.2s; display: inline-block; }
   .member-footer a:hover { color: #fff; }
+
+  /* ===== Faculty Section ===== */
+  .faculty-section { margin-bottom: 4rem; }
+  .faculty-section h3 {
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2.5rem;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #fff;
+  }
+  .faculty-card {
+    display: flex;
+    gap: 2.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .faculty-card:last-child { border-bottom: none; }
+  .faculty-photo-wrapper {
+    flex-shrink: 0;
+    width: 200px;
+  }
+  .faculty-photo {
+    width: 200px;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    border: 2px solid #222;
+  }
+  .faculty-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .faculty-name {
+    font-family: 'Playfair Display', 'Inter', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: #fff;
+    margin: 0 0 0.3rem 0;
+    line-height: 1.1;
+  }
+  .faculty-title {
+    font-size: 1rem;
+    color: #aaa;
+    margin-bottom: 0.8rem;
+    font-weight: 400;
+  }
+  .faculty-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+  .faculty-highlight-tag {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+  }
+  .faculty-bio {
+    font-size: 0.92rem;
+    color: #ccc;
+    line-height: 1.7;
+    margin-bottom: 0.6rem;
+  }
+  .faculty-bio-toggle {
+    color: #667eea;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border: none;
+    background: none;
+    padding: 0;
+    margin-top: 0.3rem;
+    transition: color 0.2s;
+  }
+  .faculty-bio-toggle:hover { color: #a78bfa; }
+  .faculty-bio-extra {
+    display: none;
+    margin-top: 0.5rem;
+  }
+  .faculty-bio-extra.show { display: block; }
+  .faculty-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 12px;
+  }
+  .faculty-links a {
+    color: #888;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+  }
+  .faculty-links a:hover { color: #fff; }
+
+  @media (max-width: 768px) {
+    .faculty-card { flex-direction: column; gap: 1.2rem; }
+    .faculty-photo-wrapper { width: 160px; }
+    .faculty-photo { width: 160px; height: 200px; }
+    .faculty-name { font-size: 1.8rem; }
+  }
 </style>
 <div class="container pt-5" id="team-page">
   <h2 class="pb-4" style="text-align: left;">{{ .Title }}</h2>
   
   {{/* Faculty Members */}}
   {{ if .Params.faculty }}
-  <div class="team-section">
-    <h3><i class="fa-solid fa-chalkboard-teacher me-2"></i>Faculty Members</h3>
-    <div class="team-row">
-      {{ range .Params.faculty }}
-      <div class="team-col">
-        <div class="member-card">
-          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
-          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
-          <div class="member-footer">
-            {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
-            {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
-            {{ if .scholar }}<a href="{{ .scholar }}" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>{{ end }}
-          </div>
+  <div class="faculty-section">
+    <h3><i class="fa-solid fa-chalkboard-user me-2"></i>Faculty</h3>
+    {{ range .Params.faculty }}
+    <div class="faculty-card">
+      <div class="faculty-photo-wrapper">
+        <img src="{{ .image }}" alt="{{ .name }}" class="faculty-photo">
+      </div>
+      <div class="faculty-info">
+        <div class="faculty-name">{{ .name }}</div>
+        <div class="faculty-title">{{ .title }}</div>
+        {{ if .highlights }}
+        <div class="faculty-highlights">
+          {{ range .highlights }}
+          <span class="faculty-highlight-tag">{{ . }}</span>
+          {{ end }}
+        </div>
+        {{ end }}
+        <div class="faculty-bio">{{ .bio }}</div>
+        {{ if or .bio_extra .bio_education }}
+        <div class="faculty-bio-extra">
+          {{ if .bio_extra }}<div class="faculty-bio" style="margin-top:0;">{{ .bio_extra }}</div>{{ end }}
+          {{ if .bio_education }}<div class="faculty-bio" style="margin-top:0.4rem;">{{ .bio_education }}</div>{{ end }}
+        </div>
+        <button class="faculty-bio-toggle" onclick="this.previousElementSibling.classList.toggle('show'); this.textContent = this.previousElementSibling.classList.contains('show') ? '▲ Show Less' : '▼ Read More';">▼ Read More</button>
+        {{ end }}
+        <div class="faculty-links">
+          {{ if .email }}<a href="mailto:{{ .email }}" title="Email"><i class="fa-solid fa-envelope"></i></a>{{ end }}
+          {{ if .homepage }}<a href="{{ .homepage }}" target="_blank" title="Homepage"><i class="fa-solid fa-house"></i></a>{{ end }}
+          {{ if .scholar }}<a href="{{ .scholar }}" target="_blank" title="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>{{ end }}
         </div>
       </div>
-      {{ end }}
     </div>
+    {{ end }}
   </div>
   {{ end }}
 
