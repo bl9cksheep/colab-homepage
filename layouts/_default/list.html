@@ -773,11 +773,32 @@
   {{ end }}
   
   {{/* Alumni */}}
-  {{ if .Params.alumni }}
+  {{ if .Params.alumni_graduate }}
   <div class="team-section">
-    <h3><i class="fa-solid fa-users me-2"></i>Alumni</h3>
+    <h3><i class="fa-solid fa-users me-2"></i>Alumni (Graduate)</h3>
     <div class="team-row">
-      {{ range .Params.alumni }}
+      {{ range .Params.alumni_graduate }}
+      <div class="team-col">
+        <div class="member-card">
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
+          <div class="member-footer">
+            {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
+            {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
+            {{ if .scholar }}<a href="{{ .scholar }}" target="_blank"><i class="fa-solid fa-graduation-cap"></i></a>{{ end }}
+          </div>
+        </div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+  {{ if .Params.alumni_undergrad }}
+  <div class="team-section">
+    <h3><i class="fa-solid fa-users me-2"></i>Alumni (Undergraduate Interns)</h3>
+    <div class="team-row">
+      {{ range .Params.alumni_undergrad }}
       <div class="team-col">
         <div class="member-card">
           <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>

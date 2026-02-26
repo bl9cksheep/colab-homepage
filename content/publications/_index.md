@@ -7,6 +7,16 @@ tags: []
 toc: false
 socialShare: false
 ---
+
+## 2026
+- CVPR 2026 — OctoNav: Towards Generalist Embodied Navigation — Chen Gao, Liankai Jin, Xingyu Peng, Jiazhao Zhang, Yue Deng, Annan Li, He Wang, Si Liu [Embodied AI, Navigation]
+- CVPR 2026 — Parse, Search, and Confirmation: Training-Free Aerial Vision-and-Dialog Navigation with Chain-of-Thought Reasoning and Structured Spatial Memory — Yu Qi, Hongyu Li, Shaofei Huang, Tianrui Hui, Yaxiong Wang, Lechao Cheng, Zhun Zhong, Si Liu, Meng Wang [UAV, Embodied AI, Vision-Language]
+- CVPR 2026 — LookasideVLN: Direction-Aware Aerial Vision-and-Language Navigation — Yuwei Ning, Ganlong Zhao, Yipeng Qin, Si Liu, Yang Liu, Liang Lin, Guanbin Li [UAV, Embodied AI, Vision-Language]
+- CVPR 2026 — VGGT-Segmentor: Geometry-Enhanced Cross-View Segmentation — Yulu Gao, Bohao Zhang, Zongheng Tang, Jitong Liao, Wenjun Wu, Si Liu [3D Vision, Segmentation, Cross-View]
+- CVPR 2026 — ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models — Linqing Zhong, Yi Liu, Yifei Wei, Ziyu Xiong, Maoqing Yao, Si Liu, Guanghui Ren [Multimodal Learning, Embodied AI, Robotics]
+- CVPR 2026 — Geometry-Guided 3D Visual Token Pruning for Video-Language Models — Han Li, Zehao Huang, Jiahui Fu, Naiyan Wang, Si Liu [Multimodal Learning, Video Understanding, Model Compression]
+
+## 2025
 - NeurIPS 2025 — RoboCerebra: A Large-scale Benchmark for Long-horizon Robotic Manipulation Evaluation — Songhao Han#, Boxiang Qiu#, Yue Liao#, Siyuan Huang, Chen Gao, Shuicheng Yan*, Si Liu* [Embodied AI, Robotics, Dataset]
 
 ## 2025

@@ -195,5 +195,11 @@
   "delving into the devils of bird's-eye-view perception: a review, evaluation and recipe": "/paper_thumb/delving.png",
   "reformulating hoi detection as adaptive set prediction": "/paper_thumb/Reformulating_HOI_Detection_as_Adaptive_Set_Prediction.png",
   "general instance distillation for object detection": "/paper_thumb/General_Instance_Distillation_for_Object_Detection.png",
-  "rule-guided compositional representation learning on knowledge graphs": "/paper_thumb/Rule-Guided.jpg"
+  "rule-guided compositional representation learning on knowledge graphs": "/paper_thumb/Rule-Guided.jpg",
+  "octonav: towards generalist embodied navigation": "/paper_thumb/octonav.png",
+  "parse, search, and confirmation: training-free aerial vision-and-dialog navigation with chain-of-thought reasoning and structured spatial memory": "/paper_thumb/parse_search_confirmation.png",
+  "lookasidevln: direction-aware aerial vision-and-language navigation": "/paper_thumb/lookasidevln.png",
+  "vggt-segmentor: geometry-enhanced cross-view segmentation": "/paper_thumb/vggt_segmentor.png",
+  "acot-vla: action chain-of-thought for vision-language-action models": "/paper_thumb/acot_vla.png",
+  "geometry-guided 3d visual token pruning for video-language models": "/paper_thumb/geometry_guided_3d_visual_token_pruning.png"
 }
