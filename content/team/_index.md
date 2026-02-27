@@ -19,6 +19,14 @@ Postdoc:
     email: "2394797795@qq.com"
     homepage: ""
     scholar: ""
+  - name: "TangZongHeng"
+    name_cn: "汤宗衡"
+    image: "/images/team/tang_zong_heng.png"
+    year: "2025"
+    research: "Embodied AI"
+    email: "tzhhhh123@buaa.edu.cn"
+    homepage: "https://tzhhhh123.github.io"
+    scholar: ""
 
 faculty:
   - name: "Si Liu"
