@@ -9,12 +9,16 @@ socialShare: false
 ---
 
 ## 2026
-- CVPR 2026 — OctoNav: Towards Generalist Embodied Navigation — Chen Gao, Liankai Jin, Xingyu Peng, Jiazhao Zhang, Yue Deng, Annan Li, He Wang, Si Liu [Embodied AI, Navigation]
-- CVPR 2026 — Parse, Search, and Confirmation: Training-Free Aerial Vision-and-Dialog Navigation with Chain-of-Thought Reasoning and Structured Spatial Memory — Yu Qi, Hongyu Li, Shaofei Huang, Tianrui Hui, Yaxiong Wang, Lechao Cheng, Zhun Zhong, Si Liu, Meng Wang [UAV, Embodied AI, Vision-Language]
-- CVPR 2026 — LookasideVLN: Direction-Aware Aerial Vision-and-Language Navigation — Yuwei Ning, Ganlong Zhao, Yipeng Qin, Si Liu, Yang Liu, Liang Lin, Guanbin Li [UAV, Embodied AI, Vision-Language]
-- CVPR 2026 — VGGT-Segmentor: Geometry-Enhanced Cross-View Segmentation — Yulu Gao, Bohao Zhang, Zongheng Tang, Jitong Liao, Wenjun Wu, Si Liu [3D Vision, Segmentation, Cross-View]
-- CVPR 2026 — ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models — Linqing Zhong, Yi Liu, Yifei Wei, Ziyu Xiong, Maoqing Yao, Si Liu, Guanghui Ren [Multimodal Learning, Embodied AI, Robotics]
-- CVPR 2026 — Geometry-Guided 3D Visual Token Pruning for Video-Language Models — Han Li, Zehao Huang, Jiahui Fu, Naiyan Wang, Si Liu [Multimodal Learning, Video Understanding, Model Compression]
+注：`#` 表示共同一作，`*` 表示通讯作者
+- CVPR 2026 — OctoNav: Towards Generalist Embodied Navigation — Chen Gao, Liankai Jin, Xingyu Peng, Jiazhao Zhang, Yue Deng, Annan Li, He Wang, Si Liu* [Embodied AI, Navigation]
+- CVPR 2026 — Parse, Search, and Confirmation: Training-Free Aerial Vision-and-Dialog Navigation with Chain-of-Thought Reasoning and Structured Spatial Memory — Yu Qi, Hongyu Li, Shaofei Huang, Tianrui Hui, Yaxiong Wang, Lechao Cheng, Zhun Zhong, Si Liu*, Meng Wang [UAV, Embodied AI, Vision-Language]
+- CVPR 2026 — LookasideVLN: Direction-Aware Aerial Vision-and-Language Navigation — Yuwei Ning, Ganlong Zhao, Yipeng Qin, Si Liu*, Yang Liu, Liang Lin, Guanbin Li [UAV, Embodied AI, Vision-Language]
+- CVPR 2026 — VGGT-Segmentor: Geometry-Enhanced Cross-View Segmentation — Yulu Gao, Bohao Zhang, Zongheng Tang, Jitong Liao, Wenjun Wu, Si Liu* [3D Vision, Segmentation, Cross-View]
+- CVPR 2026 — ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models — Linqing Zhong, Yi Liu, Yifei Wei, Ziyu Xiong, Maoqing Yao, Si Liu*, Guanghui Ren [Multimodal Learning, Embodied AI, Robotics]
+- CVPR 2026 — Geometry-Guided 3D Visual Token Pruning for Video-Language Models — Han Li, Zehao Huang, Jiahui Fu, Naiyan Wang, Si Liu* [Multimodal Learning, Video Understanding, Model Compression]
+- AAAI 2026 — AerialVLA: A Vision-Language-Action Model for Aerial Navigation with Online Dialogue — Jinyu Chen#, Hongyu Li#, Zongheng Tang, Xiaoduo Li, Wenjun Wu, Si Liu* [Multimodal Learning, Embodied AI, Robotics]
+- AAAI 2026 — VaccineRAG: Boosting Multimodal Large Language Models’ Immunity to Harmful RAG Samples — Qixin Sun#, Hengyuan Zhao#, Ziqin Wang#, Yilin Li, Kaiyou Song, Linjiang Huang*, Xiaolin Hu, Qingpei Guo*, Si Liu [Multimodal Learning, Video Understanding]
+- TPAMI 2026 — MC#: Mixture Compressor for Mixture-of-Experts Large Models — Wei Huang#, Yue Liao#, Yukang Chen, Jianhui Liu, Haoru Tan, Si Liu*, Shiming Zhang*, Shuicheng Yan, Xiaojuan Qi* [Large Language Model, Model Compression]
 
 ## 2025
 - NeurIPS 2025 — RoboCerebra: A Large-scale Benchmark for Long-horizon Robotic Manipulation Evaluation — Songhao Han#, Boxiang Qiu#, Yue Liao#, Siyuan Huang, Chen Gao, Shuicheng Yan*, Si Liu* [Embodied AI, Robotics, Dataset]
@@ -243,4 +247,3 @@ socialShare: false
 
 ## 2010
 - ACM MM 2010 — A Generic Framework for Event Detection in Various Video Domain — Tianzhu Zhang, Changsheng Xu, Guangyu Zhu, Si Liu, Hanqing Lu [Video Understanding, Detection]
-

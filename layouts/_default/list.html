@@ -145,6 +145,12 @@
             <div class="d-flex align-items-start p-3 gap-3">
               <div class="flex-shrink-0">
                 {{ $key := lower $p.title }}
+                {{ $key = replace $key "’" "'" }}
+                {{ $key = replace $key "‘" "'" }}
+                {{ $key = replace $key "“" "\"" }}
+                {{ $key = replace $key "”" "\"" }}
+                {{ $key = replace $key "—" "-" }}
+                {{ $key = replace $key "–" "-" }}
                 {{ $img := $defaultPaperImage }}
                 {{ if $thumbs }}{{ $img = index $thumbs $key | default $defaultPaperImage }}{{ end }}
                 <img src="{{ $img }}" class="rounded d-block" alt="{{ $p.title }}" style="width: 280px; height: 210px; object-fit: cover; border-radius: 12px;">

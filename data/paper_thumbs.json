@@ -201,5 +201,6 @@
   "lookasidevln: direction-aware aerial vision-and-language navigation": "/paper_thumb/lookasidevln.png",
   "vggt-segmentor: geometry-enhanced cross-view segmentation": "/paper_thumb/vggt_segmentor.png",
   "acot-vla: action chain-of-thought for vision-language-action models": "/paper_thumb/acot_vla.png",
-  "geometry-guided 3d visual token pruning for video-language models": "/paper_thumb/geometry_guided_3d_visual_token_pruning.png"
+  "geometry-guided 3d visual token pruning for video-language models": "/paper_thumb/geometry_guided_3d_visual_token_pruning.png",
+  "mc#: mixture compressor for mixture-of-experts large models": "/paper_thumb/MC_ Mixture Compressor.png"
 }
