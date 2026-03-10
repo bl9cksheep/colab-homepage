@@ -29,16 +29,11 @@ languages:
           title: Team Photo
           url: /team/
           weight: 4
-        - identifier: news
-          name: News
-          title: News
-          url: /news/
-          weight: 5
         - identifier: join-us
           name: Join Us
           title: Join Us
           url: /join-us/
-          weight: 6
+          weight: 5
 
   zh:
     languageCode: "zh-cn"
@@ -63,14 +58,10 @@ languages:
           name: 实验室队伍
           url: /zh/team/
           weight: 4
-        - identifier: news
-          name: 新闻动态
-          url: /zh/news/
-          weight: 5
         - identifier: join-us
           name: 加入我们
           url: /zh/join-us/
-          weight: 6
+          weight: 5
     # 中文页面定制内容(覆盖全局默认参数)
     params:
       hero:
@@ -238,7 +229,7 @@ params:
 
   #首页用“Achievements”模块改成 News 预览 (中英共享具体的items内容)
   achievements:
-    enable: true
+    enable: false
     title: "News"
     items:
       - title: "AAAI 2026 Acceptances"
@@ -444,6 +435,6 @@ params:
       path: "news"
       count: 3
       title: Recent News
-      enable: true
+      enable: false
       disableFeaturedImage: false
     socialNetworks:

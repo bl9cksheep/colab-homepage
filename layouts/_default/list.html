@@ -142,31 +142,17 @@
         {{ if eq $categories "" }}{{ $categories = " cat-other" }}{{ end }}
         <div class="col-12 paper-item paper-item-{{ $yearSlug }} {{ if ge $index $showCount }}d-none{{ end }}" data-year="{{ $p.year }}" data-categories="{{ $categories }}">
           <div class="card h-100 shadow-sm">
-            <div class="d-flex align-items-start p-3 gap-3">
-              <div class="flex-shrink-0">
-                {{ $key := lower $p.title }}
-                {{ $key = replace $key "’" "'" }}
-                {{ $key = replace $key "‘" "'" }}
-                {{ $key = replace $key "“" "\"" }}
-                {{ $key = replace $key "”" "\"" }}
-                {{ $key = replace $key "—" "-" }}
-                {{ $key = replace $key "–" "-" }}
-                {{ $img := $defaultPaperImage }}
-                {{ if $thumbs }}{{ $img = index $thumbs $key | default $defaultPaperImage }}{{ end }}
-                <img src="{{ $img }}" class="rounded d-block" alt="{{ $p.title }}" style="width: 280px; height: 210px; object-fit: cover; border-radius: 12px;">
-              </div>
-              <div class="flex-grow-1">
-                <h5 class="card-title mb-1" style="font-size: 1.35rem;">{{ $p.title }}</h5>
-                <p class="card-text text-muted mb-1 author-text" style="font-size: 1.05rem;">{{ $p.authors }}</p>
-                {{ if $p.tags }}
-                <div class="pub-tags-row">
-                  {{ range $p.tags }}
-                  <span class="badge bg-secondary pub-tag me-2 mb-1">{{ . }}</span>
-                  {{ end }}
-                </div>
+            <div class="p-3">
+              <h5 class="card-title mb-1" style="font-size: 1.35rem;">{{ $p.title }}</h5>
+              <p class="card-text text-muted mb-1 author-text" style="font-size: 1.05rem;">{{ $p.authors }}</p>
+              {{ if $p.tags }}
+              <div class="pub-tags-row">
+                {{ range $p.tags }}
+                <span class="badge bg-secondary pub-tag me-2 mb-1">{{ . }}</span>
                 {{ end }}
-                <p class="card-text mb-0" style="font-size: 1.05rem;"><strong>{{ $p.venue }}</strong></p>
               </div>
+              {{ end }}
+              <p class="card-text mb-0" style="font-size: 1.05rem;"><strong>{{ $p.venue }}</strong></p>
             </div>
           </div>
         </div>
