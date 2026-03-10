@@ -178,18 +178,18 @@ params:
           - name: "Code"
             url: "https://github.com/buaa-colalab/AEOSBench"
         badges: ["Satellite", "Scheduling", "Benchmark"]
-      - title: "CooHOI: Learning Cooperative Human-Object Interaction with Manipulated Object Dynamics"
-        content: "CooHOI: Learning Cooperative Human-Object Interaction with Manipulated Object Dynamics"
-        image: /images/works/coohoi.png
-        demo: /demos/coohoi.mp4
+      - title: "\"Hi AirStar, Guide Me to the Badminton Court.\""
+        content: "\"Hi AirStar, Guide Me to the Badminton Court.\""
+        image: 
+        demo: /demos/airstar.gif
         links:
           - name: "Paper"
-            url: "https://arxiv.org/pdf/2406.14558"
+            url: "https://arxiv.org/pdf/2507.04430"
           - name: "Project"
-            url: "https://gao-jiawei.com/Research/CooHOI/"
+            url: "https://buaa-colalab.github.io/airstar.github.io/"
           - name: "Code"
-            url: "https://github.com/Winston-Gu/CooHOI"
-        badges: ["Embodied AI", "HOI", "Manipulation", "NeurIPS 2024"]
+            url: "https://buaa-colalab.github.io/airstar.github.io/"
+        badges: ["Embodied AI", "UAV", "Navigation", "MM2025 DEMO"]
       - title: "UAV-Flow Colosseo: A Real-World Benchmark for Flying-on-a-World UAV Imitation Learning"
         content: "UAV-Flow Colosseo: A Real-World Benchmark for Flying-on-a-Word UAV Imitation Learning"
         image: /images/works/uav-flow.png
@@ -202,18 +202,18 @@ params:
           - name: "Code"
             url: "https://github.com/buaa-colalab/UAV-Flow"
         badges: ["UAV", "Imitation Learning", "Benchmark"]
-      - title: "ReSimAD: Zero-Shot 3D Domain Transfer for Autonomous Driving with Source Reconstruction and Target Simulation"
-        content: "ReSimAD: Zero-Shot 3D Domain Transfer for Autonomous Driving with Source Reconstruction and Target Simulation"
-        image: /images/works/resimad.png
-        demo: /demos/3DTrans.gif
+      - title: "RoboCerebra: A Large-scale Benchmark for Long-horizon Robotic Manipulation Evaluation"
+        content: "RoboCerebra: A Large-scale Benchmark for Long-horizon Robotic Manipulation Evaluation"
+        image: 
+        demo: /demos/RoboCerebra.gif
         links:
           - name: "Paper"
-            url: "https://arxiv.org/pdf/2309.05527"
+            url: "https://arxiv.org/abs/2506.06677"
           - name: "Project"
-            url: "https://bobrown.github.io/Team_3DTrans.github.io/"
+            url: "https://robocerebra.github.io/"
           - name: "Code"
-            url: "https://github.com/PJLab-ADG/3DTrans"
-        badges: ["Autonomous Driving", "Domain Transfer", "3D", "ICCV 2023"]
+            url: "https://github.com/qiuboxiang/RoboCerebra"
+        badges: ["Robotics", "Dataset", "Embodied AI", "NeurIPS 2025"]
       - title: "AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation"
         content: "AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation"
         image: /images/works/aeroduo.png
