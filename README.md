@@ -25,7 +25,7 @@ git clone https://github.com/bl9cksheep/colab-homepage.git
 rsync -av --delete colab-homepage/ ./
 ```
 
-### 4) Run locally
+### 4) run locally
 ```
 hugo server
 ```
