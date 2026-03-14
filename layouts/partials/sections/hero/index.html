@@ -45,9 +45,15 @@
                     <!-- B. 右侧社交图标容器 -->
                     <div style="display: flex; flex-direction: row; align-items: center; gap: 15px;">
                         {{ range $hero.socialLinks.fontAwesomeIcons }}
-                        <a href="{{ .url }}" target="_blank" style="color: #fff; font-size: 1.8rem; line-height: 1; text-decoration: none; display: inline-block;">
+                        {{ if hasPrefix .url "mailto:" }}
+                        <button type="button" data-copy="{{ strings.TrimPrefix "mailto:" .url }}" class="social-icon" style="color: #fff; font-size: 1.8rem; line-height: 1; text-decoration: none; display: inline-block; background: transparent; border: none; padding: 0;">
+                            <i class="{{ .icon }}"></i>
+                        </button>
+                        {{ else }}
+                        <a href="{{ .url }}" target="_blank" class="social-icon" style="color: #fff; font-size: 1.8rem; line-height: 1; text-decoration: none; display: inline-block;">
                             <i class="{{ .icon }}"></i>
                         </a>
+                        {{ end }}
                         {{ end }}
                         
                         {{ range $hero.socialLinks.customIcons }}

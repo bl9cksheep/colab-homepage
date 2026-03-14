@@ -7,15 +7,33 @@
       toast = document.createElement("div");
       toast.id = "copy-toast";
       toast.className = "copy-toast";
+      toast.style.position = "fixed";
+      toast.style.left = "50%";
+      toast.style.bottom = "24px";
+      toast.style.transform = "translateX(-50%) translateY(10px)";
+      toast.style.background = "rgba(0, 0, 0, 0.85)";
+      toast.style.color = "#fff";
+      toast.style.padding = "10px 16px";
+      toast.style.borderRadius = "999px";
+      toast.style.fontSize = "14px";
+      toast.style.letterSpacing = "0.2px";
+      toast.style.opacity = "0";
+      toast.style.pointerEvents = "none";
+      toast.style.transition = "opacity 0.2s ease, transform 0.2s ease";
+      toast.style.zIndex = "2000";
       document.body.appendChild(toast);
     }
 
     toast.textContent = message;
     toast.classList.add("show");
+    toast.style.opacity = "1";
+    toast.style.transform = "translateX(-50%) translateY(0)";
 
     clearTimeout(toast._hideTimer);
     toast._hideTimer = setTimeout(function () {
       toast.classList.remove("show");
+      toast.style.opacity = "0";
+      toast.style.transform = "translateX(-50%) translateY(10px)";
     }, 1400);
   }
 
