@@ -193,7 +193,7 @@ params:
       - title: "UAV-Flow Colosseo: A Real-World Benchmark for Flying-on-a-World UAV Imitation Learning"
         content: "UAV-Flow Colosseo: A Real-World Benchmark for Flying-on-a-Word UAV Imitation Learning"
         image: /images/works/uav-flow.png
-        demo: /demos/uav-flow.mp4
+        demo: /demos/UAV-Flow.mp4
         links:
           - name: "Paper"
             url: "https://arxiv.org/pdf/2505.15725"
@@ -217,7 +217,7 @@ params:
       - title: "AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation"
         content: "AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation"
         image: /images/works/aeroduo.png
-        demo: /demos/aeroduo.mp4
+        demo: /demos/AeroDuo.mp4
         links:
           - name: "Paper"
             url: "https://arxiv.org/pdf/2508.15232"
