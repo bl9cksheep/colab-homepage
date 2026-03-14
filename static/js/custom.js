@@ -9,15 +9,19 @@
       toast.className = "copy-toast";
       toast.style.position = "fixed";
       toast.style.left = "50%";
-      toast.style.bottom = "24px";
-      toast.style.transform = "translateX(-50%) translateY(10px)";
-      toast.style.background = "rgba(0, 0, 0, 0.85)";
-      toast.style.color = "#fff";
-      toast.style.padding = "10px 16px";
+      toast.style.top = "50%";
+      toast.style.transform = "translate(-50%, -50%)";
+      toast.style.background = "#ffffff";
+      toast.style.color = "#111111";
+      toast.style.padding = "14px 22px";
       toast.style.borderRadius = "999px";
-      toast.style.fontSize = "14px";
+      toast.style.boxShadow = "0 8px 24px rgba(0, 0, 0, 0.25)";
+      toast.style.fontSize = "18px";
+      toast.style.fontWeight = "600";
       toast.style.letterSpacing = "0.2px";
-      toast.style.opacity = "0";
+    toast.style.opacity = "0";
+    toast.style.display = "inline-block";
+    toast.style.visibility = "visible";
       toast.style.pointerEvents = "none";
       toast.style.transition = "opacity 0.2s ease, transform 0.2s ease";
       toast.style.zIndex = "2000";
@@ -27,14 +31,20 @@
     toast.textContent = message;
     toast.classList.add("show");
     toast.style.opacity = "1";
-    toast.style.transform = "translateX(-50%) translateY(0)";
+    toast.style.transform = "translate(-50%, -50%)";
+    toast.style.display = "inline-block";
+    toast.style.visibility = "visible";
 
     clearTimeout(toast._hideTimer);
     toast._hideTimer = setTimeout(function () {
       toast.classList.remove("show");
       toast.style.opacity = "0";
-      toast.style.transform = "translateX(-50%) translateY(10px)";
+      toast.style.transform = "translate(-50%, -50%)";
     }, 1400);
+
+    if (toast.offsetWidth === 0 || toast.offsetHeight === 0) {
+      window.alert(message);
+    }
   }
 
   function copyText(text) {
