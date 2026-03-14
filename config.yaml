@@ -126,12 +126,9 @@ params:
       disableProjects: true
       disableAchievements: true
       disableContact: true
-  customCSS: 
+  customCSS:
     - "css/custom.css"
-  custom_css: 
-    - "css/custom.css"
-  custom_js: 
-    - "js/custom.js"
+  customScripts: "<script src=\"/js/custom.js\"></script>"
 
   # 首页 Hero (英文默认)
   hero:
@@ -153,7 +150,7 @@ params:
         - icon: fab fa-github
           url: https://github.com/buaa-colalab
         - icon: fas fa-envelope
-          url: "mailto:colab_buaa.com"
+          url: "mailto:colab_buaa@163.com"
       customIcons:
         - icon: /images/wechat-icon.png
           url: "#"

@@ -1,12 +1,23 @@
 <span>
     {{ range .Site.Params.hero.socialLinks.fontAwesomeIcons }}
     <span class="px-1">
+        {{ if hasPrefix .url "mailto:" }}
+        <button
+            type="button"
+            class="btn social-icon"
+            data-copy="{{ strings.TrimPrefix "mailto:" .url }}"
+            aria-label="email"
+        >
+            <i class="{{ .icon }}"></i>
+        </button>
+        {{ else }}
         <a href="{{ .url }}"
             {{ if not (hasPrefix .url "#") }} target="_blank" {{ end }}
             class="btn social-icon"
         >
             <i class="{{ .icon }}"></i>
         </a>
+        {{ end }}
     </span>
     {{ end }}
 
