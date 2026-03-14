@@ -214,18 +214,6 @@ params:
           - name: "Code"
             url: "https://github.com/qiuboxiang/RoboCerebra"
         badges: ["Robotics", "Dataset", "Embodied AI", "NeurIPS 2025"]
-      - title: "AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation"
-        content: "AeroDuo: Aerial Duo for UAV-based Vision and Language Navigation"
-        image: /images/works/aeroduo.png
-        demo: /demos/AeroDuo.mp4
-        links:
-          - name: "Paper"
-            url: "https://arxiv.org/pdf/2508.15232"
-          - name: "Project"
-            url: "https://rey-nard.github.io/AeroDuo_project/"
-          - name: "Code"
-            url: "https://github.com/Rey-nard/AeroDuo"
-        badges: ["UAV", "Vision-Language Navigation", "ACM MM 2025"]
 
   #首页用“Achievements”模块改成 News 预览 (中英共享具体的items内容)
   achievements:
