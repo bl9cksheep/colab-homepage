@@ -151,9 +151,9 @@ params:
     socialLinks:
       fontAwesomeIcons:
         - icon: fab fa-github
-          url: https://github.com/
+          url: https://github.com/buaa-colalab
         - icon: fas fa-envelope
-          url: "mailto:liusi@buaa.edu.cn"
+          url: "mailto:colab_buaa.com"
       customIcons:
         - icon: /images/wechat-icon.png
           url: "#"
