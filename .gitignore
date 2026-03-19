@@ -3,3 +3,5 @@ public/
 resources/_gen/
 .history/
 新论文/
+scripts/
+data/arxiv_links.json
