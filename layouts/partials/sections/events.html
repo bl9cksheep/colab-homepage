@@ -1,251 +1,168 @@
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+{{ $sectionTitle := "Lab Moments" }}
+{{ if eq .Site.Language.Lang "zh" }}
+  {{ $sectionTitle = "实验室日常" }}
+{{ end }}
+{{ $photos := sort (readDir "static/images/life") "Name" "asc" }}
 
-<section id="events-section" class="py-5" style="background-color: #000000; color: #ffffff; font-family: 'Inter', sans-serif;">
+<section id="events-section" class="py-5">
     <div class="container">
+        <h2 class="event-section-title">{{ $sectionTitle }}</h2>
 
-        <h2 class="event-section-title">Events</h2>
+        <div class="event-photo-wall">
+            {{ range $index, $photo := $photos }}
+                {{ if not $photo.IsDir }}
+                    {{ $rotationClass := "event-photo-card--flat" }}
+                    {{ if eq (mod $index 4) 0 }}
+                        {{ $rotationClass = "event-photo-card--left" }}
+                    {{ else if eq (mod $index 4) 1 }}
+                        {{ $rotationClass = "event-photo-card--right" }}
+                    {{ else if eq (mod $index 4) 2 }}
+                        {{ $rotationClass = "event-photo-card--soft" }}
+                    {{ end }}
 
-        <div style="height: 4rem;"></div>
-
-        <!-- Timeline -->
-        <div class="event-timeline">
-
-            <!-- 2026.01 — CICAS AI Agent Global Competition -->
-            <div class="event-timeline-item">
-                <div class="event-timeline-dot"></div>
-                <div class="event-timeline-content">
-                    <div class="event-timeline-date">Jan 2026</div>
-                    <h3 class="event-timeline-title">First Prize at 2025 CICAS AI Agent Global Competition</h3>
-                    <p class="event-timeline-desc">
-                        Team Airstar from Beihang University won the First Prize (Seed Track, top 10 out of 1,150 teams worldwide) at the 2025 CICAS AI Agent Global Competition held in Shenzhen. Themed "Scene-Driven · Digital Intelligence Empowerment," the competition is the world's largest AI agent contest. After rigorous online screening and closed-door expert review evaluating technical originality, architectural innovation, and commercialization potential, Airstar stood out for its focus on embodied intelligence and low-altitude economy, exploring new paradigms for human-robot interaction and intelligent aerial agents.
-                    </p>
-                    <div class="event-timeline-links">
-                        <img src="images/events/airstar.jpg" alt="CICAS AI Agent Competition" class="event-timeline-photo">
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2025.07 — Genie Envisioner -->
-            <div class="event-timeline-item">
-                <div class="event-timeline-dot"></div>
-                <div class="event-timeline-content">
-                    <div class="event-timeline-date">Jul 2025</div>
-                    <h3 class="event-timeline-title">Genie Envisioner: First Open-Source Robot World Model Platform</h3>
-                    <p class="event-timeline-desc">
-                        In collaboration with AgiBot (Zhiyuan Robotics) and NUS, CoLab co-released Genie Envisioner (GE) — the industry's first open-source unified world model platform for real-world robotic manipulation. Unlike conventional fragmented pipelines, GE integrates future-frame prediction, policy learning, and simulation evaluation into a single closed-loop, video-generation-centric architecture. Trained on 3,000 hours of real-robot data, GE-Act achieves state-of-the-art cross-platform generalization and long-horizon task execution, outperforming prior methods such as π0 and GR00T.
-                    </p>
-                    <div class="event-timeline-links">
-                        <img src="images/events/genie.jpg" alt="Genie Envisioner" class="event-timeline-photo">
-                    </div>
-                    <div class="event-timeline-links" style="margin-top: 0.5rem;">
-                        <a href="https://genie-envisioner.github.io/" target="_blank">Project</a>
-                        <a href="https://arxiv.org/abs/2508.05635" target="_blank">Paper</a>
-                        <a href="https://github.com/AgibotTech/Genie-Envisioner" target="_blank">Code</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2025 — AEOS-Bench NeurIPS'25 -->
-            <div class="event-timeline-item">
-                <div class="event-timeline-dot"></div>
-                <div class="event-timeline-content">
-                    <div class="event-timeline-date">2025</div>
-                    <h3 class="event-timeline-title">AEOS-Bench: Satellite Constellation Scheduling Benchmark (NeurIPS 2025)</h3>
-                    <p class="event-timeline-desc">
-                        Targeting space embodied intelligence, CoLab proposed AEOS-Bench — the first large-scale, realistic benchmark for Earth-observation satellite constellation scheduling, along with AEOS-Former, a Transformer-based scheduling model with embedded temporal constraints. Built on a high-fidelity Basilisk simulation engine, AEOS-Bench contains 16K+ scenarios covering 1–50 satellites and 50–300 imaging tasks. AEOS-Former fuses constraint-aware attention masks with satellite-task matching, achieving state-of-the-art performance across all evaluation metrics. Published at NeurIPS 2025.
-                    </p>
-                    <div class="event-timeline-links">
-                        <img src="images/events/sate.jpg" alt="AEOS-Bench" class="event-timeline-photo">
-                    </div>
-                    <div class="event-timeline-links" style="margin-top: 0.5rem;">
-                        <a href="https://buaa-colalab.github.io/AEOSBench/" target="_blank">Project</a>
-                        <a href="https://arxiv.org/abs/2510.26297" target="_blank">Paper</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2025.04 — ICLR 2025 -->
-            <div class="event-timeline-item">
-                <div class="event-timeline-dot"></div>
-                <div class="event-timeline-content">
-                    <div class="event-timeline-date">Apr 2025</div>
-                    <h3 class="event-timeline-title">ICLR 2025 — 4 Papers Accepted</h3>
-                    <p class="event-timeline-desc">
-                        CoLab had four papers accepted at ICLR 2025 in Singapore. The team attended the conference in person, engaging with the global deep learning community at one of the most influential venues in AI research.
-                    </p>
-                    <div class="event-timeline-links">
-                        <img src="images/events/ICLR2025.jpg" alt="ICLR 2025" class="event-timeline-photo">
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2024.05 — ICRA 2024 -->
-            <div class="event-timeline-item">
-                <div class="event-timeline-dot"></div>
-                <div class="event-timeline-content">
-                    <div class="event-timeline-date">May 2024</div>
-                    <h3 class="event-timeline-title">ICRA 2024 — Paper Accepted & Presented</h3>
-                    <p class="event-timeline-desc">
-                        CoLab had one paper accepted at ICRA 2024 held in Yokohama, Japan. The team traveled to Yokohama to present the work and engage with the global robotics community at one of the premier robotics conferences.
-                    </p>
-                    <div class="event-timeline-links">
-                        <img src="images/events/ICRA2024.jpg" alt="ICRA 2024" class="event-timeline-photo">
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2023.10 — ICCV 2023 -->
-            <div class="event-timeline-item">
-                <div class="event-timeline-dot"></div>
-                <div class="event-timeline-content">
-                    <div class="event-timeline-date">Oct 2023</div>
-                    <h3 class="event-timeline-title">ICCV 2023 — 4 Papers Accepted</h3>
-                    <p class="event-timeline-desc">
-                        CoLab had four papers accepted at ICCV 2023 in Paris, France. Out of 8,260 valid submissions, only 2,161 were accepted (26% acceptance rate) with 152 orals (1.8%). The team attended the conference in person to present their work on this global stage.
-                    </p>
-                    <div class="event-timeline-links">
-                        <img src="images/events/ICCV23.png" alt="ICCV 2023" class="event-timeline-photo">
-                    </div>
-                </div>
-            </div>
-
+                    <figure class="event-photo-card {{ $rotationClass }}">
+                        <img
+                            src="{{ (printf "/images/life/%s" $photo.Name) | relURL }}"
+                            alt="{{ printf "%s %02d" $sectionTitle (add $index 1) }}"
+                            loading="lazy"
+                        >
+                    </figure>
+                {{ end }}
+            {{ end }}
         </div>
-
     </div>
 </section>
 
 <style>
 #events-section {
-    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 12% 8%, rgba(255, 209, 102, 0.14), transparent 28%),
+        radial-gradient(circle at 86% 18%, rgba(111, 214, 173, 0.14), transparent 24%),
+        linear-gradient(180deg, #050505 0%, #101010 100%);
+    color: #ffffff;
+}
+
+#events-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 28px 28px;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+#events-section .container {
+    position: relative;
+    z-index: 1;
 }
 
 .event-section-title {
-    font-size: 60px;
-    font-weight: 900;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin: 0;
-    letter-spacing: 0.05em;
+    margin: 0 0 2rem;
+    color: #f6efe3;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: 0.02em;
     text-align: left;
 }
 
-/* =========================================
-   Timeline Layout
-   ========================================= */
-.event-timeline {
-    position: relative;
-    padding-left: 40px;
+.event-photo-wall {
+    column-count: 4;
+    column-gap: 1.2rem;
 }
 
-.event-timeline::before {
-    content: '';
-    position: absolute;
-    left: 12px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, #333 100%);
+.event-photo-card {
+    break-inside: avoid;
+    margin: 0 0 1.2rem;
+    padding: 0.9rem 0.9rem 1.1rem;
+    border-radius: 22px;
+    background: linear-gradient(180deg, #fffaf0 0%, #f2eadb 100%);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.28),
+        0 3px 10px rgba(0, 0, 0, 0.16);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.event-timeline-item {
-    position: relative;
-    margin-bottom: 3rem;
+.event-photo-card::before {
+    content: "";
+    display: block;
+    width: 74px;
+    height: 12px;
+    margin: -0.2rem auto 0.8rem;
+    border-radius: 999px;
+    background: rgba(214, 186, 138, 0.35);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) inset;
 }
 
-.event-timeline-dot {
-    position: absolute;
-    left: -34px;
-    top: 6px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: 2px solid #000;
-    box-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
-}
-
-.event-timeline-content {
-    background: #0a0a0a;
-    border: 1px solid #1a1a1a;
-    border-radius: 12px;
-    padding: 1.5rem 2rem;
-    transition: border-color 0.3s ease;
-}
-
-.event-timeline-content:hover {
-    border-color: #333;
-}
-
-.event-timeline-date {
-    font-size: 14px;
-    font-weight: 700;
-    color: #667eea;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 0.5rem;
-}
-
-.event-timeline-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.8rem;
-    line-height: 1.3;
-}
-
-.event-timeline-desc {
-    font-size: 16px;
-    font-weight: 400;
-    color: #bbb;
-    line-height: 1.8;
-    text-align: justify;
-    text-justify: inter-word;
-    margin-bottom: 0.8rem;
-}
-
-.event-timeline-links {
-    margin-top: 0.8rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-}
-
-.event-timeline-links a {
-    display: inline-block;
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff !important;
-    text-decoration: none !important;
-    transition: all 0.3s ease;
-}
-
-.event-timeline-links a:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-}
-
-.event-timeline-photo {
+.event-photo-card img {
+    display: block;
     width: 100%;
-    max-width: 480px;
-    border-radius: 10px;
+    height: auto;
+    border-radius: 16px;
     object-fit: cover;
-    margin-top: 0.5rem;
 }
 
-/* 移动端适配 */
-@media (max-width: 767px) {
-    .event-section-title { font-size: 40px; }
-    .event-timeline { padding-left: 30px; }
-    .event-timeline::before { left: 8px; }
-    .event-timeline-dot { left: -26px; width: 12px; height: 12px; }
-    .event-timeline-title { font-size: 1.15rem; }
-    .event-timeline-content { padding: 1rem 1.2rem; }
-    .event-timeline-photo { max-width: 100%; }
+.event-photo-card--left {
+    transform: rotate(-2.2deg);
+}
+
+.event-photo-card--right {
+    transform: rotate(1.9deg);
+}
+
+.event-photo-card--soft {
+    transform: rotate(-0.8deg);
+}
+
+.event-photo-card--flat {
+    transform: rotate(0.8deg);
+}
+
+.event-photo-card:hover {
+    transform: translateY(-6px) rotate(0deg);
+    box-shadow:
+        0 28px 50px rgba(0, 0, 0, 0.34),
+        0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+@media (max-width: 1199.98px) {
+    .event-photo-wall {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .event-section-title {
+        margin-bottom: 1.4rem;
+    }
+
+    .event-photo-wall {
+        column-count: 2;
+        column-gap: 0.9rem;
+    }
+
+    .event-photo-card {
+        margin-bottom: 0.9rem;
+        padding: 0.7rem 0.7rem 0.9rem;
+        border-radius: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-photo-wall {
+        column-count: 1;
+    }
+
+    .event-photo-card,
+    .event-photo-card--left,
+    .event-photo-card--right,
+    .event-photo-card--soft,
+    .event-photo-card--flat {
+        transform: none;
+    }
 }
 </style>
