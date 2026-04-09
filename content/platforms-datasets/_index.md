@@ -6,6 +6,20 @@ tags: []
 toc: false
 socialShare: false
 platforms:
+  - title: "OctoNav: Towards Generalist Embodied Navigation"
+    venue: "arXiv 2025"
+    content: "We introduce OctoNav, a generalist embodied navigation model designed to handle diverse navigation tasks across different environments. By leveraging large-scale pre-training and multi-modal integration, OctoNav achieves robust performance in complex indoor and outdoor scenarios."
+    highlights:
+      - key: "Generalist Navigation"
+        value: "Unified model architecture capable of handling multiple embodied navigation tasks"
+      - key: "Multi-modal Integration"
+        value: "Effective fusion of visual perception and linguistic instructions for robust control"
+      - key: "Cross-Environment Performance"
+        value: "Demonstrates strong generalization across diverse and unseen navigation scenarios"
+    authors: "Ziqin Wang, Xiangyu Wang, Jinyu Chen, Ruipu Wu, Linjiang Huang, Yue Liao, Si Liu"
+    image: "/plat_data/octonav.png"
+    link: "https://arxiv.org/abs/2506.09839"
+    type: "image"
   - title: "Towards Realistic UAV Vision-Language Navigation: Platform, Benchmark, and Methodology"
     venue: "ICLR 2025"
     content: "We present a comprehensive platform for UAV vision-language navigation that bridges the gap between simulation and real-world deployment. Our benchmark provides realistic scenarios and evaluation metrics for advancing autonomous UAV systems."
