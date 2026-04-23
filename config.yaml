@@ -163,6 +163,14 @@ params:
     enable: true
     title: "Representative Works"
     items:
+      - title: "UAVClaw: Autonomous UAV Agent for Real-World Tasks"
+        content: "UAVClaw unifies OpenClaw task planning, transforming UAVs from flight platforms into autonomous aerial agents for real-world traffic inspection and target search“
+        image:
+        demo: /demos/UAVClaw.mp4
+        links:
+          - name: "Project"
+            url: "https://prince687028.github.io/UAV-Claw/"
+        badges: ["UAV", "Embodied AI", "OpenClaw"]
       - title: "Towards Realistic Earth-Observation Constellation Scheduling: Benchmark and Methodology"
         content: "Towards Realistic Earth-Observation Constellation Scheduling: Benchmark and Methodology"
         image: /images/works/satellite.png
