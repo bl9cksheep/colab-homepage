@@ -1,41 +1,59 @@
+{{/* 1. 变量定义与逻辑处理 */}}
 {{ $sectionTitle := "Lab Moments" }}
 {{ if eq .Site.Language.Lang "zh" }}
   {{ $sectionTitle = "实验室日常" }}
 {{ end }}
-{{ $moments := .Site.Data.lab_moments }}
+
+{{/* 读取 static/images/life 目录下的所有图片 */}}
+{{ $photos := sort (readDir "static/images/life") "Name" "asc" }}
 
 <section id="events-section" class="py-5">
     <div class="container">
         <h2 class="event-section-title">{{ $sectionTitle }}</h2>
 
         <div class="event-photo-wall">
-            {{ range $index, $moment := $moments }}
-                {{ $caption := $moment.caption_en }}
-                {{ if eq $.Site.Language.Lang "zh" }}
-                    {{ $caption = $moment.caption_zh }}
-                {{ end }}
+            {{ range $index, $photo := $photos }}
+                {{ if not $photo.IsDir }}
+                    {{/* 根据索引循环应用不同的旋转角度，增加拍立得质感 */}}
+                    {{ $rotationClass := "event-photo-card--flat" }}
+                    {{ if eq (mod $index 4) 0 }}
+                        {{ $rotationClass = "event-photo-card--left" }}
+                    {{ else if eq (mod $index 4) 1 }}
+                        {{ $rotationClass = "event-photo-card--right" }}
+                    {{ else if eq (mod $index 4) 2 }}
+                        {{ $rotationClass = "event-photo-card--soft" }}
+                    {{ end }}
 
-                <figure class="event-photo-card">
-                    <img
-                        src="{{ $moment.image | relURL }}"
-                        alt="{{ $caption }}"
-                        loading="lazy"
-                    >
-                    <figcaption>{{ $caption }}</figcaption>
-                </figure>
+                    <figure class="event-photo-card {{ $rotationClass }}">
+                        <img
+                            src="{{ (printf "/images/life/%s" $photo.Name) | relURL }}"
+                            alt="{{ printf "%s %02d" $sectionTitle (add $index 1) }}"
+                            loading="lazy"
+                        >
+                        <figcaption class="photo-caption">
+                            {{ $name := (replace $photo.Name (path.Ext $photo.Name) "") }} {{/* 去掉 .jpg 等后缀 */}}
+                            {{ replace $name "-" " " }} {{/* 将文件名中的横杠替换为空格 */}}
+                        </figcaption>
+                    </figure>
+                {{ end }}
             {{ end }}
         </div>
     </div>
 </section>
 
 <style>
+/* 2. 样式部分 - 背景与网格系统 */
 #events-section {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(180deg, #050505 0%, #101010 100%);
+    background:
+        radial-gradient(circle at 12% 8%, rgba(255, 209, 102, 0.14), transparent 28%),
+        radial-gradient(circle at 86% 18%, rgba(111, 214, 173, 0.14), transparent 24%),
+        linear-gradient(180deg, #050505 0%, #101010 100%);
     color: #ffffff;
 }
 
+/* 装饰性背景网格 */
 #events-section::before {
     content: "";
     position: absolute;
@@ -48,13 +66,27 @@
     pointer-events: none;
 }
 
+.photo-caption {
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    color: #5d5241; /* 深棕色，匹配复古纸张感 */
+    text-align: center;
+    font-family: "Kalam", "Comic Sans MS", cursive; /* 建议使用手写体，没有的话回退到常规字体 */
+    font-weight: 500;
+    /* 限制文字溢出 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 4px;
+}
+
 #events-section .container {
     position: relative;
     z-index: 1;
 }
 
 .event-section-title {
-    margin: 0 0 2.25rem;
+    margin: 0 0 2rem;
     color: #f6efe3;
     font-size: clamp(2.8rem, 5vw, 4.5rem);
     font-weight: 800;
@@ -62,20 +94,18 @@
     text-align: left;
 }
 
+/* 瀑布流布局 */
 .event-photo-wall {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.35rem;
+    column-count: 4;
+    column-gap: 1.2rem;
 }
 
+/* 拍立得风格卡片 */
 .event-photo-card {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    height: 100%;
-    margin: 0;
-    padding: 0.72rem 0.72rem 0.9rem;
-    border-radius: 8px;
+    break-inside: avoid;
+    margin: 0 0 1.2rem;
+    padding: 0.9rem 0.9rem 1.1rem;
+    border-radius: 22px;
     background: linear-gradient(180deg, #fffaf0 0%, #f2eadb 100%);
     box-shadow:
         0 20px 40px rgba(0, 0, 0, 0.28),
@@ -83,6 +113,7 @@
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+/* 卡片顶部的装饰条（模拟胶带或凹槽） */
 .event-photo-card::before {
     content: "";
     display: block;
@@ -97,59 +128,58 @@
 .event-photo-card img {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
-    border-radius: 6px;
+    height: auto;
+    border-radius: 16px;
     object-fit: cover;
-    object-position: center;
 }
 
-.event-photo-card figcaption {
-    margin-top: 0.95rem;
-    padding: 0 0.15rem;
-    color: #2f281d;
-    font-size: 1.08rem;
-    font-weight: 600;
-    line-height: 1.65;
-    letter-spacing: 0;
-    text-align: center;
-}
+/* 旋转角度变体 */
+.event-photo-card--left { transform: rotate(-2.2deg); }
+.event-photo-card--right { transform: rotate(1.9deg); }
+.event-photo-card--soft { transform: rotate(-0.8deg); }
+.event-photo-card--flat { transform: rotate(0.8deg); }
 
 .event-photo-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-6px) rotate(0deg);
     box-shadow:
         0 28px 50px rgba(0, 0, 0, 0.34),
         0 8px 18px rgba(0, 0, 0, 0.18);
 }
 
+/* 响应式适配 */
 @media (max-width: 1199.98px) {
-    .event-photo-wall {
-        gap: 1rem;
+    .event-photo-wall { column-count: 3; }
+}
+
+@media (max-width: 767.98px) {
+    .photo-caption {
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
     }
 }
 
 @media (max-width: 767.98px) {
-    .event-section-title {
-        margin-bottom: 1.4rem;
-    }
-
+    .event-section-title { margin-bottom: 1.4rem; }
     .event-photo-wall {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0.9rem;
+        column-count: 2;
+        column-gap: 0.9rem;
     }
-
     .event-photo-card {
+        margin-bottom: 0.9rem;
         padding: 0.7rem 0.7rem 0.9rem;
-    }
-
-    .event-photo-card figcaption {
-        font-size: 0.98rem;
-        line-height: 1.58;
+        border-radius: 18px;
     }
 }
 
 @media (max-width: 480px) {
-    .event-photo-wall {
-        grid-template-columns: 1fr;
+    .event-photo-wall { column-count: 1; }
+    /* 移动端取消旋转，方便查看 */
+    .event-photo-card,
+    .event-photo-card--left,
+    .event-photo-card--right,
+    .event-photo-card--soft,
+    .event-photo-card--flat {
+        transform: none;
     }
 }
 </style>
