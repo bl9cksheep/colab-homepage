@@ -44,12 +44,12 @@ faculty:
     scholar: ""
 
   - name: "Linjiang Huang"
-    title: "Tenure-Track Associate Professor, Doctoral Supervisor"
+    title: "Tenure-Track Professor, Doctoral Supervisor"
     image: "/images/team/huang_lin_jiang.jpg"
     highlights:
       - "National High-level Young Talent"
       - "Generative AI & Embodied Intelligence"
-    bio: "Linjiang Huang is a Tenure-Track Associate Professor at the School of Artificial Intelligence, Beihang University. His research interests encompass generative AI and embodied intelligence. He has authored over 10 papers as first/corresponding author in premier journals and conferences, including IEEE T-PAMI, CVPR, ICCV, ECCV, and AAAI."
+    bio: "Linjiang Huang is a Tenure-Track Professor at the School of Artificial Intelligence, Beihang University. His research interests encompass generative AI and embodied intelligence. He has authored over 10 papers as first/corresponding author in premier journals and conferences, including IEEE T-PAMI, CVPR, ICCV, ECCV, and AAAI."
     bio_extra: "He contributes to the academic community as a Program Committee member or reviewer for major conferences (CVPR, ICCV, ICML, NeurIPS, ICLR) and top-tier journals (IEEE T-PAMI, IJCV). He is actively recruiting graduate students with strong mathematical foundations and programming skills who are passionate about computer vision and robotics."
     bio_education: "He earned his B.S. and M.S. from Huazhong University of Science and Technology (HUST) and his Ph.D. from the Institute of Automation, Chinese Academy of Sciences (CASIA). Before joining Beihang, he was a Postdoctoral Fellow at the Multimedia Laboratory (MMLab) of The Chinese University of Hong Kong."
     email: "huanglinjiang@buaa.edu.cn"
@@ -57,13 +57,13 @@ faculty:
     scholar: ""
 
   - name: "Jiahao Xie"
-    title: "Tenure-Track Associate Professor, Doctoral Supervisor"
+    title: "Tenure-Track Professor, Doctoral Supervisor"
     image: "/images/team/xie_jia_hao.jpg"
     highlights:
       - "National High-level Young Talent"
       - "Area Chair, ECCV 2026"
       - "7,000+ GitHub Stars (OpenMMLab)"
-    bio: "Jiahao Xie is a Tenure-Track Associate Professor at Beihang University. His research focuses on foundation models, multimodal understanding, and embodied intelligence. He has published 10+ CCF-A papers in top venues such as IJCV, CVPR, ICCV, NeurIPS, and ICLR over the past five years. Notably, he was the international champion in all four tracks of the Facebook AI Self-Supervised Learning Challenge."
+    bio: "Jiahao Xie is a Tenure-Track Professor at Beihang University. His research focuses on foundation models, multimodal understanding, and embodied intelligence. He has published 10+ CCF-A papers in top venues such as IJCV, CVPR, ICCV, NeurIPS, and ICLR over the past five years. Notably, he was the international champion in all four tracks of the Facebook AI Self-Supervised Learning Challenge."
     bio_extra: "Jiahao is a core contributor to OpenMMLab, having developed the widely-used open-source projects MMSelfSup and MMPreTrain, which have surpassed 700,000 downloads. He serves as an Area Chair for ECCV 2026 and has been recognized as an Outstanding Reviewer for CVPR (2021, 2023) and ICLR (2025). He is also a recipient of the National Scholarship for Outstanding Students Abroad."
     bio_education: "He received his Ph.D. in 2023 from the Multimedia Laboratory at Nanyang Technological University (MMLab@NTU) and subsequently served as a Postdoctoral Researcher at the Max Planck Institute for Informatics (MPII) from 2023 to 2025."
     email: "jiahao.xie@buaa.edu.cn"
@@ -71,12 +71,12 @@ faculty:
     scholar: ""
 
   - name: "Yangyang Guo"
-    title: "Tenure-Track Associate Professor, Doctoral Supervisor"
+    title: "Tenure-Track Professor, Doctoral Supervisor"
     image: "/images/team/guo_yang_yang.jpg"
     highlights:
       - "National High-level Young Talent"
       - "Area Chair, ACM MM & IJCAI"
-    bio: "Yangyang Guo is a Tenure-Track Associate Professor at the Beihang Hangzhou International Innovation Institute. His current research focuses on trustworthy large models and trustworthy embodied intelligence. Over the past five years, he has published over 20 CCF-A papers, including contributions to IEEE T-PAMI."
+    bio: "Yangyang Guo is a Tenure-Track Professor at the Beihang Hangzhou International Innovation Institute. His current research focuses on trustworthy large models and trustworthy embodied intelligence. Over the past five years, he has published over 20 CCF-A papers, including contributions to IEEE T-PAMI."
     bio_extra: "He has been honored with the ACM MM 2022 Best BNI Paper Award and the sole Gold Medal at the ICML 2024 Workshop Challenge. He serves the community as an Area Chair (Senior PC) for flagship conferences such as ACM MM and IJCAI."
     bio_education: "He obtained his Ph.D. from Shandong University and completed his postdoctoral training at the National University of Singapore (NUS) between 2021 and 2026."
     email: "guoyangyang@buaa.edu.cn"

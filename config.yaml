@@ -67,8 +67,8 @@ languages:
       hero:
         intro: "欢迎来到"
         title: "Colab"
-        subtitle: "机器人与空间系统实验室"
-        content: "CoLab (可乐实验室) 成立于2016年6月12日。我们在以人为中心的图像和视频理解方面拥有深厚的专业知识，核心能力涵盖人体分割、姿态估计、属性预测和重新识别。目前，我们正致力于将人工智能技术与无人机、具身智能和卫星遥感等尖端平台相结合。"
+        subtitle: "空天具身智能实验室"
+        content: "CoLab（可乐实验室）成立于2016年6月12日。我们当前聚焦真实环境中的具身智能，重点方向包括UAV、VLA与多模态视频理解。同时，我们也开展面向自主智能体的三维感知与卫星星座智能调度研究，致力于构建能够在空-天-地场景中感知、推理与执行的智能体。"
         button:
           name: "立即探索"
           url: "#projects"
@@ -135,8 +135,8 @@ params:
     enable: true
     intro: "Welcome to"
     title: "Colab"
-    subtitle: "Robotics & Space Systems Laboratory"
-    content: "CoLab (Cola Laboratory,可乐实验室) was founded on June 12, 2016. We have deep expertise in human-centric image and video understanding, with core capabilities covering human segmentation, pose estimation, attribute prediction and re-identification. At present, we are focusing on the integration of artificial intelligence technology with cutting-edge platforms such as drones, embodied agents and satellite remote sensing."
+    subtitle: "Aerospace Embodied Intelligence Laboratory"
+    content: "CoLab (Cola Laboratory, 可乐实验室) was founded on June 12, 2016. Our current research focuses on embodied intelligence in real-world environments, with emphasis on UAV, VLA, and multimodal video understanding. We also study 3D perception for autonomous agents and intelligent scheduling for satellite constellations, building AI agents that can perceive, reason, and act across air-space-ground scenarios."
     bottomImage:
       enable: false
     button:
@@ -163,6 +163,14 @@ params:
     enable: true
     title: "Representative Works"
     items:
+      - title: "UAVClaw: Autonomous UAV Agent for Real-World Tasks"
+        content: "UAVClaw brings OpenClaw task planning to real-world UAV autonomy, enabling drones to understand goals and execute tasks in open environments."
+        image:
+        demo: /demos/UAVClaw.mp4
+        links:
+          - name: "Project"
+            url: "https://prince687028.github.io/UAV-Claw/"
+        badges: ["UAV", "Embodied AI", "OpenClaw"]
       - title: "Towards Realistic Earth-Observation Constellation Scheduling: Benchmark and Methodology"
         content: "Towards Realistic Earth-Observation Constellation Scheduling: Benchmark and Methodology"
         image: /images/works/satellite.png
