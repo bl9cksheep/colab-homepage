@@ -164,7 +164,7 @@ params:
     title: "Representative Works"
     items:
       - title: "UAVClaw: Autonomous UAV Agent for Real-World Tasks"
-        content: "UAVClaw unifies OpenClaw task planning, transforming UAVs from flight platforms into autonomous aerial agents for real-world traffic inspection and target search“
+        content: "UAVClaw brings OpenClaw task planning to real-world UAV autonomy, enabling drones to understand goals and execute tasks in open environments."
         image:
         demo: /demos/UAVClaw.mp4
         links:
