@@ -4,8 +4,8 @@
   {{ $sectionTitle = "实验室日常" }}
 {{ end }}
 
-{{/* 读取 static/images/life 目录下的所有图片 */}}
-{{ $photos := sort (readDir "static/images/life") "Name" "asc" }}
+{{/* 读取带中英文 caption 的实验室日常数据 */}}
+{{ $photos := .Site.Data.lab_moments }}
 
 <section id="events-section" class="py-5">
     <div class="container">
@@ -13,7 +13,6 @@
 
         <div class="event-photo-wall">
             {{ range $index, $photo := $photos }}
-                {{ if not $photo.IsDir }}
                     {{/* 根据索引循环应用不同的旋转角度，增加拍立得质感 */}}
                     {{ $rotationClass := "event-photo-card--flat" }}
                     {{ if eq (mod $index 4) 0 }}
@@ -26,16 +25,18 @@
 
                     <figure class="event-photo-card {{ $rotationClass }}">
                         <img
-                            src="{{ (printf "/images/life/%s" $photo.Name) | relURL }}"
+                            src="{{ $photo.image | relURL }}"
                             alt="{{ printf "%s %02d" $sectionTitle (add $index 1) }}"
                             loading="lazy"
                         >
                         <figcaption class="photo-caption">
-                            {{ $name := (replace $photo.Name (path.Ext $photo.Name) "") }} {{/* 去掉 .jpg 等后缀 */}}
-                            {{ replace $name "-" " " }} {{/* 将文件名中的横杠替换为空格 */}}
+                            {{ if eq $.Site.Language.Lang "zh" }}
+                                {{ $photo.caption_zh }}
+                            {{ else }}
+                                {{ $photo.caption_en }}
+                            {{ end }}
                         </figcaption>
                     </figure>
-                {{ end }}
             {{ end }}
         </div>
     </div>

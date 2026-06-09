@@ -75,6 +75,63 @@ languages:
           enable: true
       projects:
         title: "代表性工作"
+        items:
+          - title: "UAVClaw：面向真实任务的自主无人机智能体"
+            content: "UAVClaw 将 OpenClaw 的任务规划能力扩展到真实无人机场景，使无人机能够理解开放环境中的目标并自主执行任务。"
+            image: /images/works/uavclaw.jpg
+            demo: /demos/UAVClaw.mp4
+            links:
+              - name: "项目"
+                url: "https://prince687028.github.io/UAV-Claw/"
+            badges: ["无人机", "具身智能", "OpenClaw"]
+          - title: "面向真实地球观测星座调度：基准与方法"
+            content: "该工作面向真实地球观测星座调度，构建贴近实际约束的基准与方法，用于评估和推动大规模卫星任务规划研究。"
+            image: /images/works/satellite.png
+            demo: /demos/AEOSBench.mp4
+            links:
+              - name: "论文"
+                url: "https://arxiv.org/pdf/2510.26297"
+              - name: "项目"
+                url: "https://buaa-colalab.github.io/AEOSBench/"
+              - name: "代码"
+                url: "https://github.com/buaa-colalab/AEOSBench"
+            badges: ["卫星", "调度", "基准"]
+          - title: "\"Hi AirStar, Guide Me to the Badminton Court.\""
+            content: "AirStar 展示了无人机在真实环境中基于自然语言指令进行导航与交互的能力。"
+            image:
+            demo: /demos/airstar.gif
+            links:
+              - name: "论文"
+                url: "https://arxiv.org/pdf/2507.04430"
+              - name: "项目"
+                url: "https://buaa-colalab.github.io/airstar.github.io/"
+              - name: "代码"
+                url: "https://buaa-colalab.github.io/airstar.github.io/"
+            badges: ["具身智能", "无人机", "导航", "MM2025 Demo"]
+          - title: "UAV-Flow Colosseo：面向真实世界飞行的无人机模仿学习基准"
+            content: "UAV-Flow Colosseo 面向真实无人机飞行任务，提供视频驱动的模仿学习基准与评测环境。"
+            image: /images/works/uav-flow.png
+            demo: /demos/UAV-Flow.mp4
+            links:
+              - name: "论文"
+                url: "https://arxiv.org/pdf/2505.15725"
+              - name: "项目"
+                url: "https://prince687028.github.io/UAV-Flow/"
+              - name: "代码"
+                url: "https://github.com/buaa-colalab/UAV-Flow"
+            badges: ["无人机", "模仿学习", "基准"]
+          - title: "RoboCerebra：长程机器人操作评测的大规模基准"
+            content: "RoboCerebra 构建了面向长程机器人操作任务的大规模评测基准，用于系统评估机器人规划与执行能力。"
+            image:
+            demo: /demos/RoboCerebra.gif
+            links:
+              - name: "论文"
+                url: "https://arxiv.org/abs/2506.06677"
+              - name: "项目"
+                url: "https://robocerebra.github.io/"
+              - name: "代码"
+                url: "https://github.com/qiuboxiang/RoboCerebra"
+            badges: ["机器人", "数据集", "具身智能", "NeurIPS 2025"]
       achievements:
         title: "新闻动态"
 
@@ -165,7 +222,7 @@ params:
     items:
       - title: "UAVClaw: Autonomous UAV Agent for Real-World Tasks"
         content: "UAVClaw brings OpenClaw task planning to real-world UAV autonomy, enabling drones to understand goals and execute tasks in open environments."
-        image:
+        image: /images/works/uavclaw.jpg
         demo: /demos/UAVClaw.mp4
         links:
           - name: "Project"

@@ -98,7 +98,7 @@
                         <div class="w-100" style="max-width: 1400px;">
                         {{ $projectUrl := "" }}
                         {{ range .links }}
-                            {{ if eq .name "Project" }}
+                            {{ if or (eq .name "Project") (eq .name "项目") }}
                                 {{ $projectUrl = .url }}
                             {{ end }}
                         {{ end }}
@@ -111,7 +111,7 @@
                                     {{ if .demo }}
                                         <!-- 直接显示并自动播放demo -->
                                         {{ if (strings.HasSuffix .demo ".mp4") }}
-                                        <video class="w-100 h-100 project-demo-video position-absolute top-0 start-0" autoplay loop muted playsinline style="object-fit: contain;">
+                                        <video class="w-100 h-100 project-demo-video position-absolute top-0 start-0" autoplay loop muted playsinline poster="{{ .image | relURL }}" style="object-fit: contain;">
                                             <source src="{{ .demo | relURL }}" type="video/mp4">
                                         </video>
                                         {{ else }}
@@ -142,15 +142,15 @@
                                 <div class="d-flex gap-2 flex-wrap">
                                     {{ range .links }}
                                     <a class="btn btn-sm btn-outline-primary" href="{{ .url }}" target="_blank" onclick="event.stopPropagation();">
-                                        {{ if eq .name "Code" }}
+                                        {{ if or (eq .name "Code") (eq .name "代码") }}
                                             <i class="fab fa-github"></i>
-                                        {{ else if or (eq .name "Paper") (eq .name "arXiv") }}
+                                        {{ else if or (eq .name "Paper") (eq .name "arXiv") (eq .name "论文") }}
                                             <i class="fas fa-file-alt"></i>
-                                        {{ else if eq .name "Website" }}
+                                        {{ else if or (eq .name "Website") (eq .name "网站") }}
                                             <i class="fas fa-globe"></i>
-                                        {{ else if eq .name "Video" }}
+                                        {{ else if or (eq .name "Video") (eq .name "视频") }}
                                             <i class="fas fa-video"></i>
-                                        {{ else if eq .name "Project" }}
+                                        {{ else if or (eq .name "Project") (eq .name "项目") }}
                                             <i class="fas fa-external-link-alt"></i>
                                         {{ else }}
                                             <i class="fas fa-link"></i>

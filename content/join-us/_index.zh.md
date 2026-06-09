@@ -3,4 +3,4 @@ title: "加入我们"
 layout: "list"
 ---
 
-We continuously recruit Master’s and PhD students as well as postdoctoral researchers who are passionate about robotics and multimodal intelligence, and who want to explore cutting-edge research together.
+我们长期招收对机器人、具身智能、多模态理解和空天智能感兴趣的硕士生、博士生与博士后，欢迎一起探索前沿研究问题。

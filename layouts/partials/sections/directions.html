@@ -1,9 +1,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 
+{{ $isZh := eq .Site.Language.Lang "zh" }}
+{{ $sectionTitle := cond $isZh "研究方向" "Directions" }}
+{{ $uavTitle := cond $isZh "具身智能 × 无人机" "Embodied AI × UAVs" }}
+{{ $uavText := cond $isZh "我们构建融合视觉语言理解与自主策略规划的空中具身智能体，使无人机能够在动态环境中感知、思考并行动。研究覆盖仿真到真实部署，推动无人机在智能导航、多机协作和开放任务执行中的能力提升。" "We build aerial embodied agents that integrate vision-language understanding with autonomous policy planning, enabling UAVs to perceive, think, and act in dynamic environments. Our research spans from simulation to real-world deployment, advancing aerial robots capable of intelligent navigation and multi-agent collaboration." }}
+{{ $uavLinkText := cond $isZh "访问 UAV 主页" "Visit UAV Home Page" }}
+{{ $satTitle := cond $isZh "具身智能 × 卫星" "Embodied AI × Satellites" }}
+{{ $satText := cond $isZh "将卫星星座送入轨道很困难，而高效调度星座执行任务同样具有挑战。随着星座规模扩大，人工规划难以满足任务需求。我们研究面向大规模卫星星座的智能调度与规划方法，处理动态地球观测任务分配中的时间窗口、资源约束和复杂物理限制。" "Launching satellite constellations into orbit is hard, but efficiently scheduling them to execute tasks is equally challenging. As constellations scale up, manual planning can no longer keep pace with mission demands. We develop AI-driven scheduling and planning methods for large-scale satellite constellations, tackling the NP-hard challenges of dynamic Earth observation task allocation under tight time windows and complex physical constraints." }}
+{{ $manipTitle := cond $isZh "具身智能 × 操作" "Embodied AI × Manipulation" }}
+{{ $manipText := cond $isZh "我们的机器人操作研究关注基于学习的抓取、灵巧手控制与人机物交互方法，构建能够在非结构化环境中操作多样物体并完成复杂任务的策略。" "Our manipulation research explores learning-based methods for robotic grasping, dexterous hand control, and human-object interaction. We develop policies that enable robots to manipulate diverse objects and perform complex tasks in unstructured environments." }}
+{{ $perceptionTitle := cond $isZh "具身智能 × 感知" "Embodied AI × Perception" }}
+{{ $perceptionText := cond $isZh "我们不止于让智能体“看见”，而是让智能体从空间、时间和语义维度深入理解环境。重点任务包括开放词汇检测与分割，使模型能够识别新物体并围绕其进行推理。" "Beyond simple \"seeing\", we develop agents that deeply understand environments across spatial, temporal, and semantic dimensions. Key tasks include open-vocabulary detection and segmentation, enabling models to recognize and reason about novel objects." }}
+
 <section id="directions-section" class="py-5" style="background-color: #000000; color: #ffffff; font-family: 'Inter', sans-serif;">
     <div class="container">
         
-        <h2 class="direction-section-title">Directions</h2>
+        <h2 class="direction-section-title">{{ $sectionTitle }}</h2>
         
         <div style="height: 4rem;"></div>
 
@@ -11,16 +23,16 @@
         <div class="row align-items-start mb-5 direction-row">
             <div class="col-md-5">
                 <div class="direction-image-wrapper">
-                    <img src="images/directions/UAV.png" alt="Embodied AI x UAVs" class="direction-img">
+                    <img src="{{ "/images/directions/UAV.png" | relURL }}" alt="{{ $uavTitle }}" class="direction-img">
                 </div>
             </div>
             <div class="col-md-7 ps-md-5 mt-3 mt-md-0 text-start">
-                <h3 class="direction-name">Embodied AI × UAVs</h3>
+                <h3 class="direction-name">{{ $uavTitle }}</h3>
                 <p class="direction-description">
-                    We build aerial embodied agents that integrate vision-language understanding with autonomous policy planning, enabling UAVs to perceive, think, and act in dynamic environments. Our research spans from simulation to real-world deployment, advancing aerial robots capable of intelligent navigation and multi-agent collaboration.
+                    {{ $uavText }}
                 </p>
                 <a href="https://buaa-colalab.github.io/colab_uav.github.io/" target="_blank" class="direction-link-btn">
-                    <i class="fas fa-external-link-alt"></i> Visit UAV Home Page
+                    <i class="fas fa-external-link-alt"></i> {{ $uavLinkText }}
                 </a>
             </div>
         </div>
@@ -29,13 +41,13 @@
         <div class="row align-items-start mb-5 direction-row">
             <div class="col-md-5 order-md-2">
                 <div class="direction-image-wrapper">
-                    <img src="images/directions/satellite.gif" alt="Embodied AI x Satellites" class="direction-img">
+                    <img src="{{ "/images/directions/satellite.gif" | relURL }}" alt="{{ $satTitle }}" class="direction-img">
                 </div>
             </div>
             <div class="col-md-7 order-md-1 pe-md-5 mt-3 mt-md-0">
-                <h3 class="direction-name">Embodied AI × Satellites</h3>
+                <h3 class="direction-name">{{ $satTitle }}</h3>
                 <p class="direction-description">
-                    Launching satellite constellations into orbit is hard, but efficiently scheduling them to execute tasks is equally challenging. As constellations scale up, manual planning can no longer keep pace with mission demands. We develop AI-driven scheduling and planning methods for large-scale satellite constellations, tackling the NP-hard challenges of dynamic Earth observation task allocation under tight time windows and complex physical constraints.
+                    {{ $satText }}
                 </p>
             </div>
         </div>
@@ -44,13 +56,13 @@
         <div class="row align-items-start mb-5 direction-row">
             <div class="col-md-5">
                 <div class="direction-image-wrapper">
-                    <img src="images/directions/manipulation.gif" alt="Manipulation" class="direction-img">
+                    <img src="{{ "/images/directions/manipulation.gif" | relURL }}" alt="{{ $manipTitle }}" class="direction-img">
                 </div>
             </div>
             <div class="col-md-7 ps-md-5 mt-3 mt-md-0 text-start">
-                <h3 class="direction-name">Embodied AI × Manipulation</h3>
+                <h3 class="direction-name">{{ $manipTitle }}</h3>
                 <p class="direction-description">
-                    Our manipulation research explores learning-based methods for robotic grasping, dexterous hand control, and human-object interaction. We develop policies that enable robots to manipulate diverse objects and perform complex tasks in unstructured environments.
+                    {{ $manipText }}
                 </p>
             </div>
         </div>
@@ -59,13 +71,13 @@
         <div class="row align-items-start mb-5 direction-row">
             <div class="col-md-5 order-md-2">
                 <div class="direction-image-wrapper">
-                    <img src="images/directions/perception.png" alt="Embodied Perception" class="direction-img">
+                    <img src="{{ "/images/directions/perception.png" | relURL }}" alt="{{ $perceptionTitle }}" class="direction-img">
                 </div>
             </div>
             <div class="col-md-7 order-md-1 pe-md-5 mt-3 mt-md-0">
-                <h3 class="direction-name">Embodied AI × Perception</h3>
+                <h3 class="direction-name">{{ $perceptionTitle }}</h3>
                 <p class="direction-description">
-                    Beyond simple "seeing", we develop agents that deeply understand environments across spatial, temporal, and semantic dimensions. Key tasks include open-vocabulary detection and segmentation, enabling models to recognize and reason about novel objects.
+                    {{ $perceptionText }}
                 </p>
             </div>
         </div>

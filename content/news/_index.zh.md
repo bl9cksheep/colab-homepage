@@ -3,4 +3,4 @@ title: "新闻动态"
 layout: "list"
 ---
 
-All news and announcements are collected here.
+这里汇总实验室新闻与公告。

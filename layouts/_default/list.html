@@ -466,6 +466,7 @@
 
 {{/* =================== Platforms & Datasets Logic =================== */}}
 {{ else if eq .Section "platforms-datasets" }}
+{{ $isZh := eq .Site.Language.Lang "zh" }}
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Merriweather:wght@400;700&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
 <div class="container pt-5" id="platforms-page">
@@ -481,7 +482,7 @@
 
   {{ if .Params.platforms }}
   <div class="platforms-section mb-5">
-    <h4 class="section-title mb-4" style="text-align: left; font-weight: 600; padding-bottom: 0.5rem;">Platforms & Datasets</h4>
+    <h4 class="section-title mb-4" style="text-align: left; font-weight: 600; padding-bottom: 0.5rem;">{{ if $isZh }}平台与数据集{{ else }}Platforms & Datasets{{ end }}</h4>
     {{ range .Params.platforms }}
       <div class="platform-item mb-4 p-4" style="background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
         <div class="row g-4 align-items-start">
@@ -514,7 +515,7 @@
             {{ end }}
             <div class="d-flex justify-content-between align-items-end mt-auto">
               <div>
-                {{ if .link }}<a href="{{ .link }}" target="_blank" class="btn btn-sm btn-outline-light platform-paper-btn">Paper</a>{{ end }}
+                {{ if .link }}<a href="{{ .link }}" target="_blank" class="btn btn-sm btn-outline-light platform-paper-btn">{{ if $isZh }}论文{{ else }}Paper{{ end }}</a>{{ end }}
               </div>
               <div class="text-end"><p style="font-size: 0.85rem; color: #888; margin: 0;">{{ .authors }}</p></div>
             </div>
@@ -528,6 +529,9 @@
 
 {{/* =================== Team Logic =================== */}}
 {{ else if eq .Section "team" }}
+{{ $isZh := eq .Site.Language.Lang "zh" }}
+{{ $readMore := cond $isZh "▼ 展开介绍" "▼ Read More" }}
+{{ $showLess := cond $isZh "▲ 收起介绍" "▲ Show Less" }}
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <style>
@@ -660,29 +664,35 @@
   {{/* Faculty Members */}}
   {{ if .Params.faculty }}
   <div class="faculty-section">
-    <h3><i class="fa-solid fa-chalkboard-user me-2"></i>Faculty</h3>
+    <h3><i class="fa-solid fa-chalkboard-user me-2"></i>{{ if $isZh }}教师{{ else }}Faculty{{ end }}</h3>
     {{ range .Params.faculty }}
+    {{ $facultyName := .name }}{{ if and $isZh .name_cn }}{{ $facultyName = .name_cn }}{{ end }}
+    {{ $facultyTitle := .title }}{{ if and $isZh .title_cn }}{{ $facultyTitle = .title_cn }}{{ end }}
+    {{ $facultyBio := .bio }}{{ if and $isZh .bio_cn }}{{ $facultyBio = .bio_cn }}{{ end }}
+    {{ $facultyBioExtra := .bio_extra }}{{ if and $isZh .bio_extra_cn }}{{ $facultyBioExtra = .bio_extra_cn }}{{ end }}
+    {{ $facultyBioEducation := .bio_education }}{{ if and $isZh .bio_education_cn }}{{ $facultyBioEducation = .bio_education_cn }}{{ end }}
+    {{ $facultyHighlights := .highlights }}{{ if and $isZh .highlights_cn }}{{ $facultyHighlights = .highlights_cn }}{{ end }}
     <div class="faculty-card">
       <div class="faculty-photo-wrapper">
-        <img src="{{ .image }}" alt="{{ .name }}" class="faculty-photo">
+        <img src="{{ .image }}" alt="{{ $facultyName }}" class="faculty-photo">
       </div>
       <div class="faculty-info">
-        <div class="faculty-name">{{ .name }}</div>
-        <div class="faculty-title">{{ .title }}</div>
-        {{ if .highlights }}
+        <div class="faculty-name">{{ $facultyName }}</div>
+        <div class="faculty-title">{{ $facultyTitle }}</div>
+        {{ if $facultyHighlights }}
         <div class="faculty-highlights">
-          {{ range .highlights }}
+          {{ range $facultyHighlights }}
           <span class="faculty-highlight-tag">{{ . }}</span>
           {{ end }}
         </div>
         {{ end }}
-        <div class="faculty-bio">{{ .bio }}</div>
-        {{ if or .bio_extra .bio_education }}
+        <div class="faculty-bio">{{ $facultyBio }}</div>
+        {{ if or $facultyBioExtra $facultyBioEducation }}
         <div class="faculty-bio-extra">
-          {{ if .bio_extra }}<div class="faculty-bio" style="margin-top:0;">{{ .bio_extra }}</div>{{ end }}
-          {{ if .bio_education }}<div class="faculty-bio" style="margin-top:0.4rem;">{{ .bio_education }}</div>{{ end }}
+          {{ if $facultyBioExtra }}<div class="faculty-bio" style="margin-top:0;">{{ $facultyBioExtra }}</div>{{ end }}
+          {{ if $facultyBioEducation }}<div class="faculty-bio" style="margin-top:0.4rem;">{{ $facultyBioEducation }}</div>{{ end }}
         </div>
-        <button class="faculty-bio-toggle" onclick="this.previousElementSibling.classList.toggle('show'); this.textContent = this.previousElementSibling.classList.contains('show') ? '▲ Show Less' : '▼ Read More';">▼ Read More</button>
+        <button class="faculty-bio-toggle" onclick="this.previousElementSibling.classList.toggle('show'); this.textContent = this.previousElementSibling.classList.contains('show') ? '{{ $showLess }}' : '{{ $readMore }}';">{{ $readMore }}</button>
         {{ end }}
         <div class="faculty-links">
           {{ if .email }}<a href="mailto:{{ .email }}" title="Email"><i class="fa-solid fa-envelope"></i></a>{{ end }}
@@ -698,13 +708,15 @@
   {{/* Research Fellows (博士后) */}}
   {{ if .Params.Postdoc }}
   <div class="team-section">
-    <h3><i class="fa-solid fa-user-tie me-2"></i>Postdoc</h3>
+    <h3><i class="fa-solid fa-user-tie me-2"></i>{{ if $isZh }}博士后{{ else }}Postdoc{{ end }}</h3>
     <div class="team-row">
       {{ range .Params.Postdoc }}
+      {{ $memberName := .name }}{{ if and $isZh .name_cn }}{{ $memberName = .name_cn }}{{ end }}
+      {{ $memberResearch := .research }}{{ if and $isZh .research_cn }}{{ $memberResearch = .research_cn }}{{ end }}
       <div class="team-col">
         <div class="member-card">
-          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
-          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ $memberName }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ $memberName }}</div><p class="member-research">{{ $memberResearch }}</p></div>
           <div class="member-footer">
             {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
             {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
@@ -720,13 +732,15 @@
   {{/* PhD Students */}}
   {{ if .Params.phd }}
   <div class="team-section">
-    <h3><i class="fa-solid fa-user-graduate me-2"></i>PhD Students</h3>
+    <h3><i class="fa-solid fa-user-graduate me-2"></i>{{ if $isZh }}博士生{{ else }}PhD Students{{ end }}</h3>
     <div class="team-row">
       {{ range .Params.phd }}
+      {{ $memberName := .name }}{{ if and $isZh .name_cn }}{{ $memberName = .name_cn }}{{ end }}
+      {{ $memberResearch := .research }}{{ if and $isZh .research_cn }}{{ $memberResearch = .research_cn }}{{ end }}
       <div class="team-col">
         <div class="member-card">
-          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
-          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ $memberName }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ $memberName }}</div><p class="member-research">{{ $memberResearch }}</p></div>
           <div class="member-footer">
             {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
             {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
@@ -742,13 +756,15 @@
   {{/* Master's Students */}}
   {{ if .Params.master }}
   <div class="team-section">
-    <h3><i class="fa-solid fa-user me-2"></i>Master's Students</h3>
+    <h3><i class="fa-solid fa-user me-2"></i>{{ if $isZh }}硕士生{{ else }}Master's Students{{ end }}</h3>
     <div class="team-row">
       {{ range .Params.master }}
+      {{ $memberName := .name }}{{ if and $isZh .name_cn }}{{ $memberName = .name_cn }}{{ end }}
+      {{ $memberResearch := .research }}{{ if and $isZh .research_cn }}{{ $memberResearch = .research_cn }}{{ end }}
       <div class="team-col">
         <div class="member-card">
-          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
-          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ $memberName }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ $memberName }}</div><p class="member-research">{{ $memberResearch }}</p></div>
           <div class="member-footer">
             {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
             {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
@@ -764,13 +780,15 @@
   {{/* Research Assistants */}}
   {{ if .Params.research_associate }}
   <div class="team-section">
-    <h3><i class="fa-solid fa-user-cog me-2"></i>Research Assistant</h3>
+    <h3><i class="fa-solid fa-user-cog me-2"></i>{{ if $isZh }}科研助理{{ else }}Research Assistant{{ end }}</h3>
     <div class="team-row">
       {{ range .Params.research_associate }}
+      {{ $memberName := .name }}{{ if and $isZh .name_cn }}{{ $memberName = .name_cn }}{{ end }}
+      {{ $memberResearch := .research }}{{ if and $isZh .research_cn }}{{ $memberResearch = .research_cn }}{{ end }}
       <div class="team-col">
         <div class="member-card">
-          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
-          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ $memberName }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ $memberName }}</div><p class="member-research">{{ $memberResearch }}</p></div>
           <div class="member-footer">
             {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
             {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
@@ -786,14 +804,17 @@
   {{/* Alumni */}}
   {{ if .Params.alumni_graduate }}
   <div class="team-section">
-    <h3><i class="fa-solid fa-users me-2"></i>Alumni (Graduate)</h3>
+    <h3><i class="fa-solid fa-users me-2"></i>{{ if $isZh }}校友（研究生）{{ else }}Alumni (Graduate){{ end }}</h3>
     <div class="team-row">
       {{ range .Params.alumni_graduate }}
+      {{ $memberName := .name }}{{ if and $isZh .name_cn }}{{ $memberName = .name_cn }}{{ end }}
+      {{ $memberResearch := .research }}{{ if and $isZh .research_cn }}{{ $memberResearch = .research_cn }}{{ end }}
+      {{ $memberPosition := .position }}{{ if and $isZh .position_cn }}{{ $memberPosition = .position_cn }}{{ end }}
       <div class="team-col">
         <div class="member-card">
-          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
-          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
-          <div style="font-size: 0.85rem; color: #888888; margin-top: 2px; margin-bottom: 2px; font-weight: 500; text-align: center; width: 100%;">{{ .position }}</div>
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ $memberName }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ $memberName }}</div><p class="member-research">{{ $memberResearch }}</p></div>
+          <div style="font-size: 0.85rem; color: #888888; margin-top: 2px; margin-bottom: 2px; font-weight: 500; text-align: center; width: 100%;">{{ $memberPosition }}</div>
           <div class="member-footer">
             {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
             {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
@@ -808,14 +829,17 @@
 
   {{ if .Params.alumni_undergrad }}
   <div class="team-section">
-    <h3><i class="fa-solid fa-users me-2"></i>Alumni (Undergraduate Interns)</h3>
+    <h3><i class="fa-solid fa-users me-2"></i>{{ if $isZh }}校友（本科实习生）{{ else }}Alumni (Undergraduate Interns){{ end }}</h3>
     <div class="team-row">
       {{ range .Params.alumni_undergrad }}
+      {{ $memberName := .name }}{{ if and $isZh .name_cn }}{{ $memberName = .name_cn }}{{ end }}
+      {{ $memberResearch := .research }}{{ if and $isZh .research_cn }}{{ $memberResearch = .research_cn }}{{ end }}
+      {{ $memberCompany := .company }}{{ if and $isZh .company_cn }}{{ $memberCompany = .company_cn }}{{ end }}
       <div class="team-col">
         <div class="member-card">
-          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ .name }}" class="member-photo"></div>
-          <div class="member-body"><div class="member-name">{{ .name }}</div><p class="member-research">{{ .research }}</p></div>
-          <div style="font-size: 0.85rem; color: #888888; margin-top: 2px; margin-bottom: 2px; font-weight: 500; text-align: center; width: 100%;">{{ .company }}</div>
+          <div class="member-photo-wrapper"><img src="{{ .image }}" alt="{{ $memberName }}" class="member-photo"></div>
+          <div class="member-body"><div class="member-name">{{ $memberName }}</div><p class="member-research">{{ $memberResearch }}</p></div>
+          <div style="font-size: 0.85rem; color: #888888; margin-top: 2px; margin-bottom: 2px; font-weight: 500; text-align: center; width: 100%;">{{ $memberCompany }}</div>
           <div class="member-footer">
             {{ if .email }}<a href="mailto:{{ .email }}"><i class="fa-solid fa-envelope"></i></a>{{ end }}
             {{ if .homepage }}<a href="{{ .homepage }}" target="_blank"><i class="fa-solid fa-house"></i></a>{{ end }}
@@ -832,6 +856,7 @@
 
 {{/* =================== Join Us Logic =================== */}}
 {{ else if eq .Section "join-us" }}
+{{ $isZh := eq .Site.Language.Lang "zh" }}
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <div class="container pt-5" id="join-us-page">
   <style>
@@ -874,39 +899,39 @@
   <h2 class="pb-3" style="text-align: left;">{{ .Title }}</h2>
 
   <div class="joinus-hero">
-    <div class="joinus-hero-title">We Are Hiring</div>
+    <div class="joinus-hero-title">{{ if $isZh }}我们正在招募{{ else }}We Are Hiring{{ end }}</div>
     <div class="joinus-hero-text">
-      {{ if .Content }}{{ .Content }}{{ else }}Join CoLab to explore the frontiers of robotics and multimodal intelligence together.{{ end }}
+      {{ if .Content }}{{ .Content }}{{ else }}{{ if $isZh }}加入 CoLab，一起探索机器人与多模态智能前沿。{{ else }}Join CoLab to explore the frontiers of robotics and multimodal intelligence together.{{ end }}{{ end }}
     </div>
   </div>
 
   <div class="row g-4">
     <div class="col-md-6">
       <div class="joinus-card">
-        <div class="joinus-card-title">Master’s / PhD Admissions</div>
-        <p>We are continuously recruiting outstanding Master’s and PhD students interested in AI, robotics, and multimodal understanding.</p>
+        <div class="joinus-card-title">{{ if $isZh }}硕士 / 博士招生{{ else }}Master’s / PhD Admissions{{ end }}</div>
+        <p>{{ if $isZh }}我们长期招收对人工智能、机器人和多模态理解感兴趣的优秀硕士生与博士生。{{ else }}We are continuously recruiting outstanding Master’s and PhD students interested in AI, robotics, and multimodal understanding.{{ end }}</p>
         <ul class="joinus-list">
-          <li>Research areas include embodied intelligence, autonomous systems, space remote sensing, and multimodal learning.</li>
-          <li>Strong emphasis on rigorous research training and top-tier conference publications.</li>
+          <li>{{ if $isZh }}研究方向包括具身智能、自主系统、空天遥感与多模态学习。{{ else }}Research areas include embodied intelligence, autonomous systems, space remote sensing, and multimodal learning.{{ end }}</li>
+          <li>{{ if $isZh }}重视扎实科研训练与高水平学术论文产出。{{ else }}Strong emphasis on rigorous research training and top-tier conference publications.{{ end }}</li>
         </ul>
       </div>
     </div>
     <div class="col-md-6">
       <div class="joinus-card">
-        <div class="joinus-card-title">Postdoctoral Positions</div>
-        <p>We welcome postdoctoral researchers with strong research foundations and independent research capability.</p>
+        <div class="joinus-card-title">{{ if $isZh }}博士后岗位{{ else }}Postdoctoral Positions{{ end }}</div>
+        <p>{{ if $isZh }}欢迎具有扎实科研基础和独立研究能力的博士后加入。{{ else }}We welcome postdoctoral researchers with strong research foundations and independent research capability.{{ end }}</p>
         <ul class="joinus-list">
-          <li>Support for high-impact projects and high-quality publications.</li>
-          <li>Encouragement to apply for national/university postdoctoral fellowships and talent programs.</li>
+          <li>{{ if $isZh }}支持参与高影响力项目并产出高质量研究成果。{{ else }}Support for high-impact projects and high-quality publications.{{ end }}</li>
+          <li>{{ if $isZh }}鼓励申请国家及学校博士后基金和人才项目。{{ else }}Encouragement to apply for national/university postdoctoral fellowships and talent programs.{{ end }}</li>
         </ul>
       </div>
     </div>
   </div>
 
   <div class="joinus-contact mt-4">
-    <h4 class="mb-2">Contact</h4>
-    <p>Please reach out via the three contact methods on our homepage (Email / GitHub / WeChat Public Account).</p>
-    <a href="/" class="btn btn-outline-light btn-sm">Go to Homepage</a>
+    <h4 class="mb-2">{{ if $isZh }}联系方式{{ else }}Contact{{ end }}</h4>
+    <p>{{ if $isZh }}请通过首页提供的联系方式与我们联系（邮箱 / GitHub / 微信公众号）。{{ else }}Please reach out via the three contact methods on our homepage (Email / GitHub / WeChat Public Account).{{ end }}</p>
+    <a href="{{ if $isZh }}/zh/{{ else }}/{{ end }}" class="btn btn-outline-light btn-sm">{{ if $isZh }}返回首页{{ else }}Go to Homepage{{ end }}</a>
   </div>
 </div>
 
