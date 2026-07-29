@@ -1,0 +1,222 @@
+{{- $isZh := eq .Site.Language.Lang "zh" -}}
+<section id="anniversary" class="anniversary-section" aria-labelledby="anniversary-title">
+    <div class="anniversary-glow anniversary-glow--left" aria-hidden="true"></div>
+    <div class="anniversary-glow anniversary-glow--right" aria-hidden="true"></div>
+
+    <div class="container anniversary-container">
+        <div class="anniversary-heading">
+            <div>
+                <p class="anniversary-kicker">
+                    {{ if $isZh }}2016—2026 · COLAB 十周年{{ else }}2016—2026 · COLAB AT TEN{{ end }}
+                </p>
+                <h2 id="anniversary-title" class="anniversary-title">
+                    {{ if $isZh }}十年，可乐同行{{ else }}Ten years, one shared journey.{{ end }}
+                </h2>
+            </div>
+
+            <p class="anniversary-intro">
+                {{ if $isZh }}从计算机视觉到无人机、具身智能与卫星遥感，我们用十年把好奇心变成同行的旅程。这部纪念片献给每一位共创 CoLab 的伙伴。{{ else }}From computer vision to UAVs, embodied intelligence and satellite remote sensing, a decade of curiosity has become a journey we share. This film celebrates everyone who has shaped CoLab.{{ end }}
+            </p>
+        </div>
+
+        <div class="anniversary-film">
+            <video
+                class="anniversary-video"
+                controls
+                playsinline
+                preload="metadata"
+                poster="{{ "/images/colab-10th-anniversary-poster.jpg" | relURL }}"
+                aria-label="{{ if $isZh }}CoLab 实验室十周年宣传视频{{ else }}CoLab 10th anniversary film{{ end }}"
+            >
+                <source src="{{ "/cc9a914fc128c0293a92566ff8c76cbc.mp4" | relURL }}" type="video/mp4">
+                {{ if $isZh }}您的浏览器暂不支持播放此视频。{{ else }}Your browser does not support HTML5 video.{{ end }}
+            </video>
+
+            <div class="anniversary-film-meta" aria-hidden="true">
+                <span>{{ if $isZh }}十周年纪念片{{ else }}10th Anniversary Film{{ end }}</span>
+                <span>04:22</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.anniversary-section {
+    --anniversary-accent: #8b7cff;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(5rem, 9vw, 8.5rem) 0;
+    background:
+        linear-gradient(180deg, #000 0%, #08070d 48%, #000 100%);
+    color: #fff;
+    font-family: "Inter", sans-serif;
+}
+
+.anniversary-section::before {
+    content: "10";
+    position: absolute;
+    top: -0.18em;
+    right: -0.02em;
+    z-index: -1;
+    color: rgba(255, 255, 255, 0.025);
+    font-size: clamp(15rem, 40vw, 42rem);
+    font-weight: 900;
+    line-height: 0.8;
+    letter-spacing: -0.1em;
+    pointer-events: none;
+}
+
+.anniversary-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1440px !important;
+}
+
+.anniversary-glow {
+    position: absolute;
+    z-index: -1;
+    width: 34rem;
+    height: 34rem;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.16;
+    pointer-events: none;
+}
+
+.anniversary-glow--left {
+    top: 10%;
+    left: -18rem;
+    background: #667eea;
+}
+
+.anniversary-glow--right {
+    right: -17rem;
+    bottom: 4%;
+    background: #764ba2;
+}
+
+.anniversary-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(20rem, 0.75fr);
+    gap: clamp(2rem, 7vw, 8rem);
+    align-items: end;
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.anniversary-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0 0 1rem;
+    color: #b8afff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.anniversary-kicker::before {
+    content: "";
+    width: 2.8rem;
+    height: 1px;
+    background: currentColor;
+}
+
+.anniversary-title {
+    max-width: 12ch;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(3rem, 6.5vw, 6.8rem);
+    font-weight: 800;
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+}
+
+.anniversary-intro {
+    margin: 0 0 0.35rem;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+    line-height: 1.8;
+}
+
+.anniversary-film {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: clamp(1rem, 2vw, 1.75rem);
+    background: #030303;
+    box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(139, 124, 255, 0.08);
+}
+
+.anniversary-film::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.24);
+    pointer-events: none;
+}
+
+.anniversary-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    object-fit: cover;
+}
+
+.anniversary-film-meta {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    left: 1.25rem;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.85);
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+@media (max-width: 767.98px) {
+    .anniversary-section {
+        padding: 4.5rem 0;
+    }
+
+    .anniversary-heading {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .anniversary-title {
+        max-width: none;
+    }
+
+    .anniversary-intro {
+        max-width: 42rem;
+    }
+
+    .anniversary-film-meta {
+        top: 0.85rem;
+        right: 0.85rem;
+        left: 0.85rem;
+        font-size: 0.62rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .anniversary-film,
+    .anniversary-video {
+        scroll-behavior: auto;
+    }
+}
+</style>
