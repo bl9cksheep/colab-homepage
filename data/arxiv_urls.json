@@ -1,6 +1,13 @@
 {
   "OctoNav: Towards Generalist Embodied Navigation": "https://arxiv.org/abs/2506.09839",
   "ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models": "https://arxiv.org/abs/2601.11404",
+  "ManiSoft: Towards Vision-Language Manipulation for Soft Continuum Robotics": "https://arxiv.org/abs/2605.18617",
+  "Beyond 2D Matching: A Unified Single-Stage Framework for Geometry-Aware Cross-View Object Geo-Localization": "https://arxiv.org/abs/2606.30576",
+  "Generative Lane Topology Reasoning via Autoregressive Model with Geometry Prior": "https://arxiv.org/abs/2606.31814",
+  "SVCBench: A Streaming Video Counting Benchmark for Spatial-Temporal State Maintenance": "https://arxiv.org/abs/2603.12703",
+  "ViSTR-Bench: Can MLLMs Reason from Continuous Visual Cues in Dynamic Scenes?": "https://arxiv.org/abs/2607.20868",
+  "EVA-Client: A Unified Data Collection, Inference, and Deployment Framework for Embodied Policies on Real Robots": "https://arxiv.org/abs/2607.02646",
+  "GE-Sim 2.0: A Roadmap Towards Comprehensive Closed-loop Video World Simulators for Robotic Manipulation": "https://arxiv.org/abs/2605.27491",
   "MC#: Mixture Compressor for Mixture-of-Experts Large Models": "https://arxiv.org/abs/2510.10962",
   "RoboCerebra: A Large-scale Benchmark for Long-horizon Robotic Manipulation Evaluation": "https://arxiv.org/abs/2506.06677",
   "GaussianPainter: Painting Point Cloud into 3D Gaussians with Normal Guidance": "https://arxiv.org/abs/2412.17715",

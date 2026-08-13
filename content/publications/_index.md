@@ -9,19 +9,24 @@ socialShare: false
 ---
 
 ## 2026
-注：`#` 表示共同一作，`*` 表示通讯作者
+Note: `#` indicates equal contribution; `*` indicates corresponding author.
 - CVPR 2026 — OctoNav: Towards Generalist Embodied Navigation — Chen Gao, Liankai Jin, Xingyu Peng, Jiazhao Zhang, Yue Deng, Annan Li, He Wang, Si Liu* [Embodied AI, Navigation]
 - CVPR 2026 — Parse, Search, and Confirmation: Training-Free Aerial Vision-and-Dialog Navigation with Chain-of-Thought Reasoning and Structured Spatial Memory — Yu Qi, Hongyu Li, Shaofei Huang, Tianrui Hui, Yaxiong Wang, Lechao Cheng, Zhun Zhong, Si Liu*, Meng Wang [UAV, Embodied AI, Vision-Language]
 - CVPR 2026 — LookasideVLN: Direction-Aware Aerial Vision-and-Language Navigation — Yuwei Ning, Ganlong Zhao, Yipeng Qin, Si Liu*, Yang Liu, Liang Lin, Guanbin Li [UAV, Embodied AI, Vision-Language]
 - CVPR 2026 — VGGT-Segmentor: Geometry-Enhanced Cross-View Segmentation — Yulu Gao, Bohao Zhang, Zongheng Tang, Jitong Liao, Wenjun Wu, Si Liu* [3D Vision, Segmentation, Cross-View]
 - CVPR 2026 — ACoT-VLA: Action Chain-of-Thought for Vision-Language-Action Models — Linqing Zhong, Yi Liu, Yifei Wei, Ziyu Xiong, Maoqing Yao, Si Liu*, Guanghui Ren [Multimodal Learning, Embodied AI, Robotics]
 - CVPR 2026 — Geometry-Guided 3D Visual Token Pruning for Video-Language Models — Han Li, Zehao Huang, Jiahui Fu, Naiyan Wang, Si Liu* [Multimodal Learning, Video Understanding, Model Compression]
+- ICML 2026 — ManiSoft: Towards Vision-Language Manipulation for Soft Continuum Robotics — Ziyu Wei, Luting Wang, Chen Gao, Li Wen, Si Liu [Embodied AI, Robotics, Dataset]
+- ICML 2026 — CoPE: Continual Probe-guided Expansion for Large Vision-Language Models — Ziqin Wang, Hengyuan Zhao, Qixin Sun, Kaiyou Song, Yilin Li, Xiaolin Hu, Qingpei Guo, Linjiang Huang, Si Liu [Multimodal Learning, Large Language Model, Continual Learning]
+- ECCV 2026 — Beyond 2D Matching: A Unified Single-Stage Framework for Geometry-Aware Cross-View Object Geo-Localization — Liyao Wang, Ruipu Wu, Haojun Xu, Lei Shi, Linjiang Huang, Si Liu [3D Vision, Cross-View, Geo-localization, Dataset]
+- ECCV 2026 — Generative Lane Topology Reasoning via Autoregressive Model with Geometry Prior — Jiahui Fu, Zehao Huang, Han Li, Naiyan Wang, Si Liu [Autonomous Driving, Scene Understanding, Dataset]
+- ECCV 2026 — SVCBench: A Streaming Video Counting Benchmark for Spatial-Temporal State Maintenance — Pengyiang Liu, Zhongyue Shi, Hongye Hao, Qi Fu, Xueting Bi, Siwei Zhang, Xiaoyang Hu, Zitian Wang, Linjiang Huang, Si Liu [Video Understanding, Dataset, Benchmark]
 - AAAI 2026 — AerialVLA: A Vision-Language-Action Model for Aerial Navigation with Online Dialogue — Jinyu Chen#, Hongyu Li#, Zongheng Tang, Xiaoduo Li, Wenjun Wu, Si Liu* [Multimodal Learning, Embodied AI, Robotics]
 - AAAI 2026 — VaccineRAG: Boosting Multimodal Large Language Models’ Immunity to Harmful RAG Samples — Qixin Sun#, Hengyuan Zhao#, Ziqin Wang#, Yilin Li, Kaiyou Song, Linjiang Huang*, Xiaolin Hu, Qingpei Guo*, Si Liu [Multimodal Learning, Video Understanding]
 - TPAMI 2026 — MC#: Mixture Compressor for Mixture-of-Experts Large Models — Wei Huang#, Yue Liao#, Yukang Chen, Jianhui Liu, Haoru Tan, Si Liu*, Shiming Zhang*, Shuicheng Yan, Xiaojuan Qi* [Large Language Model, Model Compression]
-
-## 2025
-- NeurIPS 2025 — RoboCerebra: A Large-scale Benchmark for Long-horizon Robotic Manipulation Evaluation — Songhao Han#, Boxiang Qiu#, Yue Liao#, Siyuan Huang, Chen Gao, Shuicheng Yan*, Si Liu* [Embodied AI, Robotics, Dataset]
+- arXiv 2026 — ViSTR-Bench: Can MLLMs Reason from Continuous Visual Cues in Dynamic Scenes? — Han Li, Si Liu, Zehao Huang, Dongxin Lyu, Longfei Xu, Jiahui Fu, Daxin Tian, Yuliang Xiu, Naiyan Wang [Multimodal Learning, Video Understanding, Dataset]
+- arXiv 2026 — EVA-Client: A Unified Data Collection, Inference, and Deployment Framework for Embodied Policies on Real Robots — Heqing Yang, Yang Yi, Liyao Wang, Linqing Zhong, Donglin Yang, Ruipu Wu, Zitong Bai, Fengjiao Chen, Manyuan Zhang, Linjiang Huang, Si Liu [Embodied AI, Robotics, Platform]
+- arXiv 2026 — GE-Sim 2.0: A Roadmap Towards Comprehensive Closed-loop Video World Simulators for Robotic Manipulation — Boxiang Qiu, Liliang Chen, Yue Liao, Nan Wang, Lintao Wang, Jiayi Luo, Wenzhi Zhao, Shengcong Chen, Di Chen, Ye Li, Chen Gao, Shuicheng Yan, Si Liu, Maoqing Yao, Guanghui Ren [Embodied AI, Robotics, World Model]
 
 ## 2025
 - AAAI 2025 — GaussianPainter: Painting Point Cloud into 3D Gaussians with Normal Guidance — Jingqiu Zhou#, Lue Fan#, Xuesong Chen, Linjiang Huang*, Si Liu, Hongsheng Li [3D Vision, Neural Rendering]
