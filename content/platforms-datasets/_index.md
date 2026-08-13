@@ -16,7 +16,7 @@ platforms:
         value: "6,300 expert demonstrations spanning diverse language-conditioned manipulation tasks"
       - key: "Sim-to-Real"
         value: "Evaluation tools for transferring manipulation policies from simulation to physical robots"
-    authors: "Ziyu Wei, Luting Wang, Chen Gao, Li Wen, Si Liu"
+    authors: "Ziyu Wei#, Luting Wang#, Chen Gao*, Li Wen*, Si Liu*"
     image: "https://buaa-colalab.github.io/ManiSoft/media/images/fig1.png"
     links:
       - label: "Paper"
@@ -39,7 +39,7 @@ platforms:
         value: "Explicit geometric cues improve cross-view localization beyond appearance matching"
       - key: "CMA-Loc Benchmark"
         value: "223,767 cross-view pairs covering 77,200 locations"
-    authors: "Liyao Wang, Ruipu Wu, Haojun Xu, Lei Shi, Linjiang Huang, Si Liu"
+    authors: "Liyao Wang#, Ruipu Wu#, Haojun Xu#, Lei Shi, Linjiang Huang*, Si Liu"
     image: "https://cipual.github.io/GAGeo-project-page/static/images/paper-teaser.png"
     links:
       - label: "Paper"
@@ -62,7 +62,7 @@ platforms:
         value: "Uses scene geometry to improve topological consistency and spatial accuracy"
       - key: "Large-Scale Training"
         value: "Built on 3.3 million lane-graph scenes"
-    authors: "Jiahui Fu, Zehao Huang, Han Li, Naiyan Wang, Si Liu"
+    authors: "Jiahui Fu, Zehao Huang, Han Li, Naiyan Wang, Si Liu*"
     image: "https://buaa-colalab.github.io/topogpt_page/static/images/overview_visual_input.png"
     links:
       - label: "Paper"
@@ -82,7 +82,7 @@ platforms:
         value: "406 videos, 1,000 questions, 4,576 query points, and 10,071 annotations"
       - key: "Counting Reasoning"
         value: "Measures fine-grained event tracking across long temporal contexts"
-    authors: "Pengyiang Liu, Zhongyue Shi, Hongye Hao, Qi Fu, Xueting Bi, Siwei Zhang, Xiaoyang Hu, Zitian Wang, Linjiang Huang, Si Liu"
+    authors: "Pengyiang Liu, Zhongyue Shi, Hongye Hao, Qi Fu, Xueting Bi, Siwei Zhang, Xiaoyang Hu, Zitian Wang*, Linjiang Huang, Si Liu"
     image: "https://buaa-colalab.github.io/SVCBench/assets/cover/cover_1.png"
     links:
       - label: "Paper"
@@ -146,7 +146,7 @@ platforms:
         value: "A unified benchmark for comparing video world simulators"
       - key: "Open Ecosystem"
         value: "Public code and model weights support reproducible research and deployment"
-    authors: "Boxiang Qiu, Liliang Chen, Yue Liao, Nan Wang, Lintao Wang, Jiayi Luo, Wenzhi Zhao, Shengcong Chen, Di Chen, Ye Li, Chen Gao, Shuicheng Yan, Si Liu, Maoqing Yao, Guanghui Ren"
+    authors: "Boxiang Qiu#, Liliang Chen#, Yue Liao, Nan Wang, Lintao Wang, Jiayi Luo, Wenzhi Zhao, Shengcong Chen, Di Chen, Ye Li, Chen Gao, Shuicheng Yan*, Si Liu*, Maoqing Yao*, Guanghui Ren*"
     video: "https://ge-sim-v2.github.io/assets/converted/GE.mp4"
     links:
       - label: "Paper"

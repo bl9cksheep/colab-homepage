@@ -16,7 +16,7 @@ platforms:
         value: "包含 6,300 条覆盖多种语言条件操作任务的专家演示"
       - key: "仿真到真实"
         value: "支持将操作策略从仿真环境转移并评测于真实机器人"
-    authors: "Ziyu Wei, Luting Wang, Chen Gao, Li Wen, Si Liu"
+    authors: "Ziyu Wei#, Luting Wang#, Chen Gao*, Li Wen*, Si Liu*"
     image: "https://buaa-colalab.github.io/ManiSoft/media/images/fig1.png"
     links:
       - label: "论文"
@@ -39,7 +39,7 @@ platforms:
         value: "利用显式几何线索超越单纯外观匹配，提升跨视角定位"
       - key: "CMA-Loc 基准"
         value: "包含 223,767 对跨视角数据，覆盖 77,200 个地点"
-    authors: "Liyao Wang, Ruipu Wu, Haojun Xu, Lei Shi, Linjiang Huang, Si Liu"
+    authors: "Liyao Wang#, Ruipu Wu#, Haojun Xu#, Lei Shi, Linjiang Huang*, Si Liu"
     image: "https://cipual.github.io/GAGeo-project-page/static/images/paper-teaser.png"
     links:
       - label: "论文"
@@ -62,7 +62,7 @@ platforms:
         value: "利用场景几何信息提升拓扑一致性与空间精度"
       - key: "大规模训练"
         value: "基于 330 万个车道图场景进行训练"
-    authors: "Jiahui Fu, Zehao Huang, Han Li, Naiyan Wang, Si Liu"
+    authors: "Jiahui Fu, Zehao Huang, Han Li, Naiyan Wang, Si Liu*"
     image: "https://buaa-colalab.github.io/topogpt_page/static/images/overview_visual_input.png"
     links:
       - label: "论文"
@@ -82,7 +82,7 @@ platforms:
         value: "406 个视频、1,000 个问题、4,576 个查询点和 10,071 条标注"
       - key: "计数推理"
         value: "衡量模型在长时间上下文中追踪细粒度事件的能力"
-    authors: "Pengyiang Liu, Zhongyue Shi, Hongye Hao, Qi Fu, Xueting Bi, Siwei Zhang, Xiaoyang Hu, Zitian Wang, Linjiang Huang, Si Liu"
+    authors: "Pengyiang Liu, Zhongyue Shi, Hongye Hao, Qi Fu, Xueting Bi, Siwei Zhang, Xiaoyang Hu, Zitian Wang*, Linjiang Huang, Si Liu"
     image: "https://buaa-colalab.github.io/SVCBench/assets/cover/cover_1.png"
     links:
       - label: "论文"
@@ -146,7 +146,7 @@ platforms:
         value: "为视频世界仿真器提供统一比较基准"
       - key: "开源生态"
         value: "公开代码与模型权重，支持可复现研究与部署"
-    authors: "Boxiang Qiu, Liliang Chen, Yue Liao, Nan Wang, Lintao Wang, Jiayi Luo, Wenzhi Zhao, Shengcong Chen, Di Chen, Ye Li, Chen Gao, Shuicheng Yan, Si Liu, Maoqing Yao, Guanghui Ren"
+    authors: "Boxiang Qiu#, Liliang Chen#, Yue Liao, Nan Wang, Lintao Wang, Jiayi Luo, Wenzhi Zhao, Shengcong Chen, Di Chen, Ye Li, Chen Gao, Shuicheng Yan*, Si Liu*, Maoqing Yao*, Guanghui Ren*"
     video: "https://ge-sim-v2.github.io/assets/converted/GE.mp4"
     links:
       - label: "论文"

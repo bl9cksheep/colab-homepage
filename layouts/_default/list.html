@@ -122,6 +122,7 @@
         <button class="btn btn-sm classification-toggle" data-type="category" style="border-radius: 20px; padding: 6px 16px; background: #1a1a1a; color: #888; border: 1px solid #333;">By Category</button>
       </div>
     </div>
+    {{ partial "author-roles.html" . }}
     
     <div id="year-filters" class="filter-group mb-4" style="display: flex; flex-wrap: wrap; gap: 8px;">
       <button class="filter-btn active" data-filter="all-years" style="background: #2a2a2a; color: #fff; border: 1px solid #444; border-radius: 16px; padding: 4px 12px; font-size: 0.9rem;">All</button>
@@ -203,14 +204,7 @@
   
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      // 1. Author Coloring
-      document.querySelectorAll(".author-text").forEach(el => {
-        el.innerHTML = el.innerHTML
-          .replace(/([^,#*]+?)\s*#/g, '<span style="color: #667eea !important; font-weight: 500;">$1</span>')
-          .replace(/([^,#*]+?)\s*\*/g, '<span style="color: #a78bfa !important; font-weight: 500;">$1</span>');
-      });
-
-      // 2. Year Toggle Logic (Only for All-Years view)
+      // 1. Year Toggle Logic (Only for All-Years view)
       document.querySelectorAll(".toggle-year").forEach(btn => {
         btn.addEventListener("click", () => {
           const year = btn.getAttribute("data-year");
@@ -227,7 +221,7 @@
         });
       });
 
-      // 3. Filter Logic
+      // 2. Filter Logic
       const classificationToggles = document.querySelectorAll(".classification-toggle");
       const yearFilters = document.getElementById("year-filters");
       const categoryFilters = document.getElementById("category-filters");
@@ -500,6 +494,7 @@
   {{ if .Params.platforms }}
   <div class="platforms-section mb-5">
     <h4 class="section-title mb-4" style="text-align: left; font-weight: 600; padding-bottom: 0.5rem;">{{ if $isZh }}平台与数据集{{ else }}Platforms & Datasets{{ end }}</h4>
+    {{ partial "author-roles.html" . }}
     {{ range .Params.platforms }}
       <div class="platform-item mb-4 p-4" style="background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
         <div class="row g-4 align-items-start">
@@ -540,7 +535,7 @@
                   <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-light platform-paper-btn">{{ if $isZh }}论文{{ else }}Paper{{ end }}</a>
                 {{ end }}
               </div>
-              <div class="text-end"><p style="font-size: 0.85rem; color: #888; margin: 0;">{{ .authors }}</p></div>
+              <div class="text-end"><p class="author-text" style="font-size: 0.85rem; color: #888; margin: 0;">{{ .authors }}</p></div>
             </div>
           </div>
         </div>

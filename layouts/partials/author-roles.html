@@ -1,0 +1,92 @@
+{{ $isZh := eq .Site.Language.Lang "zh" }}
+
+<div class="author-role-legend" aria-label="{{ if $isZh }}作者贡献标注{{ else }}Author contribution legend{{ end }}">
+  <span class="author-role-legend-label">{{ if $isZh }}作者标注：{{ else }}Author roles:{{ end }}</span>
+  <span class="author-role author-role-equal">{{ if $isZh }}共同一作{{ else }}Equal contribution{{ end }}</span>
+  <span class="author-role author-role-corresponding">{{ if $isZh }}通讯作者{{ else }}Corresponding author{{ end }}</span>
+  <span class="author-role author-role-both">{{ if $isZh }}共同一作兼通讯{{ else }}Equal &amp; corresponding{{ end }}</span>
+</div>
+
+<style>
+  .author-role-legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 1rem;
+    margin: -0.25rem 0 1.25rem;
+    color: #8f8f8f;
+    font-size: 0.88rem;
+  }
+  .author-role-legend-label { color: #8f8f8f; }
+  .author-role { font-weight: 600; }
+  .author-role-equal,
+  #papers-page .author-role.author-role-equal,
+  #platforms-page .author-role.author-role-equal { color: #667eea !important; }
+  .author-role-corresponding,
+  #papers-page .author-role.author-role-corresponding,
+  #platforms-page .author-role.author-role-corresponding { color: #a78bfa !important; }
+  .author-role-both,
+  #papers-page .author-role.author-role-both,
+  #platforms-page .author-role.author-role-both {
+    color: #a78bfa !important;
+    text-decoration-line: underline;
+    text-decoration-color: #667eea;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.18em;
+  }
+</style>
+
+<script>
+  (function() {
+    function renderAuthorRoles() {
+      document.querySelectorAll(".author-text:not([data-author-roles-ready])").forEach(function(el) {
+        var authorEntries = el.textContent.split(",");
+        var fragment = document.createDocumentFragment();
+
+        authorEntries.forEach(function(entry, index) {
+          var raw = entry.trim();
+          var noteMatch = raw.match(/\s*(\((?:#\s*)?Equal contribution\))\s*$/i);
+          if (noteMatch) {
+            raw = raw.slice(0, noteMatch.index).trim();
+          }
+
+          var markerMatch = raw.match(/\s*([#*]+)\s*$/);
+          var markers = markerMatch ? markerMatch[1] : "";
+          var authorName = markerMatch ? raw.slice(0, markerMatch.index).trim() : raw;
+
+          if (markers) {
+            var isEqual = markers.indexOf("#") !== -1;
+            var isCorresponding = markers.indexOf("*") !== -1;
+            var roleClass = isEqual && isCorresponding
+              ? "author-role-both"
+              : (isEqual ? "author-role-equal" : "author-role-corresponding");
+            var roleLabel = isEqual && isCorresponding
+              ? "{{ if $isZh }}共同一作兼通讯作者{{ else }}Equal-contribution and corresponding author{{ end }}"
+              : (isEqual
+                ? "{{ if $isZh }}共同一作{{ else }}Equal-contribution author{{ end }}"
+                : "{{ if $isZh }}通讯作者{{ else }}Corresponding author{{ end }}");
+            var author = document.createElement("span");
+            author.className = "author-role " + roleClass;
+            author.textContent = authorName;
+            author.title = roleLabel;
+            author.setAttribute("aria-label", authorName + ", " + roleLabel);
+            fragment.appendChild(author);
+          } else {
+            fragment.appendChild(document.createTextNode(authorName));
+          }
+
+          if (index < authorEntries.length - 1) fragment.appendChild(document.createTextNode(", "));
+        });
+
+        el.replaceChildren(fragment);
+        el.dataset.authorRolesReady = "true";
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderAuthorRoles);
+    } else {
+      renderAuthorRoles();
+    }
+  })();
+</script>
