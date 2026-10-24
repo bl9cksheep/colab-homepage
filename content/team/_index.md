@@ -56,20 +56,6 @@ faculty:
     homepage: ""
     scholar: ""
 
-  - name: "Jiahao Xie"
-    title: "Tenure-Track Professor, Doctoral Supervisor"
-    image: "/images/team/xie_jia_hao.jpg"
-    highlights:
-      - "National High-level Young Talent"
-      - "Area Chair, ECCV 2026"
-      - "7,000+ GitHub Stars (OpenMMLab)"
-    bio: "Jiahao Xie is a Tenure-Track Professor at Beihang University. His research focuses on foundation models, multimodal understanding, and embodied intelligence. He has published 10+ CCF-A papers in top venues such as IJCV, CVPR, ICCV, NeurIPS, and ICLR over the past five years. Notably, he was the international champion in all four tracks of the Facebook AI Self-Supervised Learning Challenge."
-    bio_extra: "Jiahao is a core contributor to OpenMMLab, having developed the widely-used open-source projects MMSelfSup and MMPreTrain, which have surpassed 700,000 downloads. He serves as an Area Chair for ECCV 2026 and has been recognized as an Outstanding Reviewer for CVPR (2021, 2023) and ICLR (2025). He is also a recipient of the National Scholarship for Outstanding Students Abroad."
-    bio_education: "He received his Ph.D. in 2023 from the Multimedia Laboratory at Nanyang Technological University (MMLab@NTU) and subsequently served as a Postdoctoral Researcher at the Max Planck Institute for Informatics (MPII) from 2023 to 2025."
-    email: "jiahaoxie@buaa.edu.cn"
-    homepage: ""
-    scholar: ""
-
   - name: "Yangyang Guo"
     title: "Tenure-Track Professor, Doctoral Supervisor"
     image: "/images/team/guo_yang_yang.jpg"
